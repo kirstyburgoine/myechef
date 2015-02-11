@@ -444,7 +444,7 @@ if ( !$banner_color ) : $banner_color = "none"; endif;
 
 								<tr>
 									<th>Total Cost for <span class="js-portion-quantity"><?php echo $portion_quantity; ?></span> <?php echo ucfirst($portion_quantity_text);?>(s)</th>
-									<td class="inputs"><span class="js-percent-per-serving">35</span>%</td>
+									<td class="inputs"><span class="js-percent-per-serving">30</span>%</td>
 									<td class="calculations">&pound;<span class="js-cost-per-serving"></span></td>
 									<td class="checkbox-blank"></td>
 
@@ -460,7 +460,7 @@ if ( !$banner_color ) : $banner_color = "none"; endif;
  
 								<tr>
 									<th>Gross Profit Required</th>
-									<td><input type="text" name="profit-amount" class="small-input" value="65">%</td>
+									<td><input type="text" name="profit-amount" class="small-input" value="70">%</td>
 									<td>&pound;<span class="js-gross-profit"></span></td>
 									<td></td>
 
