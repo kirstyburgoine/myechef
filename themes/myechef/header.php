@@ -71,8 +71,9 @@
                     var $tr = $(this),
                         $td = $tr.find('td').first(),
                         quantity = convert_units($td.data('quantity') * multiplier, $td.data('base-unit'));
+                        quantity_trimmed = quantity.quantity.toFixed(2)
 
-                    $tr.find('.quantity').html(quantity.quantity + quantity.unit);
+                    $tr.find('.quantity').html( eval(quantity_trimmed) + quantity.unit);
 
                 });
 
@@ -492,7 +493,7 @@
                 var total_volume = 0,
                     total_cost = 0
 
-                <?php if ( current_user_can('business-admin') || current_user_can('administrator') ) : ?>
+                <?php if ( current_user_can('editor') || current_user_can('administrator') ) : ?>
 
                 $('.ingredients-stock-levels tbody tr').each(function() {
 
@@ -555,7 +556,7 @@
                     total_volume = 0,
                     total_cost = 0
 
-                <?php if ( current_user_can('business-admin') || current_user_can('administrator') ) : ?>
+                <?php if ( current_user_can('editor') || current_user_can('administrator') ) : ?>
 
                 // If logged in as admin there are extra columns
                 $('.ingredients-stock-levels tbody tr').each(function() {
