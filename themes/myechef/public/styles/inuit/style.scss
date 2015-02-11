@@ -1,0 +1,636 @@
+@charset "UTF-8";
+/*------------------------------------*\
+    YOUR-PROJECT.CSS
+\*------------------------------------*/
+/**
+ * 
+ * sass --watch your-project.scss:your-project.min.css --style compressed
+ * 
+ * Here we set up some variables, include the inuit.css framework, then add our
+ * project-specific components afterwards.
+ */
+
+
+//---------------------------------------------------------
+//---------------------------------------------------------
+//	Some Default Colours
+
+//$distressed_bg: url('../assets/img/broken_noise.png');
+
+$header_font: "proxima-nova-alt",sans-serif;
+$body_font: "adelle",serif;
+
+$copy_color: #4d4d4d;
+$link_color: #5d285f;
+$link_color_alt: #fff;
+
+$corporate_color: #5d285f; /* Corporate Purple */
+$bg_color: #fff; /* default bg colour */
+$bg_color_alt: #ccc; /* alternate bg colour */
+
+/* Additional Colour Pallette */
+
+$red: #ab2328;
+$yellow: #eaaa00;
+$blue: #1b365d;
+$green: #b4a91f; 
+$brown: #703f2a;
+
+$white_bg: url('../assets/img/white-bg.png');
+
+/**
+ * Setup
+ */
+@import "defaults";
+@import "inuit.css/inuit";
+
+
+/**
+ * She’s all yours, cap’n... Begin importing your stuff here.
+ */ 
+
+
+
+@import "partials/mixins";
+@import "partials/fonts";
+@import "partials/menus-links";
+@import "partials/forms";
+@import "partials/flexslider";
+@import "partials/qtip";
+@import "partials/reveal";
+@import "partials/slicknav";
+@import "partials/wordpress";
+
+
+//---------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------
+// General Structure and Utility Stuff Here Only
+
+html{
+	//padding: $base-spacing-unit;
+    background-color: $bg_color;
+
+}
+
+body { 
+	//@include screen-borders;
+	font-family: $body_font;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+
+	
+	&.wrapper {
+		position: relative;
+
+		/*
+		padding-top: 46px !important;
+	    @media screen and (min-width: 782px) {
+			padding-top: 32px !important;
+		}
+		*/
+	}
+	
+}
+
+/* Used throughout website to contain elements on desktop */
+
+.container {
+	width: 95%;
+	margin: 0 auto;
+	position: relative;
+
+		@media screen and (min-width: $desk-wide-start) {
+			width: 1100px;
+			
+		}	
+}
+
+
+//---------------------------------------------------------
+//---------------------------------------------------------
+// General Utility Stuff
+
+.seperator { height: 0; clear: both; }
+
+
+.pt { /* Padding Top */
+	padding-top: 1.5em; 
+
+	} 
+
+.pb { /* Padding Bottom */
+	padding-bottom: 1em; 
+	} 
+
+.pl { /* Padding Left */
+	padding-left: 1em; 
+	}
+
+.pr { /* Padding Right */
+	padding-right: 1em; 
+	} 
+
+.ptb { /* Padding Top & Bottom */
+	padding-top: 1em; 
+	padding-bottom: 1em; 
+	} 
+
+.plr { /* Padding Left & Right */
+	padding-left: 1em; 
+	padding-right: 1em; 
+	} 
+
+.ptrbl { /* Padding Top, Right, Bottom, Left */
+	padding: 1em; 
+	} 
+
+.border-top { 
+	border-top: solid 1px #292929; 
+	padding-top: 1em; 
+}
+
+.border-bottom { 
+	border-bottom: solid 1px #292929; 
+	padding-bottom: 0.5em; 
+	margin-bottom: 0.5em;
+
+	@media screen and (min-width: $lap-start) {
+		margin-bottom: 1.5em;
+	}	
+
+}
+
+.mt { /* margin Top */
+	margin-top: 1.5em; 
+
+	} 
+
+.mb { /* margin Bottom */
+	margin-bottom: 1em; 
+	} 
+
+.ml { /* margin Left */
+	margin-left: 1em; 
+	}
+
+.mr { /* margin Right */
+	margin-right: 1em; 
+	} 
+
+.mtb { /* margin Top & Bottom */
+	margin-top: 1em; 
+	margin-bottom: 1em; 
+	} 
+
+.mlr { /* margin Left & Right */
+	margin-left: 1em; 
+	margin-right: 1em; 
+	} 
+
+.mtrbl { /* margin Top, Right, Bottom, Left */
+	margin: 1em; 
+	} 
+
+
+.mobile-display-none {
+	display: none;
+
+	@media screen and (min-width: $desk-start) {
+		display: inline-block;
+	}
+}
+
+//---------------------------------------------------------
+//---------------------------------------------------------
+// Header Area
+
+.nav-container{ 
+	background: #fff; 
+}
+
+
+.logo-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: #fff;
+	margin: 0;
+	padding: 0.5em;
+	border-radius: 0 0 5px 5px;
+
+	@media screen and (min-width: $tab-start) {
+		top: 2.5em;
+	}
+
+	@media screen and (min-width: $desk-start) {
+		padding: 1em;
+		top: 0;
+	}
+
+
+	>h1.logo {
+	  	background: url('../../public/assets/img/myechef.jpg') center no-repeat; 
+	  	background-size: 120px;
+	  	height:84px;
+	    width:120px;
+	    margin: 0 auto;
+	    display:block;
+	    @include hide-text;
+
+	    @media screen and (min-width: $desk-start) {
+	    	background-size: 195px;
+	 	 	height:137px;
+	    	width:195px;
+
+	    }
+
+	    @media screen and (min-width: $lap-start) {
+
+	    }
+
+	    >a { 
+	    	display: block; 
+	    	width: 100%; 
+	    	height: 100%;
+	    	position: relative;
+	    	z-index: 1000;
+	    }
+	}
+
+}
+
+
+
+.utility-nav-container {
+	float: right;
+	clear: right;
+
+	@media screen and (min-width: $lap-start) {
+		min-height: 130px;
+	}
+
+	>p { 
+		padding: 8px;
+		text-align: right;
+		margin: 1.3em 0 0.5em 0;
+	}
+}
+
+
+
+
+
+.features { /* Area that contains search, drop downs, featured recipes etc. */
+
+		height: auto;
+		border-bottom: solid 1px $bg_color_alt;
+		@include bg-images;
+
+		.bg-color { padding-bottom: 50px; }
+
+		/* mini carousel featuring recipes */
+		.featured-recipe {
+			position: relative;
+			display: block;
+			width: 100%;
+			height: 100%;
+			max-width: 257px;
+			max-height: 257px;
+			overflow: hidden;
+
+			a { color: #000; }
+			
+
+			img { max-width: 100%; }
+
+			.recipe-title {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				background: $white_bg;
+				@include transition;
+				
+
+				h4 { 
+					margin-bottom: 0; 
+					padding: 2%;
+
+					span { font-size:16px; padding-top: 5px; }
+				}
+
+				
+				.perfect {
+					display: block;
+					color: #000;
+					background: #fff; 
+					font-family: $header_font;
+					font-size: 13px;
+					padding: 2%;
+				}
+
+			}
+
+			.recipe-meta {
+
+				position: absolute;
+				top: 2%;
+				left: 2%;
+				background: $bg_color;
+				padding: 2px 5px 0 5px;
+
+
+					.favorite-icon {
+						color: $yellow;
+						font-size: 24px;
+					}
+
+			}
+
+		}
+
+
+	hr { background: #fff; }
+}
+
+/* coloured overlay on feature areas, dependent on options */
+.purple .features .bg-color { background: url('../assets/img/purple.png'); }
+.red .features .bg-color { background: url('../assets/img/red.png'); }
+.yellow .features .bg-color { background: url('../assets/img/yellow.png'); }
+.blue .features .bg-color { background: url('../assets/img/blue.png'); }
+.green .features .bg-color { background: url('../assets/img/green.png'); }
+.brown .features .bg-color { background: url('../assets/img/brown.png'); }
+
+/* Small corousel hover effct that ties in with color overlay picked in admin */
+.purple  .features a:hover .recipe-title { color: #fff; background: $corporate_color; }
+.red .features a:hover .recipe-title { color: #fff; background: $red; }
+.yellow .features a:hover .recipe-title { color: #fff; background: $yellow; }
+.blue .features a:hover .recipe-title { color: #fff; background: $blue; }
+.green .features a:hover .recipe-title { color: #fff; background: $green; }
+.brown .features a:hover .recipe-title { color: #fff; background: $brown; }
+
+
+/* feature area specific to the homepage with intor and carousel */
+.home-features {
+	
+
+	.home-intro {
+		padding-bottom: 50px;
+		margin-bottom: 40px;
+		background: url('../assets/img/rule.jpg') no-repeat bottom center;
+
+	}
+}
+
+.meal-types { 
+	padding-top: 40px;
+	background: #333;
+
+	img { max-width: 75%; }
+	h3 { font-size: 1.1rem; }
+		
+}
+
+
+.page-features {
+
+	.flexslider {
+		display: none;
+		max-width: 257px;
+
+		@media screen and (min-width: $tab-start) {
+			display: block;
+		}
+	}
+}
+
+.entry-content {
+	img { 
+		max-width: 100%; 
+		height: auto;
+	}
+}
+
+//---------------------------------------------------------
+//---------------------------------------------------------
+// About Page - expand and collapse stuff
+
+.faq-container {
+
+	h3 { 
+		span { 
+			float: right;
+			font-size: 18px; font-size: 1.1rem;
+			line-height: 28px; line-height: 1.7rem;
+		}
+
+		padding: 10px;
+		background: $bg_color_alt;
+		@include transition;
+
+		&:hover { 
+			cursor: pointer;
+			background: #fff; 
+		}
+	}
+	ul { display: none; }
+
+}
+
+
+.purple .faq-container h3:hover { color: #fff; background: $corporate_color; }
+.red .faq-container h3:hover { color: #fff; background: $red; }
+.yellow  .faq-container h3:hover { color: #fff; background: $yellow; }
+.blue .faq-container h3:hover { color: #fff; background: $blue; }
+.green .faq-container h3:hover { color: #fff; background: $green; }
+.brown  .faq-container h3:hover { color: #fff; background: $brown; }
+
+//---------------------------------------------------------
+//---------------------------------------------------------
+// Recipes
+
+.type-recipe {
+	margin: 0 0 1.5em 0;
+	border-bottom: solid 1px #ccc;
+}
+
+
+//---------------------------------------------------------
+//---------------------------------------------------------
+// Single Recipes
+
+
+.utility { /* icons and nationaloty flag */
+
+	float: right;
+	background: #ccc;
+	margin: 0 0 1em 1em;
+	border-radius: 5px; 
+	max-width: 10em;
+
+	img.flag { 
+		clear: none;
+		margin: 0.5em 0.25em 0 0.25em; 
+		display: block; 
+	}
+
+	h4 { text-align: center; margin-bottom: .5em; border-top: solid 1px #fff; padding-top: 0.3em; }
+	.wpb-bm { margin: 0 5% 5% 5%; }
+
+	// Only used when logged out
+	p { padding: 0 8px; }
+
+}
+
+
+
+.allergens {
+	background: #ccc;
+	padding: 10px;
+	border-radius: 5px; 
+
+	.desc { margin-bottom: 1em; padding-bottom: 1em; border-bottom: solid 1px #fff; }
+}
+
+
+//---------------------------------------------------------
+//---------------------------------------------------------
+// Events
+// Overrides plugin defaults
+
+.recurringinfo { display: none!important; }
+
+
+
+#tribe-events-footer {
+margin: 1em 0;
+clear: both;
+float: left;
+width: 100%;
+}
+
+
+.tribe-events-list .vevent.hentry {
+padding: .5em 0!important;
+}
+
+//---------------------------------------------------------
+//---------------------------------------------------------
+// Sidebar
+
+.sidebar {
+	//background: $yellow;
+
+}
+
+
+
+//---------------------------------------------------------
+//---------------------------------------------------------
+// Footer
+
+.feedback-box { background: $corporate_color; }
+
+.feedback-container { 
+
+	display: block; 
+	position: absolute;
+	width: 100%;
+	bottom: 225px;
+	background: #fff;
+
+	@media screen and (min-width: $tab-start) {
+		bottom: 40px;
+	}
+
+		.share { 
+			float: left; 
+			width: 100%;
+			margin-bottom: 40px;
+
+			@media screen and (min-width: $tab-start) {
+				width: 50%;
+				margin-bottom: 0;
+			}
+
+			.addthis_toolbox {
+				margin-top: 10px;
+
+				p { float: left; margin: 0 10px 0 0; font-weight: 600; }
+
+			}
+		}
+
+		.feedback-tab { 
+			display: block; 
+			width: auto; 
+			padding: 0.5em 1em;
+			background-color: $corporate_color; 
+			color: #fff; 
+			text-decoration: none;
+			font-family: $header_font;
+			border-radius: 5px 5px 0 0; /* top left, top right, bottom right, bottom left */
+			position: absolute;
+			right: 0;
+			bottom: 0;
+		
+
+			&:hover {
+				cursor: pointer;
+				color: #fff;
+				text-decoration: none;
+				background-color: $bg_color_alt; 
+				color: $copy_color;
+			}
+
+				span { 
+					font-size: 12px; font-size: 0.9rem; 
+					padding: 0 0.3em 0 0.8em;
+				}
+
+		}
+
+		.feedback-box-inner { 
+			display: none;
+			padding: 0.9em 0 0.5em 0;
+			
+
+
+			.widget {
+				width: 100%;
+				float: left;
+				color: #fff;
+
+				&:last-child { margin-left: 2%; }
+				&:first-child { padding-top: 20px; }
+
+				@media screen and (min-width: $lap-start) {
+					width: 48%;
+				}
+			}
+
+		}
+
+}
+
+
+.footer-nav { 
+	
+	background: #000; 
+}
+
+.credits {
+	background: #000;
+	width: 100%;
+	height: 225px;
+	margin-top: 8em;
+
+
+	@media screen and (min-width: $tab-start) {
+		height: auto;
+		margin-top: 4em;
+	}
+}
+
+.print-only { display: none; }

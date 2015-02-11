@@ -1,0 +1,546 @@
+a { 
+    color: $link_color; 
+    @include transition;
+}
+
+a:hover { color: $copy_color; }
+
+//---------------------------------------------------------
+//---------------------------------------------------------
+// Buttons
+
+/* General buttons for more info etc. */
+.btn { 
+    font-family: $header_font;
+    background: $corporate-color; 
+    color: $link_color_alt;
+
+    box-shadow: inset 0 1px 0 rgba(0,0,0,.2),0 1px 2px #666!important;
+
+    >span {
+        font-size: 14px; font-size:0.9rem;
+    }
+
+}
+
+    .btn:hover { background: $bg_color_alt; }
+
+
+//---------------------------------------------------------
+//---------------------------------------------------------
+// Mobile Menu Button
+
+
+
+
+//---------------------------------------------------------
+//---------------------------------------------------------
+// Mobile Menu & Button
+
+.js .slicknav_menu {
+    
+    display:block;
+
+    @media screen and (min-width: $tab-start) {
+        display: none;
+    }
+
+}
+
+.js .menu-primary-menu {
+
+    display:none;
+
+    @media screen and (min-width: $tab-start) {
+        display: block;
+    }
+}
+    
+
+
+
+
+
+
+//---------------------------------------------------------
+//---------------------------------------------------------
+// Main Menus
+
+ul.menu {
+    float: right;
+    margin-bottom: 0;
+    
+    li { 
+
+        display: block;
+        float: left;
+
+        /* Controlled through menu classes in admin and not the global banner option */
+        &.purple a { background: $corporate_color; }
+        &.red a { background: $red; }
+        &.yellow a { background: $yellow; }
+        &.blue a { background: $blue; }
+        &.green a { background: $green; }
+        &.brown a { background: $brown; }
+
+
+
+        a {
+            font-family: $header_font;
+
+
+            &:hover {
+                background: $bg_color;
+                color: $copy_color;
+                @include transition;
+            } 
+
+        }
+
+    }
+
+
+    @media screen and (min-width: $lap-start) {
+
+    }
+
+
+}
+
+// Header and footer menu colours so that they are automatic on sub sites
+ul.main-nav, .slicknav_nav  {
+
+    li {
+     
+        &:first-child a { background: $corporate_color; }
+        &:nth-child(2) a { background: $green; }
+        &:nth-child(3) a { background: $blue; }
+        &:nth-child(4) a { background: $red; }
+        &:nth-child(5) a { background: $yellow; }
+        &:nth-child(6) a { background: $brown; }
+        &:nth-child(7) a { background: $corporate_color; }
+        &:nth-child(8) a { background: $green; }
+        &:nth-child(9) a { background: $blue; }
+        &:nth-child(10) a { background: $red; }
+        &:nth-child(11) a { background: $yellow; }
+        &:nth-child(12) a { background: $brown; }
+
+        a {
+
+             &:hover {
+                background: $link_color_alt;
+            } 
+        }
+    }
+}
+
+
+
+    .header-nav {
+        
+        p { float: left; margin: 5px 0 0 0; }
+
+        ul.menu {
+
+            @media screen and (min-width: $lap-start) {
+                float: right;
+                
+                >li:first-child a {
+                    //border-radius: 0 0 0 5px; /* top left, top right, bottom right, bottom left */
+                }
+
+                 >li:last-child a {
+                    //border-radius: 0 0 5px 0; /* top left, top right, bottom right, bottom left */
+                }
+            }
+
+        }
+    }
+
+
+.menu a {
+    color: $link_color_alt;
+    text-decoration: none;
+}
+
+
+
+
+
+//---------------------------------------------------------
+//---------------------------------------------------------
+// Utility Menu // Login/Logout in header of every page
+
+
+.utility-nav-container {
+
+    ul { 
+        float: right; 
+        background: #fff;
+        border-radius: 5px; /* top left, top right, bottom right, bottom left */
+        margin-top: 18px;
+        min-width: 155px;
+
+        @media screen and (min-width: $lap-start) {
+            margin-top: 30px;
+        }
+
+
+        li {
+
+            width: 100%;
+            @media screen and (min-width: $lap-start) {
+                width: auto;
+            }
+
+
+            p { 
+                color: #000;
+                padding: 12px; 
+                font-family: $header_font; 
+                margin-bottom: 0; 
+            }
+
+            a { color: #000; width: 100%; }
+
+            .ss-icon { 
+                font-size: 18px; 
+                float: left;
+                margin-right: 0.3em;
+            }
+
+        }
+
+    }
+}
+
+
+/* Colour of utility nav icons based on feature area colour */
+
+.none .utility-nav-container ul li a .ss-star,
+.none .utility-nav-container ul li a .ss-logout,
+.none .utility-nav-container ul li a .ss-lock,
+.none .utility-nav-container ul li a .ss-attach,
+.none .utility-nav-container ul li p .ss-users { color: $corporate_color; }
+
+.purple .utility-nav-container ul li a .ss-star,
+.purple .utility-nav-container ul li a .ss-logout,
+.purple .utility-nav-container ul li a .ss-lock,
+.purple .utility-nav-container ul li a .ss-attach,
+.purple .utility-nav-container ul li p .ss-users { color: $corporate_color; }
+
+.red .utility-nav-container ul li a .ss-star,
+.red .utility-nav-container ul li a .ss-logout,
+.red .utility-nav-container ul li a .ss-lock,
+.red .utility-nav-container ul li a .ss-attach,
+.red .utility-nav-container ul li p .ss-users { color: $red; }
+
+.yellow .utility-nav-container ul li a .ss-star,
+.yellow .utility-nav-container ul li a .ss-logout,
+.yellow .utility-nav-container ul li a .ss-lock,
+.yellow .utility-nav-container ul li a .ss-attach,
+.yellow .utility-nav-container ul li p .ss-users { color: $yellow; }
+
+.blue .utility-nav-container ul li a .ss-star,
+.blue .utility-nav-container ul li a .ss-logout,
+.blue .utility-nav-container ul li a .ss-lock,
+.blue .utility-nav-container ul li a .ss-attach,
+.blue .utility-nav-container ul li p .ss-users { color: $blue; }
+
+.green .utility-nav-container ul li a .ss-star,
+.green .utility-nav-container ul li a .ss-logout,
+.green .utility-nav-container ul li a .ss-lock,
+.green .utility-nav-container ul li a .ss-attach,
+.green .utility-nav-container ul li p .ss-users { color: $green; }
+
+.brown .utility-nav-container ul li a .ss-star,
+.brown .utility-nav-container ul li a .ss-logout,
+.brown .utility-nav-container ul li a .ss-lock,
+.brown .utility-nav-container ul li a .ss-attach,
+.brown .utility-nav-container ul li p .ss-users { color: $brown; }    
+
+
+/* hover effect of utility nav based on feature area colour */
+.none .utility-nav-container ul li a:hover, 
+.purple .utility-nav-container ul li a:hover { color: #fff; background: $corporate_color; }
+.red .utility-nav-container ul li a:hover{ color: #fff; background: $red; }
+.yellow .utility-nav-container ul li a:hover { color: #fff; background: $yellow; }
+.blue .utility-nav-container ul li a:hover { color: #fff; background: $blue; }
+.green .utility-nav-container ul li a:hover { color: #fff; background: $green; }
+.brown .utility-nav-container ul li a:hover { color: #fff; background: $brown; }        
+
+/* hover effect of utility nav icons based on feature area colour */
+.none .utility-nav-container ul li a:hover  .ss-star,
+.none .utility-nav-container ul li a:hover  .ss-logout,
+.none .utility-nav-container ul li a:hover  .ss-lock,
+.none .utility-nav-container ul li a:hover  .ss-users,
+.none .utility-nav-container ul li a:hover  .ss-attach,
+.purple .utility-nav-container ul li a:hover  .ss-star,
+.purple .utility-nav-container ul li a:hover  .ss-logout,
+.purple .utility-nav-container ul li a:hover  .ss-lock,
+.purple .utility-nav-container ul li a:hover  .ss-users,
+.purple .utility-nav-container ul li a:hover  .ss-attach,
+.red .utility-nav-container ul li a:hover .ss-star,
+.red .utility-nav-container ul li a:hover .ss-logout,
+.red .utility-nav-container ul li a:hover .ss-lock,
+.red .utility-nav-container ul li a:hover .ss-users,
+.red .utility-nav-container ul li a:hover .ss-attach,
+.yellow .utility-nav-container ul li a:hover .ss-star,
+.yellow .utility-nav-container ul li a:hover .ss-logout,
+.yellow .utility-nav-container ul li a:hover .ss-lock,
+.yellow .utility-nav-container ul li a:hover .ss-users,
+.yellow .utility-nav-container ul li a:hover .ss-attach,
+.blue .utility-nav-container ul li a:hover .ss-star,
+.blue .utility-nav-container ul li a:hover .ss-logout,
+.blue .utility-nav-container ul li a:hover .ss-lock,
+.blue .utility-nav-container ul li a:hover .ss-users,
+.blue .utility-nav-container ul li a:hover .ss-attach,
+.green .utility-nav-container ul li a:hover .ss-star,
+.green .utility-nav-container ul li a:hover .ss-logout,
+.green .utility-nav-container ul li a:hover .ss-lock,
+.green .utility-nav-container ul li a:hover .ss-users,
+.green .utility-nav-container ul li a:hover .ss-attach,
+.brown .utility-nav-container ul li a:hover .ss-star,
+.brown .utility-nav-container ul li a:hover .ss-logout,
+.brown .utility-nav-container ul li a:hover .ss-lock,
+.brown .utility-nav-container ul li a:hover .ss-users,
+.brown .utility-nav-container ul li a:hover .ss-attach { color: #fff; }      
+
+
+//---------------------------------------------------------
+//---------------------------------------------------------
+// Events Stuff
+// Events category menu in events section - replaces recipes search
+
+ul.menu-events {
+
+    margin-bottom: 0;
+    
+    li { 
+
+        display: block;
+        float: left;
+        margin-right: 0.5em;
+
+
+        a {
+            background: $bg_color;
+            color: $copy_color;
+            font-family: $header_font;
+            text-decoration: none;
+            border-radius: 3px;
+
+
+            &:hover {
+                background: $copy_color;
+                color: $bg_color;
+                @include transition;
+            } 
+
+        }
+
+    }
+
+
+    @media screen and (min-width: $lap-start) {
+
+    }
+
+
+}
+
+//---------------------------------------------------------
+//---------------------------------------------------------
+// Chef-e-pedia alpahabet taxonomy menu 
+// 
+
+ul.alphabet-terms {
+
+    margin: 0.5em 0 0 0;
+    padding: 0;
+
+    li { 
+        display: block;
+        float: left;
+        color: $link_color_alt;
+        font-size: 18px;
+        padding-right: 0.5em;
+        line-height: 1em;
+
+        a { 
+            font-size: 30px;
+            font-family: $header_font;
+            color: $link_color_alt;
+            font-weight: 600;
+            text-decoration: none;
+        }
+    }
+
+}
+
+.none ul.alphabet-terms li a:hover, 
+.purple ul.alphabet-terms li a:hover { color:  $corporate_color; }
+.red ul.alphabet-terms li a:hover{ color:  $red; }
+.yellow ul.alphabet-terms li a:hover { color:  $yellow; }
+.blue ul.alphabet-terms li a:hover { color:  $blue; }
+.green ul.alphabet-terms li a:hover { color:  $green; }
+.brown ul.alphabet-terms li a:hover { color: $brown; }        
+
+//---------------------------------------------------------
+//---------------------------------------------------------
+// Homepage Stuff
+// Courses category filter on homepage
+
+.meal-types { 
+
+    ul {
+        text-align: center;
+        padding-bottom: 30px;
+
+        li { 
+            margin: 0 1em;
+
+            a { 
+                text-decoration: none;
+
+                &:hover {
+
+                    h3 {
+                    
+                     @include transition;
+                    }
+                }
+
+            }
+        }
+
+    }
+
+}
+
+.none .meal-types ul li a:hover h3,
+.purple .meal-types ul li a:hover h3 { color:  $corporate_color; }
+.red .meal-types ul li a:hover h3 { color: $red; }
+.yellow .meal-types ul li a:hover h3 { color: $yellow; }
+.blue .meal-types ul li a:hover h3 { color: $blue; }
+.green .meal-types ul li a:hover h3 { color: $green; }
+.brown .meal-types ul a:hover h3 { color: $brown; } 
+
+//---------------------------------------------------------
+//---------------------------------------------------------
+// Recipe Stuff
+// Save or print finctions on single recipes
+
+
+.utility {
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+
+        li { 
+            display: inline-block; 
+
+            a { 
+                font-size: 1.9rem; 
+
+                &.print { color: $copy_color; margin-top:0; }
+                &.save { color: $yellow; }
+
+                &:hover { color: #fff; }
+                
+            }
+        }
+
+
+    }
+
+    .wpb-bm-btn {
+        font-size: 14px !important;
+        line-height: 10px !important;
+        height: 29px !important;
+        text-transform: capitalize;
+        font-weight: bold !important;
+    }
+
+}
+
+//---------------------------------------------------------
+//---------------------------------------------------------
+// PAgination
+
+.tw-pagination { margin-bottom: 1em!important; }
+
+//---------------------------------------------------------
+//---------------------------------------------------------
+// Footer Stuff
+
+.credits {
+
+    ul.menu {
+        @media screen and (min-width: $lap-start) {
+            display: block;
+            float: right;
+            clear: right;
+        }
+    }
+
+    p {
+        font-family: $header_font;
+        background: url('../assets/img/star.png') no-repeat top left;
+        padding: 0 0 0 2.2em;
+        font-size: 11px;
+    }
+
+    a {
+        font-family: $header_font;
+        text-decoration: none;
+        color: $link_color_alt;
+
+        &:hover {
+            color: $yellow;
+        }
+    }
+}
+
+
+
+
+/* Go to top ------------------------------------*/
+.scrollup {
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    bottom: 40px;
+    right: 10px;
+    display: none;
+    border-radius: 50%;
+    z-index: 5000;
+    text-decoration: none;
+}
+
+    .none .scrollup, 
+    .purple .scrollup { background:  $corporate_color; }
+    .red .scrollup{ background:  $red; }
+    .yellow .scrollup { background:  $yellow; }
+    .blue .scrollup { background:  $blue; }
+    .green .scrollup { background:  $green; }
+    .brown .scrollup { background: $brown; }     
+
+.scrollup i {
+    color: $link_color_alt;
+    text-align: center;
+    display: block;
+    line-height: 52px;
+    font-size: 20px; font-size: 1.3rem;
+}
+
+.scrollup:hover { 
+    background: $bg_color_alt;
+}
+
+.scrollup:hover i {
+        
+} 

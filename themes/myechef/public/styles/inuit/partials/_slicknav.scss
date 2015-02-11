@@ -1,0 +1,158 @@
+/*
+    Mobile Menu Core Style
+*/
+
+.slicknav_btn { position: relative; display: block; vertical-align: middle; float: right; padding: 12px; line-height: 1.125em; cursor: pointer; }
+.slicknav_menu  .slicknav_menutxt { display: block; line-height: 1.188em; float: left; }
+.slicknav_menu .slicknav_icon { float: left; margin: 0.188em 0 0 0.438em; }
+.slicknav_menu .slicknav_no-text { margin: 0 }
+.slicknav_menu .slicknav_icon-bar { display: block; width: 1.125em; height: 0.125em; -webkit-border-radius: 1px; -moz-border-radius: 1px; border-radius: 1px; -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25); -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25); box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25); }
+.slicknav_btn .slicknav_icon-bar + .slicknav_icon-bar { margin-top: 0.188em }
+.slicknav_nav { clear: both }
+.slicknav_nav ul,
+.slicknav_nav li { display: block }
+.slicknav_nav .slicknav_arrow { font-size: 0.8em; margin: 0 0 0 0.4em; }
+.slicknav_nav .slicknav_item { display: block; cursor: pointer; }
+.slicknav_nav a { display: block }
+.slicknav_nav .slicknav_item a { display: inline }
+.slicknav_menu:before,
+.slicknav_menu:after { content: " "; display: table; }
+.slicknav_menu:after { clear: both }
+/* IE6/7 support */
+.slicknav_menu { *zoom: 1 }
+
+/* 
+    User Default Style
+    Change the following styles to modify the appearance of the menu.
+*/
+
+.slicknav_menu {
+	font-size:16px;
+}
+
+/* Button */
+.slicknav_btn {
+	background: $corporate_color; 
+	text-decoration:none;		
+
+	@include transition;
+
+
+	/* Button Text */
+	.slicknav_menutxt {	
+		color: #FFF;
+		font-family: $header_font;
+	}
+
+	/* Button Lines */
+	.slicknav_icon-bar {
+	 	background-color: #fff;
+	}
+
+}
+
+
+.none .slicknav_btn ,
+.purple .slicknav_btn { background: $corporate_color; }
+.red .slicknav_btn {	background: $red; } 
+.yellow .slicknav_btn { background: $yellow; }
+.blue .slicknav_btn {	background: $blue; }
+.green .slicknav_btn {	background: $green; }
+.brown .slicknav_btn {	background: $brown; }
+
+
+.slicknav_btn:hover { 
+
+	background: $bg_color_alt; 
+
+	/* Button Text */
+	.slicknav_menutxt {	
+		color: #000;
+		font-family: $header_font;
+	}
+
+	/* Button Lines */
+	.slicknav_icon-bar {
+	 	background-color: #000;
+	}
+
+}
+
+
+
+
+
+
+.slicknav_menu {
+	background:#fff;
+	padding: 0 5px;
+}
+
+
+.slicknav_nav {
+	color:#fff;
+	margin:0;	
+	padding:0;
+	font-size:0.875em;
+}
+.slicknav_nav, .slicknav_nav ul {
+	list-style: none;
+	overflow:hidden;
+}
+.slicknav_nav ul {
+	padding:0;
+	margin:0 0 0 20px;
+}
+.slicknav_nav .slicknav_item {
+	padding:5px 10px;
+	margin:2px 5px;
+}
+
+    /* Controlled through menu classes in admin and not the global banner option 
+	.purple .slicknav_nav li a { background: $corporate_color; }
+	.red .slicknav_nav li a { background: $red; }
+	.yellow .slicknav_nav li a { background: $yellow; }
+	.blue .slicknav_nav li a { background: $blue; }
+	.green .slicknav_nav li a { background: $green; }
+	.brown .slicknav_nav li a { background: $brown; }
+	*/
+
+.slicknav_nav a {
+	padding:12px;
+	margin:2px 5px;
+	text-decoration:none;
+	font-size: 16px;
+	color:#fff;
+	font-family: $header_font;
+}
+.slicknav_nav .slicknav_item a {
+	padding:0;
+	margin:0;
+}
+.slicknav_nav .slicknav_item:hover {
+
+	background:#ccc;
+	color:#fff;	
+}
+.slicknav_nav a:hover{
+
+	background:#ccc;
+	color:#222;
+}
+
+
+	.slicknav_nav li.purple a:hover,
+	.slicknav_nav li.red a:hover,
+	.slicknav_nav li.yellow a:hover,
+	.slicknav_nav li.blue a:hover,
+	.slicknav_nav li.green a:hover,
+	.slicknav_nav li.brown a:hover { 
+		background: $bg_color;
+        color: $copy_color; 
+    }
+
+
+
+.slicknav_nav .slicknav_txtnode {
+     margin-left:15px;   
+}

@@ -1,0 +1,473 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]>    <html class="no-js ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+<!-- TODO: Retina stuff in header -->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>My EChef</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="shortcut icon" type="image/ico" href="favicon.png" />
+        <link rel="shortcut icon" href="favicon.png"> 
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+
+        <link href="public/assets/fonts/ss-social-circle.min.css" rel="stylesheet" type="text/css" media="all"/>
+        <link href="public/assets/fonts/ss-standard.min.css" rel="stylesheet" type="text/css" media="all"/>
+
+        <link href="public/styles/style.min.css" rel="stylesheet" type="text/css" media="all"/>
+
+        <link href="public/styles/jquery.qtip.min.css" rel="stylesheet" type="text/css" media="all"/>
+        <link href="public/styles/fractionslider.min.css" rel="stylesheet" type="text/css" media="all"/>
+
+
+        <script type="text/javascript" src="//use.typekit.net/ong5fia.js"></script>
+        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>    
+
+
+        <!-- Shims -->
+        <!--[if lt IE 9]>
+            <script src="public/scripts/html5shiv.min.js"></script>
+            <script src="public/scripts/respond.min.js"></script>
+
+
+        <!-- Web App -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+
+    </head>
+
+<body class="wrapper ">
+
+
+            <div class="container">
+
+	<div class="grid">
+
+
+		<div class="grid__item one-half lap-one-third desk-one-fifth">
+
+			
+			<div class="logo-container">
+				<h1 class="logo">
+					<a href="">My EChef</a>
+				</h1>
+			</div>
+			
+
+		</div><!--
+
+	 	--><div class="grid__item one-half lap-two-thirds desk-four-fifths">
+
+
+			<div class="utility-nav-container">
+
+				
+
+				<ul class="nav  nav--block  menu">
+					
+					<li><a href="#">Your Saved Recipes</a></li><!--
+
+					--><li><a href="#">Log Out</a></li>
+				
+				</ul>
+
+				<p>Hello Kirsty</p>
+
+
+			</div>
+
+
+		</div>
+
+
+	</div>
+
+</div>
+
+            
+            <div class="nav-container">
+
+	<div class="container">
+
+		<a class="anchor-link" id="menu-btn" href="#mobile-nav">Menu</a>
+
+		<!-- TODO: Classes on li will be added through WP -->
+		<ul class="nav  nav--block  menu">
+			
+			<li class="purple"><a href="index.html">Home</a></li><!--
+
+			--><li class="red"><a href="page.html">About</a></li><!--
+
+			--><li class="current yellow"><a href="recipes-archive.html">Recipes</a></li><!--
+
+			--><li class="blue"><a href="page.html">Hygiene</a></li><!--
+
+			--><li class="green"><a href="page.html">Contact</a></li>
+		
+		</ul>
+
+	</div>
+
+	
+	<!-- TODO: background image as Options custom field -->
+	<div class="features" style="background-image: url('../../public/assets/img/test-bg.jpg');">
+
+		<div class="container pt">
+
+			<div class="grid">
+
+				<div class="grid__item palm-one-whole three-quarters">
+
+					
+					
+					<h1>Recipes Index</h1>
+					<p>Nullam id dolor id nibh ultricies vehicula ut id elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Curabitur blandit tempus porttitor.</p>
+
+					
+					
+					
+
+
+				</div><!--
+
+				--><div class="grid__item palm-one-whole one-quarter">
+
+					<div class="featured-recipe">
+						<h4>Featured Recipe</h4>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+</div>
+        
+
+            
+
+<div class="container pt">
+
+	<div class="grid">
+
+
+		<div class="grid__item palm-one-whole lap-one-whole three-quarters">
+
+			<h1>Main Archive Heading</h1>
+			
+			<!-- While loop would start here -->
+
+
+			<article class="post type-recipe">
+	
+	<!-- TODO: img--left can be removed as this would be featured image so can use WP styles -->
+	<img src="public/assets/img/minestrone.jpg" alt="" class="alignleft" />
+
+	<!-- Flag / NAtionality needs to be custom field -->
+	<img src="public/assets/img/uk-flag.png" alt="" class="img--right" />
+	
+	<header class="recipe-title">
+		<h2>Minestrone with Macaroni</h2>
+	</header>
+
+	<!-- possibly use excerpt here instead of a custom field -->
+	<div class="excerpt">
+		<p>A light starter perfect for summer, would be an ideal first course for Rabbit dishes</p>
+	</div>
+
+	<a href="recipe.html" class="btn alignright">Full Details <span class="ss-directright"></span></a>
+
+	<!-- Rating BG Positions:
+	0 Stars: -13px -16px
+	1 Star: -13px -53px
+	2 Stars: -13px -91px
+	3 Stars: -13px -128px
+	4 Stars: -13px -165px
+	5 Stars: -13px -201px
+	-->
+
+	<ul class="recipe-meta">
+		<!-- Custom field - one to five option show eggs instead of numbers. Background position based on rating -->
+		<li><strong>Skill:</strong> <span class="rating" style="background-position: -13px -128px">3 Eggs</span></li> 
+		<li><strong>Preparation Time:</strong> 30 minutes</li> <!-- Custom field - text field -->
+		<li><strong>Cooking Time:</strong> 1 hour 45 minutes</li> <!-- Custom field - text field -->
+	</ul>
+
+
+<div class="seperator"></div>
+</article>
+
+			<article class="post type-recipe">
+	
+	<!-- TODO: img--left can be removed as this would be featured image so can use WP styles -->
+	<img src="public/assets/img/minestrone.jpg" alt="" class="alignleft" />
+
+	<!-- Flag / NAtionality needs to be custom field -->
+	<img src="public/assets/img/uk-flag.png" alt="" class="img--right" />
+	
+	<header class="recipe-title">
+		<h2>Minestrone with Macaroni</h2>
+	</header>
+
+	<!-- possibly use excerpt here instead of a custom field -->
+	<div class="excerpt">
+		<p>A light starter perfect for summer, would be an ideal first course for Rabbit dishes</p>
+	</div>
+
+	<a href="recipe.html" class="btn alignright">Full Details <span class="ss-directright"></span></a>
+
+	<!-- Rating BG Positions:
+	0 Stars: -13px -16px
+	1 Star: -13px -53px
+	2 Stars: -13px -91px
+	3 Stars: -13px -128px
+	4 Stars: -13px -165px
+	5 Stars: -13px -201px
+	-->
+
+	<ul class="recipe-meta">
+		<!-- Custom field - one to five option show eggs instead of numbers. Background position based on rating -->
+		<li><strong>Skill:</strong> <span class="rating" style="background-position: -13px -128px">3 Eggs</span></li> 
+		<li><strong>Preparation Time:</strong> 30 minutes</li> <!-- Custom field - text field -->
+		<li><strong>Cooking Time:</strong> 1 hour 45 minutes</li> <!-- Custom field - text field -->
+	</ul>
+
+
+<div class="seperator"></div>
+</article>
+
+			<article class="post type-recipe">
+	
+	<!-- TODO: img--left can be removed as this would be featured image so can use WP styles -->
+	<img src="public/assets/img/minestrone.jpg" alt="" class="alignleft" />
+
+	<!-- Flag / NAtionality needs to be custom field -->
+	<img src="public/assets/img/uk-flag.png" alt="" class="img--right" />
+	
+	<header class="recipe-title">
+		<h2>Minestrone with Macaroni</h2>
+	</header>
+
+	<!-- possibly use excerpt here instead of a custom field -->
+	<div class="excerpt">
+		<p>A light starter perfect for summer, would be an ideal first course for Rabbit dishes</p>
+	</div>
+
+	<a href="recipe.html" class="btn alignright">Full Details <span class="ss-directright"></span></a>
+
+	<!-- Rating BG Positions:
+	0 Stars: -13px -16px
+	1 Star: -13px -53px
+	2 Stars: -13px -91px
+	3 Stars: -13px -128px
+	4 Stars: -13px -165px
+	5 Stars: -13px -201px
+	-->
+
+	<ul class="recipe-meta">
+		<!-- Custom field - one to five option show eggs instead of numbers. Background position based on rating -->
+		<li><strong>Skill:</strong> <span class="rating" style="background-position: -13px -128px">3 Eggs</span></li> 
+		<li><strong>Preparation Time:</strong> 30 minutes</li> <!-- Custom field - text field -->
+		<li><strong>Cooking Time:</strong> 1 hour 45 minutes</li> <!-- Custom field - text field -->
+	</ul>
+
+
+<div class="seperator"></div>
+</article>
+
+			<article class="post type-recipe">
+	
+	<!-- TODO: img--left can be removed as this would be featured image so can use WP styles -->
+	<img src="public/assets/img/minestrone.jpg" alt="" class="alignleft" />
+
+	<!-- Flag / NAtionality needs to be custom field -->
+	<img src="public/assets/img/uk-flag.png" alt="" class="img--right" />
+	
+	<header class="recipe-title">
+		<h2>Minestrone with Macaroni</h2>
+	</header>
+
+	<!-- possibly use excerpt here instead of a custom field -->
+	<div class="excerpt">
+		<p>A light starter perfect for summer, would be an ideal first course for Rabbit dishes</p>
+	</div>
+
+	<a href="recipe.html" class="btn alignright">Full Details <span class="ss-directright"></span></a>
+
+	<!-- Rating BG Positions:
+	0 Stars: -13px -16px
+	1 Star: -13px -53px
+	2 Stars: -13px -91px
+	3 Stars: -13px -128px
+	4 Stars: -13px -165px
+	5 Stars: -13px -201px
+	-->
+
+	<ul class="recipe-meta">
+		<!-- Custom field - one to five option show eggs instead of numbers. Background position based on rating -->
+		<li><strong>Skill:</strong> <span class="rating" style="background-position: -13px -128px">3 Eggs</span></li> 
+		<li><strong>Preparation Time:</strong> 30 minutes</li> <!-- Custom field - text field -->
+		<li><strong>Cooking Time:</strong> 1 hour 45 minutes</li> <!-- Custom field - text field -->
+	</ul>
+
+
+<div class="seperator"></div>
+</article>
+
+			<article class="post type-recipe">
+	
+	<!-- TODO: img--left can be removed as this would be featured image so can use WP styles -->
+	<img src="public/assets/img/minestrone.jpg" alt="" class="alignleft" />
+
+	<!-- Flag / NAtionality needs to be custom field -->
+	<img src="public/assets/img/uk-flag.png" alt="" class="img--right" />
+	
+	<header class="recipe-title">
+		<h2>Minestrone with Macaroni</h2>
+	</header>
+
+	<!-- possibly use excerpt here instead of a custom field -->
+	<div class="excerpt">
+		<p>A light starter perfect for summer, would be an ideal first course for Rabbit dishes</p>
+	</div>
+
+	<a href="recipe.html" class="btn alignright">Full Details <span class="ss-directright"></span></a>
+
+	<!-- Rating BG Positions:
+	0 Stars: -13px -16px
+	1 Star: -13px -53px
+	2 Stars: -13px -91px
+	3 Stars: -13px -128px
+	4 Stars: -13px -165px
+	5 Stars: -13px -201px
+	-->
+
+	<ul class="recipe-meta">
+		<!-- Custom field - one to five option show eggs instead of numbers. Background position based on rating -->
+		<li><strong>Skill:</strong> <span class="rating" style="background-position: -13px -128px">3 Eggs</span></li> 
+		<li><strong>Preparation Time:</strong> 30 minutes</li> <!-- Custom field - text field -->
+		<li><strong>Cooking Time:</strong> 1 hour 45 minutes</li> <!-- Custom field - text field -->
+	</ul>
+
+
+<div class="seperator"></div>
+</article>
+
+		</div><!--
+
+		--><div class="grid__item palm-one-whole lap-one-whole one-quarter">
+			<!-- The sidebar main -->
+
+			
+		
+			<!-- TODO: This is sidebar.php -->
+			<div class="sidebar">
+
+	<h1>Sidebar</h1>
+
+
+</div>
+
+		</div>
+
+
+	</div> <!-- // Grid -->
+
+</div>
+
+
+            
+
+	<div class="share">
+	
+	<div class="container">
+
+	</div>	
+
+</div>
+
+
+<div class="footer-nav">
+
+	<div class="container">
+
+		<nav id="mobile-nav">
+	
+			<ul>
+				
+				<li class="purple"><a href="index.html">Home</a></li><!--
+				--><li class="red"><a href="page.html">About</a></li><!--
+				--><li class="current yellow"><a href="recipes-archive.html">Recipes</a></li><!--
+				--><li class="blue"><a href="page.html">Hygiene</a></li><!--
+				--><li class="green"><a href="page.html">Contact</a></li>
+			
+			</ul>
+	        
+		</nav>
+
+		<!-- TODO: Classes on li will be added through WP -->
+		<ul class="nav  nav--block  menu">
+			
+			<li class="purple"><a href="index.html">Home</a></li><!--
+
+			--><li class="red"><a href="page.html">Our Ethos</a></li><!--
+
+			--><li class="current yellow"><a href="page.html">Privacy</a></li><!--
+
+			--><li class="blue"><a href="page.html">Want to Join?</a></li>
+		
+		</ul>
+
+	</div>	
+
+<div class="seperator"></div>
+</div>
+
+
+
+<div class="credits">
+
+	<div class="container">
+					
+			<p class="alignleft"><a href="http://www.kirstyburgoine.co.uk" title="Link to Kirsty Burgoine's website">Website by Kirsty Burgoine Ltd.</a></p>
+			<p class="alignright">© 2014 ~ My EChef. Registered in England & Wales. Company No:000000</p>
+
+		<div class="seperator"></div>
+
+	</div>	
+
+</div>
+
+</body>
+
+
+<a href="#" class="scrollup"><i class="ss-icon">navigateup</i></a>  
+
+<!-- ========================== jQuery Libraries ========================== -->
+        <!-- TODO: Remember to change this in theme functions to queue -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    
+        <script src="public/scripts/modernizr.min.js"></script>
+        <script src="public/scripts/jquery.fractionslider.min.js"></script>
+        <script src="public/scripts/scrollTo.min.js"></script>
+        <script src="public/scripts/jquery.fitvids.min.js"></script>
+        <script src="public/scripts/jquery.qtip.min.js"></script>
+        <script src="public/scripts/custom.min.js"></script>
+<!-- ========================== jQuery Libraries ========================== -->
+
+
+
+</html>

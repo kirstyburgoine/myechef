@@ -1,0 +1,273 @@
+//---------------------------------------------------------
+//---------------------------------------------------------
+// Defaults
+
+.wrapper input[type=button], 
+.wrapper input[type=reset], 
+.wrapper input[type=submit] {
+border-radius: 3px !important;
+font-size: 14px !important;
+
+font-weight: bold !important;
+display: inline-block !important;
+width: 100% !important;
+max-width: 150px;
+
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+-ms-box-sizing: border-box;
+box-sizing: border-box;
+text-shadow: none !important;
+text-align: center !important;
+padding: 8px 0 !important;
+border: 1px solid #333 !important;
+color: #fff !important;
+box-shadow: inset 0px 1px 0px rgba(0,0,0, .2), 0px 1px 2px #666 !important;
+background: #333 !important;
+background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#444), to(#333)) !important;
+background: -moz-linear-gradient(0% 0% 270deg,#444, #333) !important;
+
+}
+
+input[type=button]:hover,
+input[type=reset]:hover, 
+input[type=submit]:hover {
+    box-shadow: inset 0px 1px 0px rgba(0,0,0, .2), 0px 1px 2px #666 !important;
+	background: #444 !important;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555), to(#444)) !important;
+    background: -moz-linear-gradient(0% 0% 270deg,#555, #444) !important;
+}
+.wpb-bm-btn:focus, .wpb-bm-btn.active {
+    box-shadow: inset 0px 1px 4px #222, 0px 1px 2px #666 !important;
+	background: #444 !important;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555), to(#444)) !important;
+    background: -moz-linear-gradient(0% 0% 270deg,#555, #444) !important;
+}
+
+
+
+//---------------------------------------------------------
+//---------------------------------------------------------
+// Search by taxonomy filter
+
+form.taxonomy-filter {
+
+	label { font-weight: 600; color: #fff; }
+	select { width: 100%; }
+
+	.searchme { margin-top: 0.75em; width: 3em !important; }
+}
+
+
+
+//---------------------------------------------------------
+//---------------------------------------------------------
+// Sort Recipes form
+
+form.sort {
+	float: right;
+	.searchme { width: 3em !important; }
+
+}
+
+form.display-all {
+
+	position: relative; 
+	border-top: solid 1px #fff;
+	padding-top: 10px;
+
+	label { padding-left: 10px; }
+	
+	.searchme { 
+		position: absolute; 
+		right: 10px;
+		top: 10px;
+	}
+}
+
+//---------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------
+// Cost Calculator on Recipes Single Stuff
+
+form.cost-calculator {
+
+	// main table for ingredients and costs
+	table { 
+		width: 100%; 
+		background: $bg_color;
+		border: solid 1px $bg_color_alt;
+
+		.ingredients { width: 65%; }
+		.quantity { width: 15%; }
+		.cost { width: 15%; }
+		.checkbox { width: 5%; }
+
+		td { border-bottom: solid 1px $bg_color_alt; }
+		th { 
+			border-bottom: solid 1px #fff;  
+			//background: $yellow;  
+		}
+
+		td:first-child,
+		td:nth-child(2)  { border-right: solid 1px $bg_color_alt; }
+		th:first-child,
+		th:nth-child(2) { border-right: solid 1px #fff; }
+
+		td:last-child { border-left: solid 1px $bg_color_alt; }
+		th:last-child { border-left: solid 1px #fff; }
+
+
+		.labels { width: 53%; }
+		.inputs { width: 20%; }
+		.calculations { width: 20%; }
+		.checkbox-blank { width: 7%; }
+
+	}
+
+
+	// Used to change servings costs to bulk
+	input.small-input {
+		width: 3em;
+		display: inline-block;
+	}
+
+
+	h3 { clear: both; }
+
+}
+
+.portion-input { width: 30px; }
+
+// ingredients totals and recipes totals tables
+
+.purple form.cost-calculator table th,
+.purple table.ingredient-totals th,
+.purple table.ingredients-stock-levels th { color: #fff; background: $corporate_color; }
+.red form.cost-calculator table th,
+.red table.ingredient-totals th,
+.red table.ingredients-stock-levels th { color: #fff; background: $red }
+.yellow form.cost-calculator table th,
+.yellow table.ingredient-totals th,
+.yellow table.ingredients-stock-levels th { background: $yellow; }
+.blue form.cost-calculator table th,
+.blue table.ingredient-totals th,
+.blue table.ingredients-stock-levels th { color: #fff; background: $blue; }
+.green form.cost-calculator table th,
+.green table.ingredient-totals th,
+.green table.ingredients-stock-levels th  { color: #fff; background: $green; }
+.brown form.cost-calculator table th,
+.brown table.ingredient-totals th,
+.brown table.ingredients-stock-levels th { color: #fff; background: $brown; }
+
+
+// Ingredients tables
+
+table.ingredients-stock-levels { 
+
+	width: 100%; 
+	background: $bg_color;
+	border: solid 1px $bg_color_alt;
+
+
+		td { 
+			border-bottom: solid 1px $bg_color_alt; 
+			border-right: solid 1px $bg_color_alt;
+			width: 10%;
+			text-align: right;
+			font-size: 13px;
+
+			p { 
+				margin-bottom: 0; 
+				font-size: 13px;
+			}
+		}
+
+		th { 
+			border-bottom: solid 1px #fff;  
+			border-right: solid 1px #fff;
+			text-align: right;
+			font-size: 13px;
+		}
+
+		
+		td:first-child { width: 40%; text-align: left; }
+		td:last-child { border-left: solid 1px $bg_color_alt; border-right: 0; }
+		th:last-child { border-left: solid 1px #fff; border-right: 0; }
+
+}
+
+//Needed because if administrator, an extra coplumn displays
+table.ingredients-stock-levels {
+
+	&.admin { 
+
+		td:first-child { width: 25%; text-align: left; }
+		td:nth-child(2) { width: 15%; text-align: left; }
+		th:nth-child(2) { text-align: left; }
+	}
+}
+
+table.ingredient-totals {
+	width: 100%; 
+	background: $bg_color;
+	border: solid 1px $bg_color_alt;
+
+	td { text-align: right; }
+
+}
+
+
+//---------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------
+// Feedback Form on all pages
+
+
+.feedback-container { 
+
+	h3 {
+		color: #fff;
+	}
+
+	form {
+
+		.gform_wrapper {
+			div.validation_error {
+				color: #790000;
+			}
+		}
+
+		label {
+			font-family: $header_font;
+			color: #fff;
+		}
+
+
+	}
+
+
+}
+
+//---------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------
+// Gravity Forms Stuff
+
+
+.gform_confirmation_wrapper {
+
+
+	font-family: proxima-nova-alt,sans-serif;
+	font-weight: 700;
+	font-size: 1.5rem;
+	margin-top: 0.7em;
+	width: 80%;
+	text-align: center;
+	float: right;
+}
+
+#gform_widget-2 {
+	.gform_wrapper div.validation_error {
+		color: #fff;
+	}
+}
+
+

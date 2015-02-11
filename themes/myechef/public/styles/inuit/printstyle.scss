@@ -1,0 +1,245 @@
+@import "defaults";
+@import "inuit.css/inuit";
+
+
+.header-nav,
+.utility-nav-container,
+.features,
+.utility,
+.sidebar,
+.share,
+.feedback-container,
+.credits,
+.reveal-modal,
+.scrollup,
+.slicknav_menu,
+.logo-container,
+.one-quarter,
+.two-eighths,
+.three-twelfths {
+  display: none; }
+
+.print-only {
+  display: block; }
+
+.three-quarters, .six-eighths, .nine-twelfths {
+  width: 100%; }
+
+h1 {
+  font-family: "adelle", serif; }
+
+h2, h3, h4, h5, h6 {
+  font-family: "proxima-nova-alt", sans-serif;
+  font-weight: 700; }
+
+td, th {
+  font-family: "proxima-nova-alt", sans-serif;
+  padding: 6px; }
+
+p, li {
+  font-family: "adelle", serif; }
+
+code {
+  font-family: "adelle", serif !important; }
+
+/* smaller font size for ingredients and calculator */
+form p, form li, form td, form th {
+  font-size: 14px;
+  font-size: 0.9rem; }
+
+hr {
+  height: 1px;
+  background: #ccc;
+  border: none;
+  clear: both; }
+
+.aligncenter {
+  text-align: center;
+  margin: 0 auto; }
+
+.alignright {
+  display: inline;
+  float: right;
+  margin-left: 1em;
+  clear: right; }
+
+.alignleft {
+  display: inline;
+  float: left;
+  margin-right: 1em; }
+
+img.alignright {
+  display: inline;
+  float: right;
+  margin-left: 1em; }
+
+img.alignleft {
+  display: inline;
+  float: left;
+  margin-right: 1em; }
+
+img.flag {
+  border: solid 1px #ccc;
+  width: 50px;
+  clear: right; }
+
+.seperator {
+  height: 0;
+  clear: both; }
+
+.pt {
+  /* Padding Top */
+  padding-top: 1.5em; }
+
+.pb {
+  /* Padding Bottom */
+  padding-bottom: 1em; }
+
+.pl {
+  /* Padding Left */
+  padding-left: 1em; }
+
+.pr {
+  /* Padding Right */
+  padding-right: 1em; }
+
+.ptb {
+  /* Padding Top & Bottom */
+  padding-top: 1em;
+  padding-bottom: 1em; }
+
+.plr {
+  /* Padding Left & Right */
+  padding-left: 1em;
+  padding-right: 1em; }
+
+.ptrbl {
+  /* Padding Top, Right, Bottom, Left */
+  padding: 1em; }
+
+.border-top {
+  border-top: solid 1px #292929;
+  padding-top: 1em; }
+
+.border-bottom {
+  border-bottom: solid 1px #292929;
+  padding-bottom: 0.5em;
+  margin-bottom: 1.5em; }
+
+.mt {
+  /* margin Top */
+  margin-top: 1.5em; }
+
+.mb {
+  /* margin Bottom */
+  margin-bottom: 1em; }
+
+.ml {
+  /* margin Left */
+  margin-left: 1em; }
+
+.mr {
+  /* margin Right */
+  margin-right: 1em; }
+
+.mtb {
+  /* margin Top & Bottom */
+  margin-top: 1em;
+  margin-bottom: 1em; }
+
+.mlr {
+  /* margin Left & Right */
+  margin-left: 1em;
+  margin-right: 1em; }
+
+.mtrbl {
+  /* margin Top, Right, Bottom, Left */
+  margin: 1em; }
+
+.logo-container {
+  float: right;
+  margin: 0;
+  padding: 1em;
+  top: 0; }
+
+.logo-container h1.logo {
+  overflow: hidden;
+  text-indent: -9000px;
+  background-size: 195px;
+  height: 137px;
+  width: 195px; }
+
+.logo-container h1.logo.fallback {
+  background-image: none; }
+
+.logo-container h1 a {
+  display: none; }
+
+.scrollup {
+  display: none; }
+
+table {
+  width: 100%;
+  background: #fff;
+  border: solid 1px #ccc; }
+  table .ingredients {
+    width: 68.7%; }
+  table .quantity {
+    width: 16.5%; }
+  table .cost {
+    width: 19.3%; }
+  table td {
+    border-bottom: solid 1px #ccc; }
+  table th {
+    border-bottom: solid 1px #ccc; }
+  table td:first-child {
+    border-right: solid 1px #ccc; }
+  table th:first-child {
+    border-right: solid 1px #ccc; }
+  table td:last-child {
+    border-left: solid 1px #ccc; }
+  table th:last-child {
+    border-left: solid 1px #ccc; }
+  table .labels {
+    width: 47%; }
+  table .inputs {
+    width: 20%; }
+  table .calculations {
+    width: 23%; }
+
+
+
+table.calculations {
+display: none; }
+
+table.ingredients-stock-levels {
+
+    th { 
+    border-bottom: solid 1px #ccc;  
+    border-right: solid 1px #ccc;
+    text-align: right;
+    font-size: 13px;
+    }
+
+    td {
+    border-bottom: solid 1px #ccc; 
+    border-right: solid 1px #ccc;
+    width: 10%;
+    text-align: right;
+    font-size: 13px;
+    }
+
+    p { margin-bottom: 0; font-size: 13px; }
+
+    td:first-child { width: 40%; text-align: left; }
+    td:last-child { border-left: solid 1px #ccc; border-right: 0; }
+    th:last-child { border-left: solid 1px #fff; border-right: 0; }
+
+
+  &.admin { 
+
+    td:first-child { width: 25%; text-align: left; }
+    td:nth-child(2) { width: 15%; text-align: left; }
+    th:nth-child(2) { text-align: left; }
+  }
+}

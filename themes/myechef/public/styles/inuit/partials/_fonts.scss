@@ -1,0 +1,265 @@
+h1 { font-family: $body_font; }
+
+h2, h3, h4, h5, h6 {
+	font-family: $header_font;
+	font-weight: 700;
+}
+
+td, th {
+	font-family: $header_font;
+	padding: 6px;
+}
+
+p, li { 
+	font-family: $body_font;
+}
+
+code {
+	font-family: $body_font!important; // overrides style for bookmarks feature 
+}
+
+/* smaller font size for ingredients and calculator */
+form p, form li, form td, form th {
+	font-size: 14px;
+	font-size: 0.9rem;
+}
+
+hr {
+	height: 1px;
+	background: $bg_color_alt;
+	border: none;
+	clear: both;
+}
+
+
+.aligncenter { 
+	text-align: center; 
+	margin: 0 auto;
+}
+
+.alignright {
+
+	display: inline;
+	float: right;
+	margin-left: 1em;
+	clear: right;
+}
+
+.alignleft {
+
+	display: inline;
+	float: left;
+	margin-right: 1em;
+
+}
+
+
+img.alignright {
+
+	display: block;
+	margin: 0 auto;
+	float: none;
+
+	@media screen and (min-width: $lap-start) {
+		display: inline;
+		float: right;
+		margin-left: 1em;
+	}
+}
+
+img.alignleft {
+
+	display: block;
+	margin: 0 auto;
+	float: none;
+
+	@media screen and (min-width: $lap-start) {
+		display: inline;
+		float: left;
+		margin-right: 1em;
+	}
+}
+
+img.flag {
+	border: solid 1px #ccc;
+	width: 50px;
+	clear: right;
+}
+
+//---------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------
+// Homepage Stuff
+
+
+.home-features, .meal-types {
+
+
+
+	h1, h2 {
+		color: #fff;
+		text-align: center;
+		font-family: $body_font;
+	}
+
+	h3 {
+		color: #fff; 
+		font-weight: 300;
+	}
+
+	.home-intro p {
+		font-size: 20px;
+		font-family: $header_font;
+		font-weight: 300;
+		text-align: center;
+		color: #fff;
+		width: 75%;
+		margin: 0 auto;
+	}
+}
+
+//---------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------
+// All Pages Stuff
+
+.page-features {
+	h1, h2, h3 {
+		font-family: $body_font;
+		color: #fff;
+	}
+
+	p { color: #fff; }
+}
+
+
+//---------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------
+// Recipes Archive Stuff
+
+// Used on both archive and single
+
+h1.archive-title {
+	border-bottom: solid 1px #ccc;
+	padding-bottom: 0.75em;
+}
+
+.type-recipe {
+
+	.recipe-title { 
+		>h1,
+		>h2 { 
+			margin-bottom: 0.2em; line-height: 1; 
+
+			>a { 
+				color: #000; text-decoration: none; 
+
+				&:hover { color: $corporate_color; }
+			}
+
+		}
+
+		>h2 { clear: both; font-size: 22px; }
+
+
+
+		@media screen and (min-width: $lap-start) {
+			>h2 { clear: none; }
+		}	
+
+	}
+
+	.excerpt {
+		>p { font-size: 14px; font-size: 0.9rem; 
+
+			&.bold {  margin-bottom: 0.2em; }
+		}
+
+	}
+
+
+	ul.recipe-meta {
+
+		list-style-type: none;
+		margin: 0 0 1.5rem 0;
+		padding: 0;
+
+		>li {
+			font-family: $header_font;
+
+
+			.rating {
+				display: inline-block;
+				width: 87px;
+				height: 21px;
+				background-image: url('../../public/assets/img/sprites.png');
+				background-repeat: no-repeat;
+				vertical-align: top;
+				@include hide-text;
+			}
+
+		}
+
+	}
+
+
+}
+
+.type-recipe.single-post {
+
+	.recipe-title { 
+		>h2 { margin-bottom: 0.75em; }
+	}
+
+}
+
+//---------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------
+// Recipes Single Stuff
+
+table.nutrition {
+
+	color: #fff;
+	th, td { text-align: center;
+
+	/* Determined for each column and not related to main banner colour */
+	&.purple { background: $corporate_color; }
+	&.red { background: $red }
+	&.yellow { background: $yellow; }
+	&.blue { background: $blue; }
+	&.green { background: $green; }
+	&.brown { background: $brown; }
+
+		h5 { 
+			margin-bottom: 0.5em; 
+			padding-bottom: 0.5em; 
+			border-bottom: Solid 1px #fff;
+		}
+
+	}
+}
+
+
+.credits {
+
+	p {
+		display: inline;
+		color: #fff;
+		margin: 0.75em 1em 1em 1em;
+		font-size: 13px; font-size: 0.8rem;
+
+		@media screen and (min-width: $tab-start) {
+			margin: 0.75em 0 0 0;
+		}
+	}
+
+	&.alignleft {
+		text-align: left;
+		float: left;
+	}
+
+
+	&.alignright {
+		text-align: right;
+		float: right;
+	}
+
+}

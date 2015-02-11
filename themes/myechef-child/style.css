@@ -1,0 +1,15 @@
+/*
+ Theme Name:   My EChef Child
+ Theme URI: http://kirstyburgoine.co.uk
+ Author: Kirsty Burgoine Ltd.
+ Author URI: http://kirstyburgoine.co.uk
+ Description: Child Theme for MyEchef - Mostly used to control members access when it differs from the main MyEChef Site
+ Template: myechef
+*/
+
+
+@import url("../myechef/style.css");
+
+
+/* =Theme customization starts here
+-------------------------------------------------------------- */
