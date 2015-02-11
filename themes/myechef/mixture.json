@@ -1,12 +1,16 @@
 {
-  "convertHtmlOutput": null,
+  "convertHtml": {
+    "relativePaths": false
+  },
   "customRubyPath": null,
   "debug": false,
   "domain": null,
   "followLeader": false,
   "lintScripts": false,
   "modelSource": null,
-  "preprocessorLocations": "public/",
+  "preprocessorLocations": [
+    "public/"
+  ],
   "preprocessorScriptOutput": "public/scripts",
   "preprocessorStyleOutput": "/public/styles",
   "projectDescription": "WP Theme with db and ftp linked to live server",
@@ -14,18 +18,10 @@
   "publishedId": null,
   "serverHostname": null,
   "serverPort": null,
-  "simpleModePartnerServer": "http://localhost:8888/My-Executive-Chef/kb-website/",
+  "simpleModePartnerServer": "http://localhost/My-Executive-Chef/kb-ACTIVE/",
   "templateDefaultLayout": "layout",
   "templateDefaultPage": "index",
   "templateDirectory": "templates",
   "type": "simple",
-  "useCompass": false,
-  "ftpSettings": {
-    "host": "46.32.229.68",
-    "port": 21,
-    "username": "kirsty@myechef.co.uk",
-    "password": "guG6ReK5px!)",
-    "path": "wp-content/themes/myechef/",
-    "secure": false
-  }
+  "useCompass": false
 }

@@ -1,7 +1,12 @@
 <?php // single-recipes.php 
 
-get_header(); 
+// Find the current user level
+global $current_user; // Use global
+get_currentuserinfo(); // Make sure global is set, if not set it.
 
+
+
+get_header(); 
 
 if ( have_posts() ) : the_post(); 
 
@@ -218,7 +223,10 @@ if ( !$banner_color ) : $banner_color = "none"; endif;
 											<?php endif; ?>
 
 											<td class="quantity"></td>
-											<td>&pound;<span class="price"></span></td>
+											<td>
+												<?php  // Only show costs if logged in and level is above subscriber
+												if ( is_user_logged_in() && ! user_can( $current_user, "subscriber" ) ) : ?>&pound;<span class="price"></span><?php endif; ?>
+											</td>
 
 											<td><input type="checkbox" name="done" value="Yes"></td>
 										</tr>
@@ -273,24 +281,31 @@ if ( !$banner_color ) : $banner_color = "none"; endif;
 							</div><!--
 
 						--><div class="grid__item palm-one-whole three-quarters">
+
+
+							<?php  // Only show ingredient totals if logged in and level is above subscriber
+							if ( is_user_logged_in() && ! user_can( $current_user, "subscriber" ) ) : ?>
 			
 							<table class="calculations">
 
 								<tr>
 									<th class="labels">Ingredients cost for <span class="js-portion-quantity"><?php echo $portion_quantity; ?></span> <?php echo ucfirst($portion_quantity_text);?>(s)</th>
 									<td class="inputs"></td>
-									<td class="calculations">£<span class="js-ingredient-cost-per-serving"></span></td>
+									<td class="calculations">&pound;<span class="js-ingredient-cost-per-serving"></span></td>
 									<td class="checkbox-blank"> </td>
 								</tr>
 
 								<tr>
 									<th class="labels">Ingredients Cost Per Single Portion</th>
 									<td class="inputs"></td>
-									<td class="calculations">£<span class="js-ingredient-cost-per-portion" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
+									<td class="calculations">&pound;<span class="js-ingredient-cost-per-portion" data-portion-quantity="<?php echo $portion_quantity; ?>"></span>
+									</td>
 									<td class="checkbox-blank"></td>
 								</tr>
 
 							</table>
+
+							<?php endif; ?>
 
 						</div><!-- closes one-half -->
 
@@ -369,7 +384,10 @@ if ( !$banner_color ) : $banner_color = "none"; endif;
 						<?php endif; ?>
 
 						<td class="quantity"></td>
-						<td>&pound;<span class="price cost"></span></td>
+						<td>
+							<?php  // Only show costs if logged in and level is above subscriber
+							if ( is_user_logged_in() && ! user_can( $current_user, "subscriber" ) ) : ?>&pound;<span class="price cost"></span><?php endif; ?>
+						</td>
 
 						<td class="checkbox"><input type="checkbox" name="done" value="Yes"></td>
 
@@ -411,13 +429,16 @@ if ( !$banner_color ) : $banner_color = "none"; endif;
 							</div><!--
 
 						--><div class="grid__item palm-one-whole three-quarters">
+
+							<?php  // Only show all totals if logged in and level is above subscriber
+							if ( is_user_logged_in() && ! user_can( $current_user, "subscriber" ) ) : ?>
 			
 							<table class="calculations">
 
 								<tr>
 									<th>Total Cost for <span class="js-portion-quantity"><?php echo $portion_quantity; ?></span> <?php echo ucfirst($portion_quantity_text);?>(s)</th>
 									<td class="inputs"><span class="js-percent-per-serving">35</span>%</td>
-									<td class="calculations">£<span class="js-cost-per-serving"></span></td>
+									<td class="calculations">&pound;<span class="js-cost-per-serving"></span></td>
 									<td class="checkbox-blank"></td>
 
 								</tr>
@@ -425,7 +446,7 @@ if ( !$banner_color ) : $banner_color = "none"; endif;
 								<tr>
 									<th class="labels">Total Cost Per Single Portion</th>
 									<td></td>
-									<td class="calculations">£<span class="js-cost-per-portion" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
+									<td class="calculations">&pound;<span class="js-cost-per-portion" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
 									<td></td>
 
 								</tr>
@@ -433,7 +454,7 @@ if ( !$banner_color ) : $banner_color = "none"; endif;
 								<tr>
 									<th>Gross Profit Required</th>
 									<td><input type="text" name="profit-amount" class="small-input" value="65">%</td>
-									<td>£<span class="js-gross-profit"></span></td>
+									<td>&pound;<span class="js-gross-profit"></span></td>
 									<td></td>
 
 								</tr>
@@ -441,7 +462,7 @@ if ( !$banner_color ) : $banner_color = "none"; endif;
 								<tr>
 									<th>Total Estimated Selling Price</th>
 									<td>100%</td>
-									<td>£<span class="js-total-selling-price"></span></td>
+									<td>&pound;<span class="js-total-selling-price"></span></td>
 									<td></td>
 
 								</tr>
@@ -449,7 +470,7 @@ if ( !$banner_color ) : $banner_color = "none"; endif;
 								<tr>
 									<th>Estimated Selling Price Per Single Portion</th>
 									<td></td>
-									<td>£<span class="js-total-portion-selling-price" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
+									<td>&pound;<span class="js-total-portion-selling-price" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
 									<td></td>
 
 								</tr>
@@ -457,12 +478,14 @@ if ( !$banner_color ) : $banner_color = "none"; endif;
 								<tr>
 									<th>Estimated Selling Price including VAT at 20%</th>
 									<td></td>
-									<td>£<span class="js-total-portion-vat-price" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
+									<td>&pound;<span class="js-total-portion-vat-price" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
 									<td></td>
 
 								</tr>
 
 							</table>
+
+						<?php endif; ?>
 
 						</div><!-- closes one-half -->
 
