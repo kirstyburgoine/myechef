@@ -1,7 +1,7 @@
 <?php // single-recipes.php 
 
 // Find the current user level
-global $current_user; // Use global
+global $userdata; // Use global
 get_currentuserinfo(); // Make sure global is set, if not set it.
 
 
@@ -225,7 +225,9 @@ if ( !$banner_color ) : $banner_color = "none"; endif;
 											<td class="quantity"></td>
 											<td>
 												<?php  // Only show costs if logged in and level is above subscriber
-												if ( is_user_logged_in() && ! user_can( $current_user, "subscriber" ) ) : ?>&pound;<span class="price"></span><?php endif; ?>
+												if ( is_user_logged_in() ) : 
+													if ( $userdata->user_level != 0 ) : //check user level by level ID ?>&pound;<span class="price"></span><?php endif; 
+												endif; ?>
 											</td>
 
 											<td><input type="checkbox" name="done" value="Yes"></td>
@@ -284,7 +286,8 @@ if ( !$banner_color ) : $banner_color = "none"; endif;
 
 
 							<?php  // Only show ingredient totals if logged in and level is above subscriber
-							if ( is_user_logged_in() && ! user_can( $current_user, "subscriber" ) ) : ?>
+							if ( is_user_logged_in() ) : 
+								if ( $userdata->user_level != 0 ) : //check user level by level ID ?>
 			
 							<table class="calculations">
 
@@ -305,7 +308,8 @@ if ( !$banner_color ) : $banner_color = "none"; endif;
 
 							</table>
 
-							<?php endif; ?>
+							<?php endif; 
+							endif; ?>
 
 						</div><!-- closes one-half -->
 
@@ -386,7 +390,9 @@ if ( !$banner_color ) : $banner_color = "none"; endif;
 						<td class="quantity"></td>
 						<td>
 							<?php  // Only show costs if logged in and level is above subscriber
-							if ( is_user_logged_in() && ! user_can( $current_user, "subscriber" ) ) : ?>&pound;<span class="price cost"></span><?php endif; ?>
+							if ( is_user_logged_in() ) : 
+								if ( $userdata->user_level != 0 ) : //check user level by level ID ?>&pound;<span class="price cost"></span><?php endif; 
+							endif;?>
 						</td>
 
 						<td class="checkbox"><input type="checkbox" name="done" value="Yes"></td>
@@ -431,7 +437,8 @@ if ( !$banner_color ) : $banner_color = "none"; endif;
 						--><div class="grid__item palm-one-whole three-quarters">
 
 							<?php  // Only show all totals if logged in and level is above subscriber
-							if ( is_user_logged_in() && ! user_can( $current_user, "subscriber" ) ) : ?>
+							if ( is_user_logged_in() ) : 
+								if ( $userdata->user_level != 0 ) : //check user level by level ID ?>
 			
 							<table class="calculations">
 
@@ -485,7 +492,9 @@ if ( !$banner_color ) : $banner_color = "none"; endif;
 
 							</table>
 
-						<?php endif; ?>
+						<?php 
+							endif; 
+						endif; ?>
 
 						</div><!-- closes one-half -->
 
