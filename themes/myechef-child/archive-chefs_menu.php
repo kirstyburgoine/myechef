@@ -18,15 +18,9 @@ get_header(); ?>
 	<?php
 	//------------------------------------------------------------------------------------------------
 	//------------------------------------------------------------------------------------------------
-		if ( !is_user_logged_in() ) :
+		if ( !is_user_logged_in() && current_user_can( "read" ) ) : ?>
 
-			$not_logged_in = get_field('not_logged_in', 'option');  
-			echo $not_logged_in;
-			
-		else : ?>
-
-		
-
+	
 			<?php
 			if ( $order == "alphabet" ) :
 				global $query_string;
@@ -54,7 +48,15 @@ get_header(); ?>
 				endif; wp_reset_query(); 
 				?>
 
-	<?php endif; 
+	<?php 
+		else :
+
+			$not_logged_in = get_field('not_logged_in', 'option');  
+			echo $not_logged_in;
+			
+
+
+		endif; 
 	//------------------------------------------------------------------------------------------------
 	//------------------------------------------------------------------------------------------------ ?>				
 			</div><!--

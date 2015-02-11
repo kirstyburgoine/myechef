@@ -19,11 +19,7 @@ if ( have_posts() ) : the_post();  ?>
 	<?php
 	//------------------------------------------------------------------------------------------------
 	//------------------------------------------------------------------------------------------------
-		if ( !is_user_logged_in() ) :
-
-			$not_logged_in = get_field('not_logged_in', 'option');  
-			echo $not_logged_in;
-		else : ?>
+		if ( !is_user_logged_in() && current_user_can( "read" ) ) : ?>
 
 
 			<?php /* Commented out because <h1> is used in feature area dn <h2> should be in content rather 
@@ -35,7 +31,13 @@ if ( have_posts() ) : the_post();  ?>
 
 			<?php get_template_part('includes/content', 'print-footer'); ?>
 
-	<?php endif; 
+	<?php 
+		else : 		
+
+			$not_logged_in = get_field('not_logged_in', 'option');  
+			echo $not_logged_in;
+
+		endif; 
 	//------------------------------------------------------------------------------------------------
 	//------------------------------------------------------------------------------------------------ ?>
 

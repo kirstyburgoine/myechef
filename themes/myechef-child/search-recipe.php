@@ -30,12 +30,7 @@ get_header(); ?>
 	<?php
 	//------------------------------------------------------------------------------------------------
 	//------------------------------------------------------------------------------------------------
-		if ( !is_user_logged_in() ) :
-
-			$not_logged_in = get_field('not_logged_in', 'option');  
-			echo $not_logged_in;
-			
-		else : ?>
+		if ( is_user_logged_in() && current_user_can( "read" ) ) : ?>
 
 			<?php
 			// If any of the specific search terms are in the URL setup the custom query
@@ -195,7 +190,13 @@ get_header(); ?>
 
 
 
-	<?php endif; 
+	<?php 
+		else : 
+
+			$not_logged_in = get_field('not_logged_in', 'option');  
+			echo $not_logged_in;
+			
+		endif; 
 	//------------------------------------------------------------------------------------------------
 	//------------------------------------------------------------------------------------------------ ?>	
 			</div><!--
