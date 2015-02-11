@@ -1,0 +1,11 @@
+# 11.02.15 			- Pushed changes to myechef/single-recipe.php to telford-webdesign.co.uk - hide calcs for subscribers
+					- Pushed changes to myechef/header.php to telford-webdesign.co.uk - decimal point changes on multiplier
+					- Pushed changes to myechef/single-recipe.php to telford-webdesign.co.uk - updated GP to 70%
+					- Updated:	
+						- http://localhost/My-Executive-Chef/kb-ACTIVE
+						- http://telford-webdesign.co.uk/
+						- http://myechef.co.uk/
+
+					- Pulled DB from myechef.co.uk to telford-webdesign.co.uk using Migrate DB Pro
+
+------------------------------------------------------------------------------------------------------------------------------------
