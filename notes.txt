@@ -12,4 +12,5 @@
 						- http://myechef.co.uk/
 
 # 13.02.15			- Pushed changes to myechef-child/single-recipe.php to telford-webdesign.co.uk - hide content if not logged in
+					- Pushed changes to myechef-post-types/menus-post-type.php - removed two custom fields from chefs menus
 ------------------------------------------------------------------------------------------------------------------------------------
