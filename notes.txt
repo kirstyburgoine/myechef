@@ -11,4 +11,5 @@
 						- http://telford-webdesign.co.uk/
 						- http://myechef.co.uk/
 
+# 13.02.15			- Pushed changes to myechef-child/single-recipe.php to telford-webdesign.co.uk - hide content if not logged in
 ------------------------------------------------------------------------------------------------------------------------------------
