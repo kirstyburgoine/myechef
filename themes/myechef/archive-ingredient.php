@@ -50,9 +50,9 @@ get_header(); ?>
 				
 
 				<?php 
-				while ( have_posts() ) : the_post();
+				
 					get_template_part('includes/content', 'all-ingredients'); 
-				endwhile; ?>
+				 ?>
 
 			</div>
 
@@ -63,8 +63,9 @@ get_header(); ?>
 
 
 					// Start the Loop inside the include so post counts work.
+					while ( have_posts() ) : the_post();
 						get_template_part( 'content', 'ingredient-archive' );
-
+					endwhile;
 
 
 				else :
