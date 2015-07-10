@@ -49,7 +49,10 @@ get_header(); ?>
 
 				
 
-				<?php get_template_part('includes/content', 'all-ingredients'); ?>
+				<?php 
+				while ( have_posts() ) : the_post();
+					get_template_part('includes/content', 'all-ingredients'); 
+				endwhile; ?>
 
 			</div>
 
