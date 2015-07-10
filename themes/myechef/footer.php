@@ -1,7 +1,7 @@
 <?php
 $show_feedback_form = get_field('show_feedback_form', 'option');
 if ( $show_feedback_form == 'Yes' ) :
-get_template_part('content', 'feedbackform'); 
+get_template_part('content/incudes', 'feedbackform'); 
 endif; ?>
 
 

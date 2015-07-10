@@ -682,7 +682,7 @@ endif;
 
 
 
-<body class="wrapper <?php echo strtolower($banner_color); ?>">
+<body class="wrapper <?php echo strtolower($banner_color); ?> <?php echo basename( get_page_template() ); ?>">
 
             <div class="container">
 

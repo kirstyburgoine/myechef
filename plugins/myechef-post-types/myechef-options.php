@@ -164,6 +164,43 @@ if(function_exists("register_field_group"))
 		'title' => 'Global Options',
 		'fields' => array (
 			array (
+				'key' => 'field_751959b2f131e',
+				'label' => 'Protected',
+				'name' => 'protected',
+				'type' => 'radio',
+				'instructions' => 'Should this website be accessible only to people that can login?',
+				'required' => 1,
+				'choices' => array (
+					'Yes' => 'Yes',
+					'No' => 'No',
+				),
+				'other_choice' => 0,
+				'save_other_choice' => 0,
+				'default_value' => 'No',
+				'layout' => 'horizontal',
+			),
+			array (
+				'key' => 'field_532b747075112',
+				'label' => 'Not Logged In',
+				'name' => 'not_logged_in',
+				'type' => 'wysiwyg',
+				'conditional_logic' => array (
+					'status' => 1,
+					'rules' => array (
+						array (
+							'field' => 'field_751959b2f131e',
+							'operator' => '==',
+							'value' => 'Yes',
+						),
+					),
+					'allorany' => 'all',
+				),
+				'instructions' => 'Text area displayed instead of premium content to encourage people to join My EChef to gain access to that content.',
+				'default_value' => '',
+				'toolbar' => 'full',
+				'media_upload' => 'yes',
+			),
+			array (
 				'key' => 'field_53f866d47cec2',
 				'label' => 'Company Logo',
 				'name' => 'company_logo',
@@ -338,16 +375,6 @@ if(function_exists("register_field_group"))
 				'maxlength' => '',
 				'rows' => '',
 				'formatting' => 'br',
-			),
-			array (
-				'key' => 'field_532b747075112',
-				'label' => 'Not Logged In',
-				'name' => 'not_logged_in',
-				'type' => 'wysiwyg',
-				'instructions' => 'Text area displayed instead of premium content to encourage people to join My EChef to gain access to that content.',
-				'default_value' => '',
-				'toolbar' => 'full',
-				'media_upload' => 'yes',
 			),
 		),
 		'location' => array (

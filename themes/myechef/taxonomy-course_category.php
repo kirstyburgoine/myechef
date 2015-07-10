@@ -1,22 +1,20 @@
-<?php 
+<?php
 /* 
- * Single page for each Chefs Menu post
- * 
+ * Custom post type archive for Recipes
  */
 
-get_header(); 
+if ( isset( $_GET['order'] ) ) :
+	$order = $_GET['order'];
+endif;
 
 $protected = get_field('protected', 'option');  
 global $blog_id;
 
+get_header(); ?>
 
-$banner_color = get_field('banner_colour_overlay', 'option');
-if ( !$banner_color ) : $banner_color = "none"; endif; ?>
+	<div class="container pt">
 
-
-<div class="container pt">
-
-	<div class="grid">
+		<div class="grid">
 
 	<?php
 	//------------------------------------------------------------------------------------------------
@@ -28,28 +26,45 @@ if ( !$banner_color ) : $banner_color = "none"; endif; ?>
 		//------------------------------------------------------------------------------------------------
 		//------------------------------------------------------------------------------------------------
 		// If so, check if someone is logged in and they have permissions for this blog
-		if ( is_user_logged_in() && current_user_can_for_blog( $blog_id, "read" ) ) : 
-			?>
+		if ( is_user_logged_in() && current_user_can_for_blog( $blog_id, "read" ) ) : ?>
 
 			<div class="grid__item palm-one-whole lap-one-whole three-quarters">
 
-				<?php 
-				if ( have_posts() ) : the_post(); ?>
 
-				<article class="type-recipe post">
+			<?php
+			//if ( $order == "alphabet" ) :
+				//global $query_string;
+				//query_posts( $query_string . '&orderby=title&order=ASC' );
+			//endif;
+			
+			if ( have_posts() ) :
 
-					<?php get_template_part('content', 'chefs_menu-single'); ?>					
-					
-				</article>
+				get_template_part('includes/content', 'order-results');  ?>
 
-				<?php 
-				endif; ?>
+				<h1 class="archive-title">All Recipes</h1>
+
+
+
+				<?php
+					// Start the Loop inside the include so post counts work.
+						get_template_part( 'content', 'recipe-archive' );
+
+
+
+				else :
+				// If no content, include the "No posts found" template.
+				get_template_part( 'content', 'none' );
+
+				endif; wp_reset_query(); 
+				?>
+				
 
 			</div><!--
 
 			--><div class="grid__item palm-one-whole lap-one-whole one-quarter">
-				
-				<?php get_sidebar(); ?>
+			
+					<?php get_sidebar(); ?>
+
 
 
 			</div>
@@ -80,36 +95,57 @@ if ( !$banner_color ) : $banner_color = "none"; endif; ?>
 
 			<div class="grid__item palm-one-whole lap-one-whole three-quarters">
 
-				<?php 
-				if ( have_posts() ) : the_post(); ?>
 
-				<article class="type-recipe post">
+			<?php
+			//if ( $order == "alphabet" ) :
+				//global $query_string;
+				//query_posts( $query_string . '&orderby=title&order=ASC' );
+			//endif;
+			
+			if ( have_posts() ) :
 
-					<?php get_template_part('content', 'chefs_menu-single'); ?>					
-					
-				</article>
+				get_template_part('includes/content', 'order-results');  ?>
 
-				<?php 
-				endif; ?>
+				<h1 class="archive-title"><?php single_cat_title(); ?></h1>
+
+
+
+				<?php
+					while ( have_posts() ) : the_post();
+						get_template_part( 'content', 'recipe-archive' );
+					endwhile;
+
+
+				else :
+				// If no content, include the "No posts found" template.
+				get_template_part( 'content', 'none' );
+
+				endif; wp_reset_query(); 
+				?>
+				
 
 			</div><!--
 
 			--><div class="grid__item palm-one-whole lap-one-whole one-quarter">
-				
-				<?php get_sidebar(); ?>
+			
+					<?php get_sidebar(); ?>
+
 
 
 			</div>
 
-		<?php
-		endif; 
-		// Ends if the site should be protected or not
-		//------------------------------------------------------------------------------------------------
-		//------------------------------------------------------------------------------------------------
-		?>
+	<?php
+	endif; 
+	// Ends if the site should be protected or not
+	//------------------------------------------------------------------------------------------------
+	//------------------------------------------------------------------------------------------------
+	?>
 
-	</div> <!-- // Grid -->
 
-</div>
+		</div> <!-- // Grid -->
 
+	</div>
+
+
+<?php //get_sidebar(); ?>
 <?php get_footer(); ?>

@@ -13,4 +13,20 @@
 
 # 13.02.15			- Pushed changes to myechef-child/single-recipe.php to telford-webdesign.co.uk - hide content if not logged in
 					- Pushed changes to myechef-post-types/menus-post-type.php - removed two custom fields from chefs menus
+
+# 18.02.15			- Pushed changes to myechef-child/single-recipe.php to myechef.co.uk
+					- Pushed changes to myechef-child/page.php to myechef.co.uk
 ------------------------------------------------------------------------------------------------------------------------------------
+
+# 04.03.15			- Pushed changes to myechef-child/single-recipe.php to myechef.co.uk
+					  This updated changes to login so ingredient details can't be seen unless logged in
+
+					- Created and pushed myechef-child/taxonomy-course_category.php to myechef.co.uk and telford-webdesign.co.uk to stop people accessing course archives from the homepage
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+# 18.03.15			- Pushed changes to myechef/content-recipe-archive.php to telford-webdesign.co.uk
+					- Pushed styles to telford-webdesign.co.uk
+					  This updated the recipe archive to display allergens and also tidied up mobile views
+
+					  

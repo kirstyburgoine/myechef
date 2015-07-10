@@ -42,9 +42,8 @@
 				<?php /* if ( $featured == 'Yes' ) :?></a><?php endif; */ ?>
 			</h2>
 
-
-		
 		</header>
+		
 
 		<div class="excerpt">
 			<p class="bold"><strong>

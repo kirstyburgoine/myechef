@@ -39,17 +39,30 @@ hr {
 
 .alignright {
 
-	display: inline;
-	float: right;
-	margin-left: 1em;
-	clear: right;
+	text-align: center; 
+	margin: 0 auto;
+
+	@media screen and (min-width: $lap-start) {
+		display: inline;
+		float: right;
+		margin-left: 1em;
+		clear: right;
+		text-align: right;
+	}
 }
 
 .alignleft {
 
-	display: inline;
-	float: left;
-	margin-right: 1em;
+	text-align: center; 
+	margin: 0 auto;
+
+	@media screen and (min-width: $lap-start) {
+		display: inline;
+		float: left;
+		margin-right: 1em;
+		text-align: left;
+	}
+
 
 }
 
@@ -81,9 +94,15 @@ img.alignleft {
 }
 
 img.flag {
-	border: solid 1px #ccc;
-	width: 50px;
-	clear: right;
+
+	display: none;
+
+	@media screen and (min-width: $lap-start) {
+		display: block;
+		border: solid 1px #ccc;
+		width: 50px;
+		clear: right;
+	}
 }
 
 //---------------------------------------------------------------------------------------------------------------
@@ -144,6 +163,27 @@ h1.archive-title {
 
 .type-recipe {
 
+	.recipe--img {
+
+		width: 100%;
+		max-width: 185px;
+
+		/*
+		@media screen and (min-width: $lap-start) {
+			width: 45%;
+		}
+
+		@media screen and (min-width: $tab-start) {
+			width: 35%;
+		}
+
+		@media screen and (min-width: $desk-start) {
+			width: 25%;
+		}
+		*/
+	
+	}
+
 	.recipe-title { 
 		>h1,
 		>h2 { 
@@ -157,18 +197,81 @@ h1.archive-title {
 
 		}
 
-		>h2 { clear: both; font-size: 22px; }
+		>h2 { 
+			clear: both; 
+			font-size: 20px;
+			line-height: 1.2; 
+		}
 
-
+		>p { 
+			font-family: $header_font;
+			font-size: 14px; font-size: 0.9rem; 
+			margin-bottom: 0.5rem; 
+		}
 
 		@media screen and (min-width: $lap-start) {
 			>h2 { clear: none; }
 		}	
 
+		//float: left;
+		border-bottom: solid 1px #ececec;
+		margin-bottom: 0.5rem;
+
+		/*
+		@media screen and (min-width: $lap-start) {
+			width: 50%;
+		}
+
+		@media screen and (min-width: $tab-start) {
+			width: 60%;
+		}
+
+		@media screen and (min-width: $desk-start) {
+			width: 70%;
+		}
+		*/
+
+	}
+
+	// Cancels the width of titles used on recipe archives
+	&.type-supplier,
+	&.type-chefepedia {
+		.recipe-title { 
+
+			border-bottom: 0; 
+
+			@media screen and (min-width: $lap-start) {
+			width: 100%;
+			}
+
+			@media screen and (min-width: $tab-start) {
+				width: 100%;
+			}
+
+			@media screen and (min-width: $desk-start) {
+				width: 100%;
+			}
+		}
+
+		.address {
+			
+		}
+
+		.excerpt { float: none; }
 	}
 
 	.excerpt {
-		>p { font-size: 14px; font-size: 0.9rem; 
+		float: left;
+
+
+
+		h5 { margin-bottom: 1rem; }
+
+		>p { 
+			font-size: 12px; font-size: 0.8rem; 
+			//margin-bottom: 0.75rem;
+
+			&.small-desc { clear: left; }
 
 			&.bold {  margin-bottom: 0.2em; }
 		}
@@ -181,9 +284,11 @@ h1.archive-title {
 		list-style-type: none;
 		margin: 0 0 1.5rem 0;
 		padding: 0;
+		float: left;
 
 		>li {
 			font-family: $header_font;
+			font-size:14px;
 
 
 			.rating {

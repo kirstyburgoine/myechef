@@ -89,6 +89,13 @@ $content_area_2 = get_field('content_area_2'); ?>
 
 		--><div class="grid__item palm-one-whole lap-one-whole one-third">
 
+		<?php
+		//------------------------------------------------------------------------------------------------
+		//------------------------------------------------------------------------------------------------
+		global $blog_id;
+		if ( is_user_logged_in() && current_user_can_for_blog( $blog_id, "read" ) ) : ?>
+
+
 			<div class="sidebar">
 				<?php 
 				if ( is_active_sidebar( 'sidebar-3' ) ) : 
@@ -97,11 +104,21 @@ $content_area_2 = get_field('content_area_2'); ?>
 
 			</div>
 		
-			<?php /*
-			<div class="entry-content">
-				<?php echo $content_area_2; ?>
+		<?php 
+		//------------------------------------------------------------------------------------------------
+		//------------------------------------------------------------------------------------------------
+		// If not logged in show error text from Options page in admin
+		else : ?>
+				
+			<div class="grid__item palm-one-whole lap-one-whole">
+				<?php
+				$not_logged_in = get_field('not_logged_in', 'option');  
+				echo $not_logged_in;
+				?>
 			</div>
-			*/ ?>
+
+		<?php
+		endif; ?>
 
 		</div>
 

@@ -27,6 +27,12 @@ get_header(); ?>
 
 		<div class="grid">
 
+		<?php
+		//------------------------------------------------------------------------------------------------
+		//------------------------------------------------------------------------------------------------
+		global $blog_id;
+		if ( is_user_logged_in() && current_user_can_for_blog( $blog_id, "read" ) ) : ?>
+
 			<div class="grid__item palm-one-whole lap-one-whole three-quarters">
 
 			<?php
@@ -250,6 +256,22 @@ else : ?>
 
 
 			</div>
+
+		<?php 
+		//------------------------------------------------------------------------------------------------
+		//------------------------------------------------------------------------------------------------
+		// If not logged in show error text from Options page in admin
+		else : ?>
+				
+			<div class="grid__item palm-one-whole lap-one-whole">
+				<?php
+				$not_logged_in = get_field('not_logged_in', 'option');  
+				echo $not_logged_in;
+				?>
+			</div>
+
+		<?php
+		endif; ?>
 
 
 		</div> <!-- // Grid -->

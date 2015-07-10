@@ -1,6 +1,7 @@
 <?php 
-
-
+/* Used on archive-supplier.php
+ * Basically the same as content-contacts-archive.php but diff taxonomy
+ */
 
 	$address = get_field('address');
 	$telephone = get_field('telephone');
@@ -20,18 +21,7 @@
 	$d = 0;
 	?>
 
-<article class="post type-recipe">
-
-
-		<?php 
-		//if ( $featured == 'Yes' ) :
-			// changed so that custom size and clas scan be added
-			if ( has_post_thumbnail() ) : // check if the post has a Post Thumbnail assigned to it.
-				the_post_thumbnail('recipe-thumb', array('class' => 'img--left'));
-			endif; 
-
-		//endif; ?>
-		
+<article class="post type-recipe type-supplier">
 
 	
 		<header class="recipe-title">
@@ -47,7 +37,18 @@
 		</header>
 
 		<div class="excerpt">
-			<p class="bold"><strong>
+
+		<?php 
+		//if ( $featured == 'Yes' ) :
+			// changed so that custom size and clas scan be added
+			if ( has_post_thumbnail() ) : // check if the post has a Post Thumbnail assigned to it.
+				the_post_thumbnail('recipe-thumb', array('class' => 'img--left'));
+			endif; 
+
+		//endif; ?>
+
+
+			<h5>
 			<?php if ( $type_terms ) : ?>
 				<?php 	foreach ( $type_terms as $type ) :
 							
@@ -78,11 +79,21 @@
 						endforeach; ?>
 			
 			<?php endif; ?>
-			</strong></p>
+			</h5>
+
+
+			<p class="address">
+				<?php if ( $address ) : echo $address . "<br />"; endif;?>
+
+				<?php if ( $telephone ) : echo "<strong>Tel:</strong> ".$telephone . "<br />"; endif;?>	<?php if ( $email ) : echo '<strong>Email:</strong> <a href="mailto:'.$email.'">'.$email.'</a><br />'; endif;?> <?php if ( $website_address ) : echo '<strong>Website:</strong> <a href="'.$website_address.'" target="_blank">'.$website_address.'</a>'; endif;?>
+				
+			</p>
+
+			<br />
 
 		<?php if ( $small_description = get_field('small_description') ) : ?>
 			
-				<p><?php echo $small_description; ?></p>
+				<p class="small-desc"><?php echo $small_description; ?></p>
 			
 		<?php endif; ?>
 		</div>
@@ -95,11 +106,6 @@
 		
 
 
-		<p>
-			<small><?php if ( $address ) : echo $address; endif;?><br />
-			<?php if ( $telephone ) : echo "Tel: ".$telephone; endif;?>	<?php if ( $email ) : echo '<a href="mailto:'.$email.'">'.$email.'</a>'; endif;?> <?php if ( $website_address ) : echo '<a href="'.$website_address.'" target="_blank">'.$website_address.'</a>'; endif;?>
-			</small>
-		</p>
 		
 
 

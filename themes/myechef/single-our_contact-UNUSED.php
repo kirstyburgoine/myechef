@@ -14,7 +14,16 @@ if ( !$banner_color ) : $banner_color = "none"; endif;
 
 		<div class="grid">
 
+
+		<?php
+		//------------------------------------------------------------------------------------------------
+		//------------------------------------------------------------------------------------------------
+		global $blog_id;
+		if ( is_user_logged_in() && current_user_can_for_blog( $blog_id, "read" ) ) : ?>
+
 			<div class="grid__item palm-one-whole lap-one-whole three-quarters">
+
+
 
 				<article class="type-recipe post">
 
@@ -56,6 +65,7 @@ if ( !$banner_color ) : $banner_color = "none"; endif;
 					
 			</article>
 
+
 			</div><!--
 
 			--><div class="grid__item palm-one-whole lap-one-whole one-quarter">
@@ -64,6 +74,22 @@ if ( !$banner_color ) : $banner_color = "none"; endif;
 
 
 			</div>
+
+		<?php 
+		//------------------------------------------------------------------------------------------------
+		//------------------------------------------------------------------------------------------------
+		// If not logged in show error text from Options page in admin
+		else : ?>
+				
+			<div class="grid__item palm-one-whole lap-one-whole">
+				<?php
+				$not_logged_in = get_field('not_logged_in', 'option');  
+				echo $not_logged_in;
+				?>
+			</div>
+
+		<?php
+		endif; ?>
 
 		</div> <!-- // Grid -->
 

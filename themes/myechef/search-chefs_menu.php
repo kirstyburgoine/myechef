@@ -1,7 +1,8 @@
 <?php
 /* 
- * Custom post type archive for menus
+ * Custom search template for chefs menus
  * Template Name: Menu Search Results
+ * Changed ot use get template part chefs archive rather than chefs-search
  */
 
 if ( isset( $_GET['c'] ) ) :
@@ -21,18 +22,9 @@ endif;
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
 
-get_header(); ?>
-
-	<div class="container pt">
-
-		<div class="grid">
-
-			<div class="grid__item palm-one-whole lap-one-whole three-quarters">
-
-			<?php
-			// If any of the specific search terms are in the URL setup the custom query
-			// Otherwise no paramaters are needed for the standard search template
-			// if ( $c || $g || $n ) :
+				// If any of the specific search terms are in the URL setup the custom query
+				// Otherwise no paramaters are needed for the standard search template
+				// if ( $c || $g || $n ) :
 
 				if ( $c  ) :
 				$args = array(
@@ -118,79 +110,185 @@ get_header(); ?>
 					'orderby' => 'title'
 				);
 				endif;
-			
-			// Get current page and append to custom query parameters array
-			//$args['paged'] = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
 
-			// Instantiate custom query
-			$custom_query = new WP_Query( $args );
 
-			// Pagination fix
-			$temp_query = $wp_query;
-			$wp_query   = NULL;
-			$wp_query   = $custom_query;
+get_header(); ?>
+
+<div class="container pt">
+
+	<div class="grid">
+
+		<?php
+		//------------------------------------------------------------------------------------------------
+		//------------------------------------------------------------------------------------------------
+		$protected = get_field('protected', 'option');  
+		global $blog_id;
+		//------------------------------------------------------------------------------------------------
+		//------------------------------------------------------------------------------------------------
+		// Check to see if this should be protected first
+		// echo "test " . $protected;
+
+		if ( $protected == 'Yes') :
+			//------------------------------------------------------------------------------------------------
+			//------------------------------------------------------------------------------------------------
+			// If so, check if someone is logged in and they have permissions for this blog 
+			if ( is_user_logged_in() && current_user_can_for_blog( $blog_id, "read" ) ) : ?>
+
+				<div class="grid__item palm-one-whole lap-one-whole three-quarters">
+
+				
+				<?php
+				// Get current page and append to custom query parameters array
+				//$args['paged'] = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
+
+				// Instantiate custom query
+				$custom_query = new WP_Query( $args );
+
+				// Pagination fix
+				$temp_query = $wp_query;
+				$wp_query   = NULL;
+				$wp_query   = $custom_query;
 		
 			
-			//query_posts( $args );
+				//query_posts( $args );
 
-			// endif;
+				// endif;
 
-			if ( $custom_query->have_posts() ) : 
+				if ( $custom_query->have_posts() ) : 
 
-				$cz = ucwords(str_replace("-", " ", $c));
-				$gz = ucwords(str_replace("-", " ", $g));
-				$nz = ucwords(str_replace("-", " ", $n));
+					$cz = ucwords(str_replace("-", " ", $c));
+					$gz = ucwords(str_replace("-", " ", $g));
+					$nz = ucwords(str_replace("-", " ", $n)); ?>
 
-				?>
-
-
-				<h1>Search Results for <?php if ($c) : echo "<i>" . $cz . "</i>,"; endif;?> <?php if ($g) : echo "<i>" . $gz . "</i>,"; endif;?> <?php if ($n) : echo "<i>" . $nz . "</i>,"; endif;?></h1>
-
-				<p>Your search returned <?php echo $wp_query->found_posts; ?> result(s).</p>
-
-
-
-				<?php
-					while ( $custom_query->have_posts() ) : $custom_query->the_post();
-
-						get_template_part( 'content', 'chefs_menu-search' );
-
-					endwhile;
-
-					if ( function_exists( 'tw_pagination' ) ) : tw_pagination(); endif; 
+					<h1>Search Results for <?php if ($c) : echo "<i>" . $cz . "</i>,"; endif;?> <?php if ($g) : echo "<i>" . $gz . "</i>,"; endif;?> <?php if ($n) : echo "<i>" . $nz . "</i>,"; endif;?></h1>
+					<p>Your search returned <?php echo $wp_query->found_posts; ?> result(s).</p>
 					
+					<?php
+						while ( $custom_query->have_posts() ) : $custom_query->the_post();
+							get_template_part( 'content', 'chefs_menu-archive' );
+						endwhile;
+
+						if ( function_exists( 'tw_pagination' ) ) : tw_pagination(); endif; 
+					
+				else : ?>
+
+					<h1>Search Results</h1>
+
+					<p>Your search returned 0 results.</p>
+
+					<?php 
+					// If no content, include the "No posts found" template.
+					get_template_part( 'content', 'none' );
+
+				endif; //wp_reset_query(); 
+				wp_reset_postdata();
+
+
+					// Reset main query object
+					$wp_query = NULL;
+					$wp_query = $temp_query; ?>
+
+				</div><!--
+
+				--><div class="grid__item palm-one-whole lap-one-whole one-quarter">			
+						<?php get_sidebar(); ?>
+				</div>
+
+			<?php 
+			//------------------------------------------------------------------------------------------------
+			//------------------------------------------------------------------------------------------------
+			// If not logged in show error text from Options page in admin
 			else : ?>
+					
+				<div class="grid__item palm-one-whole lap-one-whole">
+					<?php
+					$not_logged_in = get_field('not_logged_in', 'option');  
+					echo $not_logged_in;
+					?>
+				</div>
 
-				<h1>Search Results</h1>
+			<?php
+			endif; 
+			// Ends if logged in and you have permission
+			//------------------------------------------------------------------------------------------------
+			//------------------------------------------------------------------------------------------------
 
-				<p>Your search returned 0 results.</p>
+		//------------------------------------------------------------------------------------------------
+		//------------------------------------------------------------------------------------------------
+		// Else the site is not protected so just show the standard content
+		else : ?>
+		
+			<div class="grid__item palm-one-whole lap-one-whole three-quarters">
 
-				<?php 
-				// If no content, include the "No posts found" template.
-				get_template_part( 'content', 'none' );
+				
+				<?php
+				// Get current page and append to custom query parameters array
+				//$args['paged'] = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
 
-			endif; //wp_reset_query(); 
-			wp_reset_postdata();
+				// Instantiate custom query
+				$custom_query = new WP_Query( $args );
 
-
-				// Reset main query object
-				$wp_query = NULL;
-				$wp_query = $temp_query;
-				?>
-			</div><!--
-
-			--><div class="grid__item palm-one-whole lap-one-whole one-quarter">
+				// Pagination fix
+				$temp_query = $wp_query;
+				$wp_query   = NULL;
+				$wp_query   = $custom_query;
+		
 			
-					<?php get_sidebar(); ?>
+				//query_posts( $args );
+
+				// endif;
+
+				if ( $custom_query->have_posts() ) : 
+
+					$cz = ucwords(str_replace("-", " ", $c));
+					$gz = ucwords(str_replace("-", " ", $g));
+					$nz = ucwords(str_replace("-", " ", $n)); ?>
+
+					<h1>Search Results for <?php if ($c) : echo "<i>" . $cz . "</i>,"; endif;?> <?php if ($g) : echo "<i>" . $gz . "</i>,"; endif;?> <?php if ($n) : echo "<i>" . $nz . "</i>,"; endif;?></h1>
+					<p>Your search returned <?php echo $wp_query->found_posts; ?> result(s).</p>
+					
+					<?php
+						while ( $custom_query->have_posts() ) : $custom_query->the_post();
+							get_template_part( 'content', 'chefs_menu-archive' );
+						endwhile;
+
+						if ( function_exists( 'tw_pagination' ) ) : tw_pagination(); endif; 
+					
+				else : ?>
+
+					<h1>Search Results</h1>
+
+					<p>Your search returned 0 results.</p>
+
+					<?php 
+					// If no content, include the "No posts found" template.
+					get_template_part( 'content', 'none' );
+
+				endif; //wp_reset_query(); 
+				wp_reset_postdata();
 
 
+					// Reset main query object
+					$wp_query = NULL;
+					$wp_query = $temp_query; ?>
 
-			</div>
+				</div><!--
+
+				--><div class="grid__item palm-one-whole lap-one-whole one-quarter">			
+						<?php get_sidebar(); ?>
+				</div>
 
 
-		</div> <!-- // Grid -->
+		<?php
+		endif; 
+		// Ends if the site should be protected or not
+		//------------------------------------------------------------------------------------------------
+		//------------------------------------------------------------------------------------------------
+		?>
 
-	</div>
+	</div> <!-- // Grid -->
+
+</div>
 
 
 <?php get_footer(); ?>

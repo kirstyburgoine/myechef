@@ -3035,15 +3035,25 @@ hr {
   margin: 0 auto; }
 
 .alignright {
-  display: inline;
-  float: right;
-  margin-left: 1em;
-  clear: right; }
+  text-align: center;
+  margin: 0 auto; }
+  @media screen and (min-width: 481px) {
+    .alignright {
+      display: inline;
+      float: right;
+      margin-left: 1em;
+      clear: right;
+      text-align: right; } }
 
 .alignleft {
-  display: inline;
-  float: left;
-  margin-right: 1em; }
+  text-align: center;
+  margin: 0 auto; }
+  @media screen and (min-width: 481px) {
+    .alignleft {
+      display: inline;
+      float: left;
+      margin-right: 1em;
+      text-align: left; } }
 
 img.alignright {
   display: block;
@@ -3066,9 +3076,13 @@ img.alignleft {
       margin-right: 1em; } }
 
 img.flag {
-  border: solid 1px #ccc;
-  width: 50px;
-  clear: right; }
+  display: none; }
+  @media screen and (min-width: 481px) {
+    img.flag {
+      display: block;
+      border: solid 1px #ccc;
+      width: 50px;
+      clear: right; } }
 
 .home-features h1, .home-features h2, .meal-types h1, .meal-types h2 {
   color: #fff;
@@ -3096,34 +3110,93 @@ h1.archive-title {
   border-bottom: solid 1px #ccc;
   padding-bottom: 0.75em; }
 
-.type-recipe .recipe-title > h1,
-.type-recipe .recipe-title > h2 {
-  margin-bottom: 0.2em;
-  line-height: 1; }
-  .type-recipe .recipe-title > h1 > a,
-  .type-recipe .recipe-title > h2 > a {
-    color: #000;
-    text-decoration: none; }
-    .type-recipe .recipe-title > h1 > a:hover,
-    .type-recipe .recipe-title > h2 > a:hover {
-      color: #5d285f; }
-.type-recipe .recipe-title > h2 {
-  clear: both;
-  font-size: 22px; }
-@media screen and (min-width: 481px) {
+.type-recipe .recipe--img {
+  width: 100%;
+  max-width: 185px;
+  		/*
+  		@media screen and (min-width: $lap-start) {
+  			width: 45%;
+  		}
+  
+  		@media screen and (min-width: $tab-start) {
+  			width: 35%;
+  		}
+  
+  		@media screen and (min-width: $desk-start) {
+  			width: 25%;
+  		}
+  		*/ }
+.type-recipe .recipe-title {
+  border-bottom: solid 1px #ececec;
+  margin-bottom: 0.5rem;
+  		/*
+  		@media screen and (min-width: $lap-start) {
+  			width: 50%;
+  		}
+  
+  		@media screen and (min-width: $tab-start) {
+  			width: 60%;
+  		}
+  
+  		@media screen and (min-width: $desk-start) {
+  			width: 70%;
+  		}
+  		*/ }
+  .type-recipe .recipe-title > h1,
   .type-recipe .recipe-title > h2 {
-    clear: none; } }
-.type-recipe .excerpt > p {
-  font-size: 14px;
-  font-size: 0.9rem; }
-  .type-recipe .excerpt > p.bold {
-    margin-bottom: 0.2em; }
+    margin-bottom: 0.2em;
+    line-height: 1; }
+    .type-recipe .recipe-title > h1 > a,
+    .type-recipe .recipe-title > h2 > a {
+      color: #000;
+      text-decoration: none; }
+      .type-recipe .recipe-title > h1 > a:hover,
+      .type-recipe .recipe-title > h2 > a:hover {
+        color: #5d285f; }
+  .type-recipe .recipe-title > h2 {
+    clear: both;
+    font-size: 20px;
+    line-height: 1.2; }
+  .type-recipe .recipe-title > p {
+    font-family: "proxima-nova-alt", sans-serif;
+    font-size: 14px;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem; }
+  @media screen and (min-width: 481px) {
+    .type-recipe .recipe-title > h2 {
+      clear: none; } }
+.type-recipe.type-supplier .recipe-title, .type-recipe.type-chefepedia .recipe-title {
+  border-bottom: 0; }
+  @media screen and (min-width: 481px) {
+    .type-recipe.type-supplier .recipe-title, .type-recipe.type-chefepedia .recipe-title {
+      width: 100%; } }
+  @media screen and (min-width: 754px) {
+    .type-recipe.type-supplier .recipe-title, .type-recipe.type-chefepedia .recipe-title {
+      width: 100%; } }
+  @media screen and (min-width: 1024px) {
+    .type-recipe.type-supplier .recipe-title, .type-recipe.type-chefepedia .recipe-title {
+      width: 100%; } }
+.type-recipe.type-supplier .excerpt, .type-recipe.type-chefepedia .excerpt {
+  float: none; }
+.type-recipe .excerpt {
+  float: left; }
+  .type-recipe .excerpt h5 {
+    margin-bottom: 1rem; }
+  .type-recipe .excerpt > p {
+    font-size: 12px;
+    font-size: 0.8rem; }
+    .type-recipe .excerpt > p.small-desc {
+      clear: left; }
+    .type-recipe .excerpt > p.bold {
+      margin-bottom: 0.2em; }
 .type-recipe ul.recipe-meta {
   list-style-type: none;
   margin: 0 0 1.5rem 0;
-  padding: 0; }
+  padding: 0;
+  float: left; }
   .type-recipe ul.recipe-meta > li {
-    font-family: "proxima-nova-alt", sans-serif; }
+    font-family: "proxima-nova-alt", sans-serif;
+    font-size: 14px; }
     .type-recipe ul.recipe-meta > li .rating {
       display: inline-block;
       width: 87px;

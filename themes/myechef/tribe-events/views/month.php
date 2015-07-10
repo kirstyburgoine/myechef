@@ -1,24 +1,27 @@
-<?php 
-/* 
- * Single page for each Chefs Menu post
- * 
+<?php
+/**
+ * Month View Template
+ * The wrapper template for month view.
+ *
+ * Override this template in your own theme by creating a file at [your-theme]/tribe-events/month.php
+ *
+ * @package TribeEventsCalendar
+ *
  */
 
-get_header(); 
-
 $protected = get_field('protected', 'option');  
+echo "default = " . $protected;
+
+
 global $blog_id;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( '-1' );
+} ?>
 
-$banner_color = get_field('banner_colour_overlay', 'option');
-if ( !$banner_color ) : $banner_color = "none"; endif; ?>
+<?php do_action( 'tribe_events_before_template' ) ?>
 
-
-<div class="container pt">
-
-	<div class="grid">
-
-	<?php
+<?php
 	//------------------------------------------------------------------------------------------------
 	//------------------------------------------------------------------------------------------------
 	// Check to see if this should be protected first
@@ -29,30 +32,14 @@ if ( !$banner_color ) : $banner_color = "none"; endif; ?>
 		//------------------------------------------------------------------------------------------------
 		// If so, check if someone is logged in and they have permissions for this blog
 		if ( is_user_logged_in() && current_user_can_for_blog( $blog_id, "read" ) ) : 
-			?>
 
-			<div class="grid__item palm-one-whole lap-one-whole three-quarters">
+		?>
 
-				<?php 
-				if ( have_posts() ) : the_post(); ?>
+			<!-- Tribe Bar -->
+			<?php tribe_get_template_part( 'modules/bar' ); ?>
 
-				<article class="type-recipe post">
-
-					<?php get_template_part('content', 'chefs_menu-single'); ?>					
-					
-				</article>
-
-				<?php 
-				endif; ?>
-
-			</div><!--
-
-			--><div class="grid__item palm-one-whole lap-one-whole one-quarter">
-				
-				<?php get_sidebar(); ?>
-
-
-			</div>
+			<!-- Main Events Content -->
+			<?php tribe_get_template_part( 'month/content' ); ?>
 
 		<?php 
 		//------------------------------------------------------------------------------------------------
@@ -78,38 +65,16 @@ if ( !$banner_color ) : $banner_color = "none"; endif; ?>
 	// Else the site is not protected so just show the standard content
 	else : ?>
 
-			<div class="grid__item palm-one-whole lap-one-whole three-quarters">
+			<!-- Tribe Bar -->
+			<?php tribe_get_template_part( 'modules/bar' ); ?>
 
-				<?php 
-				if ( have_posts() ) : the_post(); ?>
+			<!-- Main Events Content -->
+			<?php tribe_get_template_part( 'month/content' ); ?>
 
-				<article class="type-recipe post">
+	<?php endif; 
+	// Ends if the site should be protected or not
+	//------------------------------------------------------------------------------------------------
+	//------------------------------------------------------------------------------------------------
+	?>
 
-					<?php get_template_part('content', 'chefs_menu-single'); ?>					
-					
-				</article>
-
-				<?php 
-				endif; ?>
-
-			</div><!--
-
-			--><div class="grid__item palm-one-whole lap-one-whole one-quarter">
-				
-				<?php get_sidebar(); ?>
-
-
-			</div>
-
-		<?php
-		endif; 
-		// Ends if the site should be protected or not
-		//------------------------------------------------------------------------------------------------
-		//------------------------------------------------------------------------------------------------
-		?>
-
-	</div> <!-- // Grid -->
-
-</div>
-
-<?php get_footer(); ?>
+<?php do_action( 'tribe_events_after_template' ) ?>

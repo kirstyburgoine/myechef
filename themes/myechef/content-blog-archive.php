@@ -1,9 +1,8 @@
-<?php 
-while ( have_posts() ) : the_post();
-
-?>
-
 <article class="post type-recipe">
+
+	<div class="grid">
+
+		<div class="grid__item palm-one-whole lap-one-third one-quarter">
 
 
 		<?php 
@@ -12,6 +11,9 @@ while ( have_posts() ) : the_post();
 			the_post_thumbnail('recipe-thumb', array('class' => 'img--left'));
 		endif; ?>
 	
+		</div><!--
+
+		--><div class="grid__item palm-one-whole lap-two-thirds three-quarters">
 
 	
 		<header class="recipe-title">
@@ -59,10 +61,9 @@ while ( have_posts() ) : the_post();
 
 		<a href="<?php the_permalink(); ?>" class="btn alignright mb">Read More <span class="ss-directright"></span></a>
 
+
+	</div>
+</div>
+
 <div class="seperator"></div>
 </article>
-
-
-<?php endwhile; ?>
-
-<?php if(function_exists('tw_pagination')) tw_pagination(); ?>

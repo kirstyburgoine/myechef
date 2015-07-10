@@ -15,22 +15,26 @@
 
 		
 
-		<?php $nationality = get_the_terms(get_the_ID(), 'nationality_category'); 
-		if ( ! empty($nationality) ) : 
 
-			$nationality = current($nationality);
-			$nationality_flag = get_field('flag', $nationality);
-			?>
-
-			<img src="<?php echo $nationality_flag['sizes']['flag']; ?>" alt="<?php echo $nationality->name;?>" class="img--right flag mb" />
-
-		<?php endif; ?>
 
 		
 		
 
 	
 		<header class="recipe-title">
+
+			<?php $nationality = get_the_terms(get_the_ID(), 'nationality_category'); 
+			if ( ! empty($nationality) ) : 
+
+				$nationality = current($nationality);
+				$nationality_flag = get_field('flag', $nationality);
+				?>
+
+				<img src="<?php echo $nationality_flag['sizes']['flag']; ?>" alt="<?php echo $nationality->name;?>" class="img--right flag mb" />
+
+			<?php endif; ?>
+
+		
 			<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 		</header>
 

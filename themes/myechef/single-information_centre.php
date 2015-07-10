@@ -1,74 +1,46 @@
-<?php // single-recipes.php 
+<?php 
+/* 
+ * Single page for each Information Centre post
+ * 
+ */
 
 get_header(); 
 
-
-if ( have_posts() ) : the_post(); 
+$protected = get_field('protected', 'option');  
+global $blog_id;
 
 $banner_color = get_field('banner_colour_overlay', 'option');
 if ( !$banner_color ) : $banner_color = "none"; endif;
 ?>
 
+<div class="container pt">
 
-	<div class="container pt">
-
-		<div class="grid">
-
-			<div class="grid__item palm-one-whole lap-one-whole three-quarters">
+	<div class="grid">
 
 	<?php
 	//------------------------------------------------------------------------------------------------
 	//------------------------------------------------------------------------------------------------
-		if ( !is_user_logged_in() ) :
+	// Check to see if this should be protected first
+	// echo "test " . $protected;
 
-			$not_logged_in = get_field('not_logged_in', 'option');  
-			echo $not_logged_in;
-		else : ?>
+	if ( $protected == 'Yes') :
+		//------------------------------------------------------------------------------------------------
+		//------------------------------------------------------------------------------------------------
+		// If so, check if someone is logged in and they have permissions for this blog
+		if ( is_user_logged_in() && current_user_can_for_blog( $blog_id, "read" ) ) : 
+			?>
+
+			<div class="grid__item palm-one-whole lap-one-whole three-quarters">
+
+			<?php if ( have_posts() ) : the_post();  ?>
 
 				<article class="type-recipe post">
 
-					<div class="utility ptrbl">
-						<ul class="utility-icons">
-							<li><a href="javascript:window.print()" class="ss-icon print" title="Print this page">Print</a></li>
-						</ul>
-					</div>	
-					
-					<header class="single-title">
-						<h2><?php the_title(); ?></h2>
-					</header>			
+					<?php get_template_part('content', 'chefepedia-single'); ?>
 
-					<?php if ( $small_description = get_field('small_description') ) : ?>
-						<p><?php echo $small_description; ?></p>
-					<?php endif; ?>
+				</article>
 
-					<hr>
-
-
-					<div class="entry-content">
-						<?php the_content(); ?>
-					</div>
-
-
-					
-					<footer class="additional pt">
-
-						<h3>Did you find this article useful?</h3>
-						<?php if(function_exists("kk_star_ratings")) : echo kk_star_ratings($pid); endif; ?>
-						<br />
-
-
-						<?php get_template_part('includes/content', 'print-footer'); ?>
-
-					</footer>
-				
-					
-					
-			</article>
-	
-	<?php endif; 
-	//------------------------------------------------------------------------------------------------
-	//------------------------------------------------------------------------------------------------ ?>
-
+			<?php endif; ?>
 
 			</div><!--
 
@@ -79,16 +51,64 @@ if ( !$banner_color ) : $banner_color = "none"; endif;
 
 			</div>
 
-		</div> <!-- // Grid -->
+		<?php 
+		//------------------------------------------------------------------------------------------------
+		//------------------------------------------------------------------------------------------------
+		// If not logged in show error text from Options page in admin
+		else : ?>
+				
+			<div class="grid__item palm-one-whole lap-one-whole">
+				<?php
+				$not_logged_in = get_field('not_logged_in', 'option');  
+				echo $not_logged_in;
+				?>
+			</div>
 
-	</div>
+		<?php
+		endif; 
+		// Ends if logged in and you have permission
+		//------------------------------------------------------------------------------------------------
+		//------------------------------------------------------------------------------------------------
 
-	<div class="share">
-	
+	//------------------------------------------------------------------------------------------------
+	//------------------------------------------------------------------------------------------------
+	// Else the site is not protected so just show the standard content
+	else : ?>
+
+		<div class="grid__item palm-one-whole lap-one-whole three-quarters">
+
+			<?php if ( have_posts() ) : the_post();  ?>
+
+				
+
+				<article class="type-recipe post">
+
+					<?php get_template_part('content', 'chefepedia-single'); ?>
+
+				</article>
+
+				
+
+			<?php endif; ?>
+
+			</div><!--
+
+			--><div class="grid__item palm-one-whole lap-one-whole one-quarter">
+				
+				<?php get_sidebar(); ?>
+
+			</div>
+
+	<?php
+	endif; 
+	// Ends if the site should be protected or not
+	//------------------------------------------------------------------------------------------------
+	//------------------------------------------------------------------------------------------------
+	?>
 
 
-	</div>
+	</div> <!-- // Grid -->
 
-<?php endif; ?>
+</div>
 
 <?php get_footer(); ?>

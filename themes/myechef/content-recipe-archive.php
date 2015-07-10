@@ -1,49 +1,49 @@
-<?php 
-while ( have_posts() ) : the_post();
-
-?>
-
 <article class="post type-recipe">
 
+	<div class="grid">
+
+		<div class="grid__item palm-one-whole lap-one-third one-quarter">
 
 		<?php 
 		// changed so that custom size and clas scan be added
 		if ( has_post_thumbnail() ) : // check if the post has a Post Thumbnail assigned to it.
-			the_post_thumbnail('recipe-thumb', array('class' => 'img--left'));
+			the_post_thumbnail('recipe-thumb', array('class' => 'recipe--img'));
 		endif; ?>
 
-		
+		</div><!--
 
-		<?php $nationality = get_the_terms(get_the_ID(), 'nationality_category'); 
-		if ( ! empty($nationality) ) : 
+		--><div class="grid__item palm-one-whole lap-two-thirds three-quarters">
 
-			$nationality = current($nationality);
-			$nationality_flag = get_field('flag', $nationality);
-			?>
+			<header class="recipe-title">
 
-			<img src="<?php echo $nationality_flag['sizes']['flag']; ?>" alt="<?php echo $nationality->name;?>" class="img--right flag mb" />
+			<?php $nationality = get_the_terms(get_the_ID(), 'nationality_category'); 
+			if ( ! empty($nationality) ) : 
 
-		<?php endif; ?>
+				$nationality = current($nationality);
+				$nationality_flag = get_field('flag', $nationality);
+				?>
 
-		
-		
+				<img src="<?php echo $nationality_flag['sizes']['flag']; ?>" alt="<?php echo $nationality->name;?>" class="img--right flag mb" />
 
-	
-		<header class="recipe-title">
-			<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-		</header>
+			<?php endif; ?>
 
-		<?php if ( $small_description = get_field('small_description') ) : ?>
-			<div class="excerpt">
-				<p><?php echo $small_description; ?></p>
-			</div>
-		<?php endif; ?>
-		
+				<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 
-		<a href="<?php the_permalink(); ?>" class="btn alignright mb">Full Details <span class="ss-directright"></span></a>
+				<?php if ( get_field('allergens') ) : ?>
 
+						<p><strong>Allergens: </strong><?php echo implode(', ', get_field('allergens')); ?></p>
 
-		
+				<?php endif; ?>
+
+			</header>
+
+			<?php /* if ( $small_description = get_field('small_description') ) : ?>
+				<div class="excerpt">
+					<p><?php echo $small_description; ?></p>
+				</div>
+			<?php endif; */ ?>
+
+		<div class="seperator"></div>
 		<?php
 
 		$skill_levels = array(
@@ -89,13 +89,11 @@ while ( have_posts() ) : the_post();
 			<?php endif; ?>
 		</ul>
 
+		<a href="<?php the_permalink(); ?>" class="btn alignright mb">Full Details <span class="ss-directright"></span></a>
 
+	</div>
 
+</div>
 
 <div class="seperator"></div>
 </article>
-
-
-<?php endwhile; ?>
-
-<?php if(function_exists('tw_pagination')) tw_pagination(); ?>
