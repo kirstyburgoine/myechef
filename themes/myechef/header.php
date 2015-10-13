@@ -144,10 +144,15 @@
                         servings = 1
                     }
 
+                    <?php
+                    $vat_amount = get_field('vat_amount', 'option');
+                    if ( !$vat_amount ) : $vat_amount = '0.2'; endif;
+
+                    ?>
                     //portion_value = total_cost / $('.js-total-portion-selling-price').data('portion-quantity');
                     // changed so the estimated selling price per portion is divided by the number of portions in the text input field
                     portion_value = total_cost / servings;
-                    portion_vat = portion_value * 0.2;
+                    portion_vat = portion_value * <?php echo $vat_amount; ?>;
                     portion_inc_vat = portion_vat + portion_value;
 
                 // output the values

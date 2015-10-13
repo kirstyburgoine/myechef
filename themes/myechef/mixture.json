@@ -9,16 +9,16 @@
   "lintScripts": false,
   "modelSource": null,
   "preprocessorLocations": [
-    "public/"
+    "/"
   ],
   "preprocessorScriptOutput": "public/scripts",
-  "preprocessorStyleOutput": "/public/styles",
-  "projectDescription": "WP Theme with db and ftp linked to live server",
+  "preprocessorStyleOutput": "public/styles",
+  "projectDescription": "My project description",
   "projectName": "myechef",
   "publishedId": null,
   "serverHostname": null,
   "serverPort": null,
-  "simpleModePartnerServer": "http://localhost/My-Executive-Chef/kb-ACTIVE/",
+  "simpleModePartnerServer": "localhost/My-Executive-Chef/kb-ACTIVE/",
   "templateDefaultLayout": "layout",
   "templateDefaultPage": "index",
   "templateDirectory": "templates",

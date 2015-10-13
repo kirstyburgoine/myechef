@@ -109,7 +109,6 @@ if(function_exists("register_field_group"))
 				'rows' => 4,
 				'formatting' => 'br',
 			),
-			/*
 			array (
 				'key' => 'field_5331f087976cf',
 				'label' => 'Portion Quantity',
@@ -136,7 +135,6 @@ if(function_exists("register_field_group"))
 				'formatting' => 'html',
 				'maxlength' => '',
 			),
-			*/
 			array (
 				'key' => 'field_5413f9f54b227',
 				'label' => 'Suggested Cost Label',

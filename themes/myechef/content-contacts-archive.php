@@ -20,8 +20,22 @@
 	$d = 0;
 	?>
 
-<article class="post type-recipe">
+<article class="post type-recipe type-contact">
 
+
+		<header class="recipe-title">
+
+			<h2>
+				<?php /* if ( $featured == 'Yes' ) :?><a href="<?php the_permalink(); ?>"><?php endif; */ ?>
+					<?php the_title(); ?>
+				<?php /* if ( $featured == 'Yes' ) :?></a><?php endif; */ ?>
+			</h2>
+
+
+		
+		</header>
+
+		<div class="excerpt">
 
 		<?php 
 		//if ( $featured == 'Yes' ) :
@@ -31,22 +45,9 @@
 			endif; 
 
 		//endif; ?>
-		
 
-	
-		<header class="recipe-title">
 
-			<h2>
-				<?php /* if ( $featured == 'Yes' ) :?><a href="<?php the_permalink(); ?>"><?php endif; */ ?>
-					<?php the_title(); ?>
-				<?php /* if ( $featured == 'Yes' ) :?></a><?php endif; */ ?>
-			</h2>
-
-		</header>
-		
-
-		<div class="excerpt">
-			<p class="bold"><strong>
+			<h5>
 			<?php if ( $type_terms ) : ?>
 				<?php 	foreach ( $type_terms as $type ) :
 							
@@ -77,11 +78,21 @@
 						endforeach; ?>
 			
 			<?php endif; ?>
-			</strong></p>
+			</h5>
+
+
+			<p class="address">
+				<?php if ( $address ) : echo $address . "<br />"; endif;?>
+
+				<?php if ( $telephone ) : echo "<strong>Tel:</strong> ".$telephone . "<br />"; endif;?>	<?php if ( $email ) : echo '<strong>Email:</strong> <a href="mailto:'.$email.'">'.$email.'</a><br />'; endif;?> <?php if ( $website_address ) : echo '<strong>Website:</strong> <a href="'.$website_address.'" target="_blank">'.$website_address.'</a>'; endif;?>
+				
+			</p>
+
+			<br />
 
 		<?php if ( $small_description = get_field('small_description') ) : ?>
 			
-				<p><?php echo $small_description; ?></p>
+				<p class="small-desc"><?php echo $small_description; ?></p>
 			
 		<?php endif; ?>
 		</div>
@@ -90,23 +101,6 @@
 		<?php /* if ( $featured == 'Yes' ) :?>
 			<a href="<?php the_permalink(); ?>" class="btn alignright mb">Full Details <span class="ss-directright"></span></a>
 		<?php endif; */ ?>
-
-		
-
-
-		<p>
-			<small><?php if ( $address ) : echo $address; endif;?><br />
-			<?php if ( $telephone ) : echo "Tel: ".$telephone; endif;?>	<?php if ( $email ) : echo '<a href="mailto:'.$email.'">'.$email.'</a>'; endif;?> <?php if ( $website_address ) : echo '<a href="'.$website_address.'" target="_blank">'.$website_address.'</a>'; endif;?>
-			</small>
-		</p>
-		
-
-
-
-
-
-	
-
 
 
 

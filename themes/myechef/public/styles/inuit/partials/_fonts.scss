@@ -235,7 +235,8 @@ h1.archive-title {
 
 	// Cancels the width of titles used on recipe archives
 	&.type-supplier,
-	&.type-chefepedia {
+	&.type-chefepedia,
+	&.type-contact {
 		.recipe-title { 
 
 			border-bottom: 0; 

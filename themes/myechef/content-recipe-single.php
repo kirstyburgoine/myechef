@@ -489,9 +489,14 @@ global $blog_id;
 										<td></td>
 
 									</tr>
+									<?php
+				                    $vat_amount = get_field('vat_amount', 'option');
+				                    if ( !$vat_amount ) : $vat_amount = '0.2'; endif;
 
+				                    $vat_amount = $vat_amount * 100;
+				                    ?>
 									<tr>
-										<th>Estimated Selling Price including VAT at 20%</th>
+										<th>Estimated Selling Price including VAT at <?php echo $vat_amount;?>%</th>
 										<td></td>
 										<td>&pound;<span class="js-total-portion-vat-price" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
 										<td></td>

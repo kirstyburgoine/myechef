@@ -3165,18 +3165,18 @@ h1.archive-title {
   @media screen and (min-width: 481px) {
     .type-recipe .recipe-title > h2 {
       clear: none; } }
-.type-recipe.type-supplier .recipe-title, .type-recipe.type-chefepedia .recipe-title {
+.type-recipe.type-supplier .recipe-title, .type-recipe.type-chefepedia .recipe-title, .type-recipe.type-contact .recipe-title {
   border-bottom: 0; }
   @media screen and (min-width: 481px) {
-    .type-recipe.type-supplier .recipe-title, .type-recipe.type-chefepedia .recipe-title {
+    .type-recipe.type-supplier .recipe-title, .type-recipe.type-chefepedia .recipe-title, .type-recipe.type-contact .recipe-title {
       width: 100%; } }
   @media screen and (min-width: 754px) {
-    .type-recipe.type-supplier .recipe-title, .type-recipe.type-chefepedia .recipe-title {
+    .type-recipe.type-supplier .recipe-title, .type-recipe.type-chefepedia .recipe-title, .type-recipe.type-contact .recipe-title {
       width: 100%; } }
   @media screen and (min-width: 1024px) {
-    .type-recipe.type-supplier .recipe-title, .type-recipe.type-chefepedia .recipe-title {
+    .type-recipe.type-supplier .recipe-title, .type-recipe.type-chefepedia .recipe-title, .type-recipe.type-contact .recipe-title {
       width: 100%; } }
-.type-recipe.type-supplier .excerpt, .type-recipe.type-chefepedia .excerpt {
+.type-recipe.type-supplier .excerpt, .type-recipe.type-chefepedia .excerpt, .type-recipe.type-contact .excerpt {
   float: none; }
 .type-recipe .excerpt {
   float: left; }
