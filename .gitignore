@@ -1,3 +1,4 @@
+
 # Compiled source #
 ###################
 *.com
@@ -84,6 +85,7 @@ plugins/wp-migrate-db-pro/
 plugins/wp-smushit/
 plugins/wp-ultimate-csv-importer/
 plugins/wpmudev-updates/
+plugins/myechef-post-types/sftp-config.json
 themes/.DS_Store
 themes/myechef-child/.DS_Store
 themes/myechef-child/tribe-events/.DS_Store

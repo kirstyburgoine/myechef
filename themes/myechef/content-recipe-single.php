@@ -490,6 +490,8 @@ global $blog_id;
 
 									</tr>
 									<?php
+									//-----------------------------------------------------
+									// Added global VAT amount
 				                    $vat_amount = get_field('vat_amount', 'option');
 				                    if ( !$vat_amount ) : $vat_amount = '0.2'; endif;
 
