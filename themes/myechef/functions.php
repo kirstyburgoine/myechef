@@ -81,6 +81,19 @@ function get_ingredient_cost($id = NULL) {
 
 }
 
+function get_ingredient_new_cost($id = NULL) {
+
+	if ( empty($id) ) {
+		$id = get_the_ID();
+	}
+	
+	$pack_cost = get_field('pack_cost', $id);
+	$pack_size = get_field('pack_size', $id);
+	
+	return $pack_cost / $pack_size;
+
+}
+
 function get_sub_recipe_cost($recipe_id, $quantity) {
 
 	$ingredients = get_field('ingredients', $recipe_id);
@@ -94,8 +107,10 @@ function get_sub_recipe_cost($recipe_id, $quantity) {
 	foreach ( $ingredients as $ingredient_line ) {
 		$ingredient = current($ingredient_line['ingredients']);
 		$base_quantity = $ingredient_line['quantity'];
+		$pack_cost = $ingredient_line['pack_cost'];
+		$pack_size = $ingredient_line['pack_size'];
 
-		$recipe_cost += get_field('base_cost', $ingredient->ID) * $base_quantity;
+		$recipe_cost += ( get_field('pack_cost', $ingredient->ID) / get_field('pack_size', $ingredient->ID) ) * $base_quantity;
 		
 	}
 

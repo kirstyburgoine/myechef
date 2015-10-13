@@ -171,10 +171,10 @@ global $blog_id;
 														<?php foreach ( $ingredients_list as $ingredient ) : ?>
 
 															<?php 
-													$base_unit = get_field('base_unit', $ingredient->ID);
-													$quantity = get_sub_field('quantity'); ?>
+															$base_unit = get_field('base_unit', $ingredient->ID);
+															$quantity = get_sub_field('quantity'); ?>
 
-															<option data-cost="<?php echo get_ingredient_cost($ingredient->ID); ?>" data-base-unit="<?php echo $base_unit; ?>" data-cost="<?php echo $cost; ?>">Option <?php echo ++$option_count; ?>: <?php echo get_the_title($ingredient->ID); ?></option>
+															<option data-cost="<?php echo get_ingredient_new_cost($ingredient->ID); ?>" data-base-unit="<?php echo $base_unit; ?>" data-cost="<?php echo $cost; ?>">Option <?php echo ++$option_count; ?>: <?php echo get_the_title($ingredient->ID); ?></option>
 														
 														<?php endforeach; 
 														wp_reset_postdata(); ?>
@@ -188,7 +188,7 @@ global $blog_id;
 												<?php 
 
 													$ingredient = current($ingredients_list);
-													$cost = get_ingredient_cost($ingredient->ID);
+													$cost = get_ingredient_new_cost($ingredient->ID);
 													$base_unit = get_field('base_unit', $ingredient->ID);
 
 												?>
