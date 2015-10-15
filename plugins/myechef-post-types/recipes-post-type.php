@@ -111,6 +111,37 @@ if(function_exists("register_field_group"))
 				'rows' => 4,
 				'formatting' => 'br',
 			),
+
+			array (
+				'key' => 'field_530dba4377dcf',
+				'label' => 'Gross Profit',
+				'name' => 'gross_profit',
+				'type' => 'number',
+				'instructions' => 'The percentage of profit you would like to make on the dish',
+				'default_value' => '70',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'min' => '',
+				'max' => '',
+				'step' => '',
+			), 
+
+			array (
+				'key' => 'field_530dba4377dcf',
+				'label' => 'Menu Price',
+				'name' => 'menu_price',
+				'type' => 'number',
+				'instructions' => 'A set price you would like to sell the dish for.',
+				'default_value' => '70',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'min' => '',
+				'max' => '',
+				'step' => '',
+			), 
+
 			array (
 				'key' => 'field_530dbbaa601ae',
 				'label' => 'Skill Level',
@@ -206,6 +237,7 @@ if(function_exists("register_field_group"))
 				'allow_null' => 0,
 				'multiple' => 0,
 			),
+
 			array (
 				'key' => 'field_530dbdb45a5b7',
 				'label' => 'Ingredients',

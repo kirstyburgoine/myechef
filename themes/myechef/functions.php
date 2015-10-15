@@ -89,8 +89,35 @@ function get_ingredient_new_cost($id = NULL) {
 	
 	$pack_cost = get_field('pack_cost', $id);
 	$pack_size = get_field('pack_size', $id);
+
+	$vatable = get_field('vatable', $id);	
+
+	// Check if the ingredient is VATable or not
+	if ( $vatable == 'Yes' ) :
 	
-	return $pack_cost / $pack_size;
+		// get the global setting for VAT, if there isn't one default to 0.2 (20%)
+		$global_vat = get_field('vat_amount', 'option');
+		if ( !$global_vat ) : $global_vat = '0.2'; endif;
+
+		//Find the specified VAT amount, if there is none default to the global set above
+		$vat_amount = get_field('vat_amount', $id);
+		if ( !$vat_amount ) : $vat_amount = $global_vat; endif;
+
+		// Get the base cost for the ingredient by dividing the pack cost by pack size
+		$ingredient_cost = $pack_cost / $pack_size;
+		// Get the VAT amount for that base cost
+		$ingredient_vat = $ingredient_cost * $vat_amount;
+
+
+		// Add the vat amount to the base cost to get the total per
+		return $ingredient_cost + $ingredient_vat;
+	
+	else :			                    
+	
+		// Otherwise just return the base cost without any VAT added
+		return $pack_cost / $pack_size;
+
+	endif;
 
 }
 
@@ -105,13 +132,40 @@ function get_sub_recipe_cost($recipe_id, $quantity) {
 	}
 
 	foreach ( $ingredients as $ingredient_line ) {
+
 		$ingredient = current($ingredient_line['ingredients']);
+
+		$vatable = get_field('vatable', $ingredient->ID);	
+
+
+		// get the global setting for VAT, if there isn't one default to 0.2 (20%)
+		$global_vat = get_field('vat_amount', 'option');
+		if ( !$global_vat ) : $global_vat = '0.2'; endif;
+
+		//Find the specified VAT amount, if there is none default to the global set above
+		$vat_amount = get_field('vat_amount', $ingredient->ID);
+		if ( !$vat_amount ) : $vat_amount = $global_vat; endif;
+
 		$base_quantity = $ingredient_line['quantity'];
 		$pack_cost = $ingredient_line['pack_cost'];
 		$pack_size = $ingredient_line['pack_size'];
 
-		$recipe_cost += ( get_field('pack_cost', $ingredient->ID) / get_field('pack_size', $ingredient->ID) ) * $base_quantity;
+		// Check if the ingredient in the sub recipe is VATable or not
+		if ( $vatable == 'Yes' ) :
+
+			// Get the base cost for the ingredient by dividing the pack cost by pack size
+			$ingredient_cost = ( get_field('pack_cost', $ingredient->ID) / get_field('pack_size', $ingredient->ID) ) * $base_quantity;
+			// Get the VAT amount for that base cost
+			$ingredient_vat = $ingredient_cost * $vat_amount;
+
+			// Add the vat amount to the base cost to get the total per
+			$recipe_cost = $ingredient_cost + $ingredient_vat;
+
+		else :
+
+			$recipe_cost += ( get_field('pack_cost', $ingredient->ID) / get_field('pack_size', $ingredient->ID) ) * $base_quantity;
 		
+		endif;
 	}
 
 	return (($recipe_cost / $recipe_quantity) * $quantity) / 100;	

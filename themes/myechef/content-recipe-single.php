@@ -467,8 +467,12 @@ global $blog_id;
 									</tr>
 	 
 									<tr>
+									<?php 
+										$profit_required = get_field('gross_profit'); 
+										if ( ! $profit_required ) : $profit_required = '70'; endif;
+									?>
 										<th>Gross Profit Required</th>
-										<td><input type="text" name="profit-amount" class="small-input" value="70">%</td>
+										<td><input type="text" name="profit-amount" class="small-input" value="<?php echo $profit_required; ?>">%</td>
 										<td>&pound;<span class="js-gross-profit"></span></td>
 										<td></td>
 
@@ -537,36 +541,47 @@ global $blog_id;
 								</tr>
  
 								<tr>
-									<th>Gross Profit Required</th>
-									<td><input type="text" name="profit-amount" class="small-input" value="70">%</td>
-									<td>&pound;<span class="js-gross-profit"></span></td>
-									<td></td>
+									<?php 
+										$profit_required = get_field('gross_profit'); 
+										if ( ! $profit_required ) : $profit_required = '70'; endif;
+									?>
+										<th>Gross Profit Required</th>
+										<td><input type="text" name="profit-amount" class="small-input" value="<?php echo $profit_required; ?>">%</td>
+										<td>&pound;<span class="js-gross-profit"></span></td>
+										<td></td>
 
-								</tr>
+									</tr>
 
-								<tr>
-									<th>Total Estimated Selling Price</th>
-									<td>100%</td>
-									<td>&pound;<span class="js-total-selling-price"></span></td>
-									<td></td>
+									<tr>
+										<th>Total Estimated Selling Price</th>
+										<td>100%</td>
+										<td>&pound;<span class="js-total-selling-price"></span></td>
+										<td></td>
 
-								</tr>
+									</tr>
 
-								<tr>
-									<th>Estimated Selling Price Per Single Portion</th>
-									<td></td>
-									<td>&pound;<span class="js-total-portion-selling-price" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
-									<td></td>
+									<tr>
+										<th>Estimated Selling Price Per Single Portion</th>
+										<td></td>
+										<td>&pound;<span class="js-total-portion-selling-price" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
+										<td></td>
 
-								</tr>
+									</tr>
+									<?php
+									//-----------------------------------------------------
+									// Added global VAT amount
+				                    $vat_amount = get_field('vat_amount', 'option');
+				                    if ( !$vat_amount ) : $vat_amount = '0.2'; endif;
 
-								<tr>
-									<th>Estimated Selling Price including VAT at 20%</th>
-									<td></td>
-									<td>&pound;<span class="js-total-portion-vat-price" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
-									<td></td>
+				                    $vat_amount = $vat_amount * 100;
+				                    ?>
+									<tr>
+										<th>Estimated Selling Price including VAT at <?php echo $vat_amount;?>%</th>
+										<td></td>
+										<td>&pound;<span class="js-total-portion-vat-price" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
+										<td></td>
 
-								</tr>
+									</tr>
 
 							</table>
 
