@@ -142,10 +142,11 @@ function get_sub_recipe_cost($recipe_id, $quantity) {
 
 	foreach ( $ingredients as $ingredient_line ) {
 
+		// Get the ingredients list from the sub recipe
 		$ingredient = current($ingredient_line['ingredients']);
 
+		// Find out if each ingredient is vatable
 		$vatable = get_field('vatable', $ingredient->ID);	
-
 
 		// get the global setting for VAT, if there isn't one default to 0.2 (20%)
 		$global_vat = get_field('vat_amount', 'option');
@@ -156,29 +157,34 @@ function get_sub_recipe_cost($recipe_id, $quantity) {
 		if ( !$vat_amount ) : $vat_amount = $global_vat; endif;
 
 		$base_quantity = $ingredient_line['quantity'];
-		$pack_cost = $ingredient_line['pack_cost'];
-		$pack_size = $ingredient_line['pack_size'];
+		$yield = get_field('percentage_yield', $ingredient->ID);
+
+		// Get the base cost for the ingredient by dividing the pack cost by pack size
+		$base_cost = ( get_field('pack_cost', $ingredient->ID) / get_field('pack_size', $ingredient->ID) ) * $base_quantity;
+		
+		// Get the accurate cost for each ingredient based on the yield percentage. 
+		// For example, if the recipe called for 80g of onion, but they had to buy a whole onion which is 100g then 20g or 20% 
+		// would be wasted and the percebtage yield would be 80.	
+		$yield_cost = ( $base_cost / $yield ) * 100;
 
 		// Check if the ingredient in the sub recipe is VATable or not
 		if ( $vatable == 'Yes' ) :
 
-			// Get the base cost for the ingredient by dividing the pack cost by pack size
-			$ingredient_cost = ( get_field('pack_cost', $ingredient->ID) / get_field('pack_size', $ingredient->ID) ) * $base_quantity;
 			// Get the VAT amount for that base cost
-			$ingredient_vat = $ingredient_cost * $vat_amount;
+			$ingredient_vat = $yield_cost * $vat_amount;
 
 			// Add the vat amount to the base cost to get the total per
-			$recipe_cost = $ingredient_cost + $ingredient_vat;
+			$recipe_cost = $yield_cost + $ingredient_vat;
 
 		else :
 
-			$recipe_cost = ( get_field('pack_cost', $ingredient->ID) / get_field('pack_size', $ingredient->ID) ) * $base_quantity;
+			$recipe_cost += $yield_cost;
 		
 		endif;
 	}
 
 	return (($recipe_cost / $recipe_quantity) * $quantity) / 100;	
-
+	//return $yield;
 }
 
 
