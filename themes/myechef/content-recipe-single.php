@@ -468,6 +468,8 @@ global $blog_id;
 	 
 									<tr>
 									<?php 
+									// -----------------------------------------------------
+									// Custom amount of profit required. If not set it defaults to 70
 										$profit_required = get_field('gross_profit'); 
 										if ( ! $profit_required ) : $profit_required = '70'; endif;
 									?>
@@ -510,6 +512,79 @@ global $blog_id;
 									</tr>
 
 								</table>
+
+
+								<table class="calculations">
+
+								<?php
+									//-----------------------------------------------------
+									// Added global VAT amount
+				                    $vat_amount = get_field('vat_amount', 'option');
+				                    if ( !$vat_amount ) : $vat_amount = '0.2'; endif;
+
+				                    $vat_amount = $vat_amount * 100;
+				                    ?>
+									<tr>
+										<th>Preferred Selling Price including VAT at <?php echo $vat_amount;?>%</th>
+										<td></td>
+										<td>&pound;<span class="js-total-portion-vat-price" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
+										<td></td>
+
+									</tr>
+
+									<tr>
+										<th>Total Preferred Selling Price before VAT</th>
+										<td>100%</td>
+										<td>&pound;<span class="js-total-selling-price"></span></td>
+										<td></td>
+
+									</tr>
+
+
+									<tr>
+										<th>Preferrerd Price Per Single Portion</th>
+										<td></td>
+										<td>&pound;<span class="js-total-portion-selling-price" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
+										<td></td>
+
+									</tr>
+
+									<tr>
+										<th>Total Cost for <span class="js-portion-quantity"><?php echo $portion_quantity; ?></span> <?php echo ucfirst($portion_quantity_text);?>(s)</th>
+										<td class="inputs"><span class="js-percent-per-serving">30</span>%</td>
+										<td class="calculations">&pound;<span class="js-cost-per-serving"></span></td>
+										<td class="checkbox-blank"></td>
+
+									</tr>
+
+									<tr>
+										<th class="labels">Total Cost Per Single Portion</th>
+										<td></td>
+										<td class="calculations">&pound;<span class="js-cost-per-portion" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
+										<td></td>
+
+									</tr>
+	 
+									<tr>
+									<?php 
+									// -----------------------------------------------------
+									// Custom amount of profit required. If not set it defaults to 70
+										$profit_required = get_field('gross_profit'); 
+										if ( ! $profit_required ) : $profit_required = '70'; endif;
+									?>
+										<th>Gross Profit Required</th>
+										<td><input type="text" name="profit-amount" class="small-input" value="<?php echo $profit_required; ?>">%</td>
+										<td>&pound;<span class="js-gross-profit"></span></td>
+										<td></td>
+
+									</tr>
+
+
+
+									
+
+								</table>
+
 
 						<?php 
 								endif; 
@@ -584,6 +659,73 @@ global $blog_id;
 									</tr>
 
 							</table>
+
+
+							<table class="calculations">
+
+								<?php
+									//-----------------------------------------------------
+									// Added global VAT amount
+				                    $vat_amount = get_field('vat_amount', 'option');
+				                    if ( !$vat_amount ) : $vat_amount = '0.2'; endif;
+
+				                    $vat_amount = $vat_amount * 100;
+				                    ?>
+									<tr>
+										<th>Preferred Selling Price including VAT at <?php echo $vat_amount;?>%</th>
+										<td></td>
+										<td>&pound;<span class="js-total-portion-vat-price" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
+										<td></td>
+
+									</tr>
+
+									<tr>
+										<th>Total Preferred Selling Price before VAT</th>
+										<td>100%</td>
+										<td>&pound;<span class="js-total-selling-price"></span></td>
+										<td></td>
+
+									</tr>
+
+									<tr>
+									<?php 
+									// -----------------------------------------------------
+									// Custom amount of profit required. If not set it defaults to 70
+										$profit_required = get_field('gross_profit'); 
+										if ( ! $profit_required ) : $profit_required = '70'; endif;
+									?>
+										<th>Gross Profit Required</th>
+										<td><input type="text" name="profit-amount" class="small-input" value="<?php echo $profit_required; ?>">%</td>
+										<td>&pound;<span class="js-gross-profit"></span></td>
+										<td></td>
+
+									</tr>
+
+									<tr>
+										<th>Total Cost for <span class="js-portion-quantity"><?php echo $portion_quantity; ?></span> <?php echo ucfirst($portion_quantity_text);?>(s)</th>
+										<td class="inputs"><span class="js-percent-per-serving">30</span>%</td>
+										<td class="calculations">&pound;<span class="js-cost-per-serving"></span></td>
+										<td class="checkbox-blank"></td>
+
+									</tr>
+
+									<tr>
+										<th class="labels">Total Cost Per Single Portion</th>
+										<td></td>
+										<td class="calculations">&pound;<span class="js-cost-per-portion" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
+										<td></td>
+
+									</tr>
+
+									<tr>
+										<th>Preferrerd Price Per Single Portion</th>
+										<td></td>
+										<td>&pound;<span class="js-total-portion-selling-price" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
+										<td></td>
+
+									</tr>
+
+								</table>
 
 						<?php
 						endif; 
@@ -671,7 +813,9 @@ global $blog_id;
 
 				
 					--><div class="grid__item palm-one-whole lap-one-half one-half">
-					<?php if ( get_field('allergens') ) : ?>
+					<?php 
+					// 15.10.15 Allergens moved from recipes to each individual ingredient
+					//if ( get_field('allergens') ) : ?>
 
 						<div class="allergens">
 
@@ -679,55 +823,65 @@ global $blog_id;
 							<p class="desc"><?php the_field('allergens_additional_info'); ?></p>
 
 							<?php 
+							// Loop through the ingredients repeater field
 							if ( get_field('ingredients') ) : 
-								
+
+								// create a new array for use later
+								$allergens_array = array();
+
 								while ( has_sub_field('ingredients') ) :
 									
+									// Get the ingredients relationship field
 									$ingredients_list = get_sub_field('ingredients');
-
-									//var_dump($ingredients_list );
-											
-									//if ( count($ingredients_list) > 1 ) : 
-										$allergens_array = array();
-
+										
+										//loop through each ingredient to find the allergens field
 										$option_count = 0; 
 										foreach ( $ingredients_list as $ingredient ) : 
 
 											$allergens = get_field('allergens', $ingredient->ID); 
 
-											//var_dump($allergens);
-											foreach ( $allergens as $a ) :
-											
-												$allergens_array[] = $a;
+											// The allergens are stored in an array because they are a checkbox field
+											foreach ( $allergens as $a ) :			
+
+												// Loop through the allergens array and oush to the new array, 
+												// checking to make sure the same allergen is not already in the array
+												if(!in_array($a, $allergens_array, true)){
+											        array_push($allergens_array, $a);
+											    }
 
 											endforeach; 
 
-												//if ( !in_array($allergens, $allergens_array, true ) ) {
-											        //array_merge($allergens);
-											    //} 
-
-										    ?>
-
-											<p>
-												<?php //echo implode(', ', get_field('allergens', $ingredient->ID)); ?>
-												<?php //echo $allergens; ?>
-											</p>
-										
-										<?php
 										endforeach; 
-
-										var_dump($allergens_array);
 										wp_reset_postdata(); 
 
-									//endif; 
-
 								endwhile; 
-							endif; ?>
+
+								//This is the bit where we print the newly created array of allergens outside of the foreach loops ?>
+								<p>
+									<?php 
+									// find the last element
+									$lastElement = end($allergens_array);
+
+									// loop through the new array
+									foreach ( $allergens_array as $aa ) :
+										
+										// if the last element don't add a comma and space
+										if ($aa == $lastElement ) :
+											echo $aa.'';
+										// else do add a comma and space
+										else :
+											echo $aa.', ';
+										endif; 
+
+									endforeach; ?>
+								</p>
+							<?php	
+							//endif; ?>
 
 							
 
 						</div>
-					<?php endif; ?>
+					<?php  endif; ?>
 					</div>
 
 				

@@ -128,12 +128,12 @@ if(function_exists("register_field_group"))
 			), 
 
 			array (
-				'key' => 'field_530dba4377dcf',
+				'key' => 'field_530dba4377d6f',
 				'label' => 'Menu Price',
 				'name' => 'menu_price',
 				'type' => 'number',
 				'instructions' => 'A set price you would like to sell the dish for.',
-				'default_value' => '70',
+				'default_value' => '',
 				'placeholder' => '',
 				'prepend' => '',
 				'append' => '',
