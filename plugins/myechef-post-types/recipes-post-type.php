@@ -389,7 +389,19 @@ if(function_exists("register_field_group"))
 				'layout' => 'table',
 				'button_label' => 'Add Column',
 			),
-			
+			array (
+				'key' => 'field_538f8bb6fb825',
+				'label' => 'Allergens Additional Info',
+				'name' => 'allergens_additional_info',
+				'type' => 'text',
+				'instructions' => 'An extra free text area that appears above the list of allergens. Please keep this brief. Ideally no more than two lines of text. allergens are pulled automatically from each ingredient.',
+				'default_value' => '',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'formatting' => 'html',
+				'maxlength' => '',
+			),
 			array (
 				'key' => 'field_530dbc66601b1',
 				'label' => 'Equipment',

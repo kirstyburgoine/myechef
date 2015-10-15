@@ -175,6 +175,7 @@ if(function_exists("register_field_group"))
 				'label' => 'Vat Amount',
 				'name' => 'vat_amount',
 				'type' => 'number',
+				'instructions' => 'Enter the VAT amount as a decimal, For example 20% would be 0.2.',
 				'conditional_logic' => array (
 					'status' => 1,
 					'rules' => array (
@@ -219,19 +220,6 @@ if(function_exists("register_field_group"))
 				),
 				'default_value' => '',
 				'layout' => 'horizontal',
-			),
-			array (
-				'key' => 'field_538f8bb6fb825',
-				'label' => 'Allergens Additional Info',
-				'name' => 'allergens_additional_info',
-				'type' => 'text',
-				'instructions' => 'An extra free text area that appears above the list of allergens. Please keep this brief. Ideally no more than two lines of text',
-				'default_value' => '',
-				'placeholder' => '',
-				'prepend' => '',
-				'append' => '',
-				'formatting' => 'html',
-				'maxlength' => '',
 			),
 			array (
 				'key' => 'field_530dba4377db8',

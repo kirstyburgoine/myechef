@@ -90,6 +90,17 @@ function get_ingredient_new_cost($id = NULL) {
 	$pack_cost = get_field('pack_cost', $id);
 	$pack_size = get_field('pack_size', $id);
 
+	$yield = get_field('percentage_yield', $id);
+	if ( !$yield ) : $yield == '100'; endif;
+
+	// Get the base cost for the ingredient by dividing the pack cost by pack size
+	$base_cost = $pack_cost / $pack_size;
+
+	// Get the accurate cost for each ingredient based on the yield percentage. 
+	// For example, if the recipe called for 80g of onion, but they had to buy a whole onion which is 100g then 20g or 20% 
+	// would be wasted and the percebtage yield would be 80.	
+	$yield_cost = ( $base_cost / $yield ) * 100;
+
 	$vatable = get_field('vatable', $id);	
 
 	// Check if the ingredient is VATable or not
@@ -103,19 +114,17 @@ function get_ingredient_new_cost($id = NULL) {
 		$vat_amount = get_field('vat_amount', $id);
 		if ( !$vat_amount ) : $vat_amount = $global_vat; endif;
 
-		// Get the base cost for the ingredient by dividing the pack cost by pack size
-		$ingredient_cost = $pack_cost / $pack_size;
-		// Get the VAT amount for that base cost
-		$ingredient_vat = $ingredient_cost * $vat_amount;
+		// Get the VAT amount for the base cost including percentage yield
+		$ingredient_vat = $yield_cost * $vat_amount;
 
 
 		// Add the vat amount to the base cost to get the total per
-		return $ingredient_cost + $ingredient_vat;
+		return $yield_cost + $ingredient_vat;
 	
 	else :			                    
 	
 		// Otherwise just return the base cost without any VAT added
-		return $pack_cost / $pack_size;
+		return $yield_cost;
 
 	endif;
 
@@ -163,7 +172,7 @@ function get_sub_recipe_cost($recipe_id, $quantity) {
 
 		else :
 
-			$recipe_cost += ( get_field('pack_cost', $ingredient->ID) / get_field('pack_size', $ingredient->ID) ) * $base_quantity;
+			$recipe_cost = ( get_field('pack_cost', $ingredient->ID) / get_field('pack_size', $ingredient->ID) ) * $base_quantity;
 		
 		endif;
 	}
