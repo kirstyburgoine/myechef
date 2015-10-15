@@ -347,7 +347,7 @@ if(function_exists("register_field_group"))
 				'row_limit' => '',
 				'layout' => 'table',
 				'button_label' => 'Add Recipe',
-			),
+			),/*
 			array (
 				'key' => 'field_532aec311191d',
 				'label' => 'Nutritional Information',
@@ -388,7 +388,7 @@ if(function_exists("register_field_group"))
 				'row_limit' => 6,
 				'layout' => 'table',
 				'button_label' => 'Add Column',
-			),
+			),*/
 			array (
 				'key' => 'field_538f8bb6fb825',
 				'label' => 'Allergens Additional Info',

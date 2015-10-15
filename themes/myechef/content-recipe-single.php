@@ -598,6 +598,7 @@ global $blog_id;
 				</form>			
 
 				<?php 
+				/* None of this is needed but saved for later
 				if ( get_field('nutritional_information') ) : 
 				$td = 0; ?>
 
@@ -651,7 +652,7 @@ global $blog_id;
 				</table>
 
 				<?php
-				endif; ?>
+				endif; */ ?>
 
 				<hr>
 				<div class="grid">
@@ -676,7 +677,54 @@ global $blog_id;
 
 							<h4>Allergens</h4>
 							<p class="desc"><?php the_field('allergens_additional_info'); ?></p>
-							<p><?php echo implode(', ', get_field('allergens')); ?></p>
+
+							<?php 
+							if ( get_field('ingredients') ) : 
+								
+								while ( has_sub_field('ingredients') ) :
+									
+									$ingredients_list = get_sub_field('ingredients');
+
+									//var_dump($ingredients_list );
+											
+									//if ( count($ingredients_list) > 1 ) : 
+										$allergens_array = array();
+
+										$option_count = 0; 
+										foreach ( $ingredients_list as $ingredient ) : 
+
+											$allergens = get_field('allergens', $ingredient->ID); 
+
+											//var_dump($allergens);
+											foreach ( $allergens as $a ) :
+											
+												$allergens_array[] = $a;
+
+											endforeach; 
+
+												//if ( !in_array($allergens, $allergens_array, true ) ) {
+											        //array_merge($allergens);
+											    //} 
+
+										    ?>
+
+											<p>
+												<?php //echo implode(', ', get_field('allergens', $ingredient->ID)); ?>
+												<?php //echo $allergens; ?>
+											</p>
+										
+										<?php
+										endforeach; 
+
+										var_dump($allergens_array);
+										wp_reset_postdata(); 
+
+									//endif; 
+
+								endwhile; 
+							endif; ?>
+
+							
 
 						</div>
 					<?php endif; ?>
