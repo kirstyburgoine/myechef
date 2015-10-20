@@ -10,6 +10,7 @@
  * project-specific components afterwards.
  */
 /* Corporate Purple */
+/* Corporate Purple */
 /* default bg colour */
 /* alternate bg colour */
 /* Additional Colour Pallette */
@@ -3808,6 +3809,36 @@ form.cost-calculator h3 {
 .brown table.ingredients-stock-levels th {
   color: #fff;
   background: #703f2a; }
+
+.purple form.cost-calculator table.table-two th,
+.purple form.cost-calculator table.table-three th {
+  color: #000;
+  background: rgba(93, 40, 95, 0.5); }
+
+.red form.cost-calculator table.table-two th,
+.red form.cost-calculator table.table-three th {
+  color: #000;
+  background: rgba(171, 35, 40, 0.3); }
+
+.yellow form.cost-calculator table.table-two th,
+.yellow form.cost-calculator table.table-three th {
+  color: #000;
+  background: rgba(234, 170, 0, 0.3); }
+
+.blue form.cost-calculator table.table-two th,
+.blue form.cost-calculator table.table-three th {
+  color: #000;
+  background: rgba(27, 54, 93, 0.3); }
+
+.green form.cost-calculator table.table-two th,
+.green form.cost-calculator table.table-three th {
+  color: #000;
+  background: rgba(180, 169, 31, 0.3); }
+
+.brown form.cost-calculator table.table-two th,
+.brown form.cost-calculator table.table-three th {
+  color: #000;
+  background: rgba(112, 63, 42, 0.3); }
 
 table.ingredients-stock-levels {
   width: 100%;

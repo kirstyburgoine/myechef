@@ -159,6 +159,19 @@ form.cost-calculator {
 .brown table.ingredient-totals th,
 .brown table.ingredients-stock-levels th { color: #fff; background: $brown; }
 
+.purple form.cost-calculator table.table-two th,
+.purple form.cost-calculator table.table-three th { color: #000; background: $corporate_color_light; }
+.red form.cost-calculator table.table-two th,
+.red form.cost-calculator table.table-three th { color: #000; background: $red_light }
+.yellow form.cost-calculator table.table-two th,
+.yellow form.cost-calculator table.table-three th { color: #000; background: $yellow_light; }
+.blue form.cost-calculator table.table-two th,
+.blue form.cost-calculator table.table-three th { color: #000; background: $blue_light; }
+.green form.cost-calculator table.table-two th,
+.green form.cost-calculator table.table-three th  { color: #000; background: $green_light; }
+.brown form.cost-calculator table.table-two th,
+.brown form.cost-calculator table.table-three th { color: #000; background: $brown_light; }
+
 
 // Ingredients tables
 

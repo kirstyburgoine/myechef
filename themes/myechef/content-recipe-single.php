@@ -600,30 +600,34 @@ global $blog_id;
 							<table class="calculations">
 
 								<tr>
-									<th>Total Cost for <span class="js-portion-quantity"><?php echo $portion_quantity; ?></span> <?php echo ucfirst($portion_quantity_text);?>(s)</th>
-									<td class="inputs"><span class="js-percent-per-serving">30</span>%</td>
+									<th class="labels">Total Cost for <span class="js-portion-quantity"><?php echo $portion_quantity; ?></span> <?php echo ucfirst($portion_quantity_text);?>(s)</th>
+									<td class="inputs"></td>
 									<td class="calculations">&pound;<span class="js-cost-per-serving"></span></td>
 									<td class="checkbox-blank"></td>
 
 								</tr>
 
 								<tr>
-									<th class="labels">Total Cost Per Single Portion</th>
+									<th>Total Cost Per Single Portion</th>
 									<td></td>
 									<td class="calculations">&pound;<span class="js-cost-per-portion" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
 									<td></td>
 
 								</tr>
+
+							</table>
+
+							<table class="calculations table-two">
  
 								<tr>
 									<?php 
 										$profit_required = get_field('gross_profit'); 
 										if ( ! $profit_required ) : $profit_required = '70'; endif;
 									?>
-										<th>Gross Profit Required</th>
-										<td><input type="text" name="profit-amount" class="small-input" value="<?php echo $profit_required; ?>">%</td>
-										<td>&pound;<span class="js-gross-profit"></span></td>
-										<td></td>
+										<th class="labels">Gross Profit Required</th>
+										<td class="inputs"><input type="text" name="profit-amount" class="small-input" value="<?php echo $profit_required; ?>">%</td>
+										<td class="calculations">&pound;<span class="js-gross-profit"></span></td>
+										<td class="checkbox-blank"></td>
 
 									</tr>
 
@@ -669,15 +673,15 @@ global $blog_id;
 							$menu_price = number_format((float)$menu_price, 2, '.', ''); ?>
 
 
-							<table class="calculations">
+							<table class="calculations table-three">
 
 								
 									<tr>
 										<th class="labels">Preferred Selling Price including VAT at <?php echo $vat_amount;?>%</th>
-										<td></td>
+										<td class="inputs"></td>
 										<?php /* <td>&pound;<span class="js-total-portion-vat-price" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td> */ ?>
-										<td>&pound;<input type="text" name="desired-portion-price" class="small-input" value="<?php echo $menu_price; ?>"></td>
-										<td></td>
+										<td class="calculations">&pound;<input type="text" name="desired-portion-price" class="small-input" value="<?php echo $menu_price; ?>"></td>
+										<td class="checkbox-blank"></td>
 
 									</tr>
 
