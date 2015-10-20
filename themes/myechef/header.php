@@ -121,6 +121,7 @@
                 $('.js-cost-per-portion').html(portion_cost.toFixed(2));
 
                 calculate_profits();
+                calculate_profits_backwards();
 
             }
 
@@ -164,6 +165,33 @@
 
                 $('.js-total-portion-selling-price').html(portion_value.toFixed(2));
                 $('.js-total-portion-vat-price').html(portion_inc_vat.toFixed(2));
+
+            }
+
+            function calculate_profits_backwards() {
+
+                <?php
+                $vat_amount = get_field('vat_amount', 'option');
+                if ( !$vat_amount ) : $vat_amount = '0.2'; endif;
+                ?>
+
+                var desired_portion_price = $('[name="desired-portion-price"]').val(),
+
+                    vat_amount = desired_portion_price * <?php echo $vat_amount;?>;
+                    total_desired_price = desired_portion_price - vat_amount;
+                    portion_cost = parseFloat($('.js-cost-per-serving').html()),
+                    profit_amount = total_desired_price - portion_cost;
+
+
+
+                    if ( isNaN(desired_portion_price) || desired_portion_price < 1 ) {
+                        desired_portion_price = 1
+                    }
+
+                // output the values
+                $('.js-total-desired-price').html(total_desired_price.toFixed(2));
+                $('.js-gross-profit-amount').html(profit_amount.toFixed(2));
+
 
             }
 
@@ -657,8 +685,14 @@
 					calculate_profits();
         		});
 
+                $('[name="desired-portion-price"]').on('keyup', function() {
+                    calculate_profits_backwards();
+                });
+
+
                 calculate_quantities();
         		calculate_costs();
+                //calculate_profits_backwards();
                 //calculate_vat();
                 calculate_menus();
                 calculate_menus_totals();
