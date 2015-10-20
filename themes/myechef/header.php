@@ -173,25 +173,41 @@
                 <?php
                 $vat_amount = get_field('vat_amount', 'option');
                 if ( !$vat_amount ) : $vat_amount = '0.2'; endif;
+
+                $vat_divider = $vat_amount + 1;
                 ?>
 
                 var desired_portion_price = $('[name="desired-portion-price"]').val(),
 
-                    vat_amount = desired_portion_price * <?php echo $vat_amount;?>;
-                    total_desired_price = desired_portion_price - vat_amount;
+                    //vat_amount = desired_portion_price * <?php echo $vat_amount;?>;
+                    total_desired_price = desired_portion_price / <?php echo $vat_divider;?>;
                     portion_cost = parseFloat($('.js-cost-per-serving').html()),
                     profit_amount = total_desired_price - portion_cost;
 
+                    percentage_amount = (profit_amount / total_desired_price) * 100;
 
 
-                    if ( isNaN(desired_portion_price) || desired_portion_price < 1 ) {
-                        desired_portion_price = 1
+
+                    var $servings_quantity = $('[name="serving-quantity"]'),
+                    servings = $servings_quantity.val()
+                    original_servings = $servings_quantity.data('original-value');
+
+                    if ( isNaN(servings) || servings < 1 ) {
+                        servings = 1
                     }
+
+                    portion_value = total_desired_price / servings;
+                    portion_vat = portion_value * <?php echo $vat_amount; ?>;
+                    portion_inc_vat = portion_vat + portion_value;
 
                 // output the values
                 $('.js-total-desired-price').html(total_desired_price.toFixed(2));
+                $('.js-profit-percentage').html(percentage_amount.toFixed(0));
                 $('.js-gross-profit-amount').html(profit_amount.toFixed(2));
 
+
+                $('.js-preferred-portion-selling-price').html(portion_value.toFixed(2));
+                $('.js-preferred-portion-vat-price').html(portion_inc_vat.toFixed(2));
 
             }
 

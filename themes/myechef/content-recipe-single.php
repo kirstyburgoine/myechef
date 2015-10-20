@@ -673,7 +673,7 @@ global $blog_id;
 
 								
 									<tr>
-										<th>Preferred Selling Price including VAT at <?php echo $vat_amount;?>%</th>
+										<th class="labels">Preferred Selling Price including VAT at <?php echo $vat_amount;?>%</th>
 										<td></td>
 										<?php /* <td>&pound;<span class="js-total-portion-vat-price" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td> */ ?>
 										<td>&pound;<input type="text" name="desired-portion-price" class="small-input" value="<?php echo $menu_price; ?>"></td>
@@ -698,15 +698,36 @@ global $blog_id;
 										$profit_required = get_field('gross_profit'); 
 										if ( ! $profit_required ) : $profit_required = '70'; endif;
 									?>
-										<th>Gross Profit</th>
-										<td>1<?php echo $profit_required; ?>%</td>
+										<th>Gross Profit for Preferred Selling Price</th>
+										<td><span class="js-profit-percentage"></span>%</td>
 										<td>&pound;<span class="js-gross-profit-amount"></span></td>
 										<td></td>
 
 									</tr>
 
 
+									<tr>
+										<th>Preferred Selling Price Per Single Portion</th>
+										<td></td>
+										<td>&pound;<span class="js-preferred-portion-selling-price" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
+										<td></td>
 
+									</tr>
+									<?php
+									//-----------------------------------------------------
+									// Added global VAT amount
+				                    $vat_amount = get_field('vat_amount', 'option');
+				                    if ( !$vat_amount ) : $vat_amount = '0.2'; endif;
+
+				                    $vat_amount = $vat_amount * 100;
+				                    ?>
+									<tr>
+										<th>Preferred Selling Price including VAT at <?php echo $vat_amount;?>%</th>
+										<td></td>
+										<td>&pound;<span class="js-preferred-portion-vat-price" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
+										<td></td>
+
+									</tr>
 	
 
 								</table>
