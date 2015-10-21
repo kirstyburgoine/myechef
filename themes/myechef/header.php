@@ -275,36 +275,48 @@
             }
 
             // moved outside calculate_menus() function so all totals can be added up
-                var total_value = 0
-                var total_value2 = 0
-                var total_value3 = 0
-                var total_value4 = 0
-                var total_value5 = 0
-                var total_value6 = 0
-                var total_value7 = 0
-                var total_value8 = 0
-                var total_value9 = 0
-                var total_value10 = 0
+            var total_value = 0,
+                total_average = 0;
 
 
-            function calculate_menus() {
+            function calculate_dish_totals() {
                 
-                $('.menu-builder-calculator-1 tbody tr').each(function() {
+                $('.menu-builder tbody tr').each(function() {
 
-                    var $cell = $(this).find('td:first-child'),
-                        $row = $cell.closest('tr'),
-                        price = $cell.data('cost');
+                        var $cell = $(this).find('td:first-child'),
+                            $cell2 = $(this).find('td:nth-child(2)'),
+                            $row = $cell.closest('tr'),
+                            price = $cell.data('cost');
+                            servings = $cell2.data('servings');
 
-                    if (! price ) { price = 0 }
+                        if (! price ) { price = 0 }
 
-                    total_value += price;
+                        if ( isNaN(servings) || servings < 1 ) {
+                            servings = 1
+                        }
 
-                    $row.find('.price').html(price.toFixed(2));
+                        //console.log(servings);
+
+                        singleprice = price / servings;
+
+                        $row.find('.price').html(singleprice.toFixed(2));
+
+                        total_value += singleprice;
 
                 });
 
-                // divide by total row count to find the average cost
-                var $av_cell = $('.calculations-1 tr.average td'),
+            }
+
+            function calculate_course_totals() {
+
+                calculate_dish_totals();
+
+                $('.course-totals').each(function() {
+
+                    
+                
+                    // divide by total row count to find the average cost
+                    var $av_cell = $(' tr.average td:nth-child(2)'),
                     average_count = $av_cell.data('count');
 
                    
@@ -312,228 +324,28 @@
                     total_average = total_value / average_count;
                     //console.log(total_value);
                     //console.log(average_count);
-                    
-                
-                // update menu totals
-                $('.js-total-portion-selling-price-1').html(total_value.toFixed(2));
-                $('.js-average-portion-selling-price-1').html(total_average.toFixed(2));
 
 
-
-
-
-                $('.menu-builder-calculator-2 tbody tr').each(function() {
-
-                    var $cell2 = $(this).find('td:first-child'),
-                        $row2 = $cell2.closest('tr'),
-                        price2 = $cell2.data('cost');
-
-                    if (! price2 ) { price2 = 0 }
-
-                    total_value2 += price2;
-
-                    $row2.find('.price').html(price2.toFixed(2));
+                // update course totals
+                $('.js-total-portion-selling-price').html(total_value.toFixed(2));
+                $('.js-average-portion-selling-price').html(total_average.toFixed(2));
 
                 });
 
-                // divide by total row count to find the average cost
-                var $av_cell2 = $('.calculations-2 tr.average td'),
-                    average_count2 = $av_cell2.data('count');                   
 
-                    total_average2 = total_value2 / average_count2;
-                    
-                
-                // update menu totals
-                $('.js-total-portion-selling-price-2').html(total_value2.toFixed(2));
-                $('.js-average-portion-selling-price-2').html(total_average2.toFixed(2));
-                
-                
 
-
-
-                $('.menu-builder-calculator-3 tbody tr').each(function() {
-
-                    var $cell3 = $(this).find('td:first-child'),
-                        $row3 = $cell3.closest('tr'),
-                        price3 = $cell3.data('cost');
-
-                    if (! price3 ) { price3 = 0 }
-
-                    total_value3 += price3;
-
-                    $row3.find('.price').html(price3.toFixed(2));
-
-                });
-                
-                // divide by total row count to find the average cost
-                var $av_cell3 = $('.calculations-3 tr.average td'),
-                    average_count3 = $av_cell3.data('count');                   
-
-                    total_average3 = total_value3 / average_count3;
-                    
-                
-                // update menu totals
-                $('.js-total-portion-selling-price-3').html(total_value3.toFixed(2));
-                $('.js-average-portion-selling-price-3').html(total_average3.toFixed(2));
-
-
-
-
-
-                $('.menu-builder-calculator-4 tbody tr').each(function() {
-
-                    var $cell4 = $(this).find('td:first-child'),
-                        $row4 = $cell4.closest('tr'),
-                        price4 = $cell4.data('cost');
-
-                    if (! price4 ) { price4 = 0 }
-
-                    total_value4 += price4;
-
-                    $row4.find('.price').html(price4.toFixed(2));
-
-                });
-                
-                // divide by total row count to find the average cost
-                var $av_cell4 = $('.calculations-4 tr.average td'),
-                    average_count4 = $av_cell4.data('count');                   
-
-                    total_average4 = total_value4 / average_count4;
-                    
-                
-                // update menu totals
-                $('.js-total-portion-selling-price-4').html(total_value4.toFixed(2));
-                $('.js-average-portion-selling-price-4').html(total_average4.toFixed(2));
-
-
-
-
-
-
-                $('.menu-builder-calculator-5 tbody tr').each(function() {
-
-                    var $cell5 = $(this).find('td:first-child'),
-                        $row5 = $cell5.closest('tr'),
-                        price5 = $cell5.data('cost');
-
-                    if (! price5 ) { price5 = 0 }
-
-                    total_value5 += price5;
-
-                    $row5.find('.price').html(price5.toFixed(2));
-
-                });
-                
-                // divide by total row count to find the average cost
-                var $av_cell5 = $('.calculations-5 tr.average td'),
-                    average_count5 = $av_cell5.data('count');                   
-
-                    total_average5 = total_value5 / average_count5;
-                    
-                
-                // update menu totals
-                $('.js-total-portion-selling-price-5').html(total_value5.toFixed(2));
-                $('.js-average-portion-selling-price-5').html(total_average5.toFixed(2));
-
-
-
-
-                
-                $('.menu-builder-calculator-6 tbody tr').each(function() {
-
-                    var $cell6 = $(this).find('td:first-child'),
-                        $row6 = $cell6.closest('tr'),
-                        price6 = $cell6.data('cost');
-
-                    if (! price6 ) { price6 = 0 }
-
-                    total_value6 += price6;
-
-                    $row6.find('.price').html(price6.toFixed(2));
-
-                });
-                
-                // divide by total row count to find the average cost
-                var $av_cell6 = $('.calculations-6 tr.average td'),
-                    average_count6 = $av_cell6.data('count');                   
-
-                    total_average6 = total_value6 / average_count6;
-                    
-                
-                // update menu totals
-                $('.js-total-portion-selling-price-6').html(total_value6.toFixed(2));
-                $('.js-average-portion-selling-price-6').html(total_average6.toFixed(2));
-
-
-
-
-
-                $('.menu-builder-calculator-7 tbody tr').each(function() {
-
-                    var $cell7 = $(this).find('td:first-child'),
-                        $row7 = $cell7.closest('tr'),
-                        price7 = $cell7.data('cost');
-
-                    if (! price7 ) { price7 = 0 }
-
-                    total_value7 += price7;
-
-                    $row7.find('.price').html(price7.toFixed(2));
-
-                });
-                
-                // divide by total row count to find the average cost
-                var $av_cell7 = $('.calculations-7 tr.average td'),
-                    average_count7 = $av_cell7.data('count');                   
-
-                    total_average7 = total_value7 / average_count7;
-                    
-                
-                // update menu totals
-                $('.js-total-portion-selling-price-7').html(total_value7.toFixed(2));
-                $('.js-average-portion-selling-price-7').html(total_average7.toFixed(2));
-
-
-
-
-
-                $('.menu-builder-calculator-8 tbody tr').each(function() {
-
-                    var $cell8 = $(this).find('td:first-child'),
-                        $row8 = $cell8.closest('tr'),
-                        price8 = $cell8.data('cost');
-
-                    if (! price8 ) { price8 = 0 }
-
-                    total_value8 += price8;
-
-                    $row8.find('.price').html(price8.toFixed(2));
-
-                });
-                
-                // divide by total row count to find the average cost
-                var $av_cell8 = $('.calculations-8 tr.average td'),
-                    average_count8 = $av_cell8.data('count');                   
-
-                    total_average8 = total_value8 / average_count8;
-                    
-                
-                // update menu totals
-                $('.js-total-portion-selling-price-8').html(total_value8.toFixed(2));
-                $('.js-average-portion-selling-price-8').html(total_average8.toFixed(2));
 
             }
 
-
             function calculate_menus_totals() {
 
-                var menus_total = total_value+total_value2+total_value3+total_value4+total_value5+total_value6+total_value7+total_value8+total_value9+total_value10;
+                //var menus_total = total_value+total_value2+total_value3+total_value4+total_value5+total_value6+total_value7+total_value8+total_value9+total_value10;
 
 
                 //console.log(menus_total);    
                 
                 // update menu totals
-                $('.js-total-portion-selling-price-total').html(menus_total.toFixed(2));
+               // $('.js-total-portion-selling-price-total').html(menus_total.toFixed(2));
 
             }
 
@@ -710,7 +522,8 @@
         		calculate_costs();
                 //calculate_profits_backwards();
                 //calculate_vat();
-                calculate_menus();
+                //calculate_dish_totals();
+                calculate_course_totals();
                 calculate_menus_totals();
                 calculate_stock_volume()
                 calculate_stock_report_totals()

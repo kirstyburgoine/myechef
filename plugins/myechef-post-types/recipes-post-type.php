@@ -132,7 +132,7 @@ if(function_exists("register_field_group"))
 				'label' => 'Menu Price',
 				'name' => 'menu_price',
 				'type' => 'number',
-				'instructions' => 'A set price you would like to sell the portion for including VAT. VAT amount is set in Options.',
+				'instructions' => 'A set price you would like to sell the dish for including VAT. VAT amount is set in Options. This is also used as the suggested price in the set menus',
 				'default_value' => '',
 				'placeholder' => '',
 				'prepend' => '',

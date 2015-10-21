@@ -142,7 +142,9 @@
 					<!-- This is the main calculator bit -->
 					<form action="" class="cost-calculator color-<?php echo strtolower($banner_color); ?>">
 				
-					<?php $serving_cost = 0.00; 
+					<?php 
+
+					$serving_cost = 0.00; 
 
 					$serving = get_field('serving');
     					if ( $serving == "" ) : $serving  = "Selling Price"; endif;?>
@@ -159,15 +161,13 @@
     			while ( have_rows('fc_courses') ) : the_row();
     			$c_count++;
 
-    				if( get_row_layout() == 'add_course' ):
+    				if( get_row_layout() == 'add_course' ): ?>
 
-    					
-					?>
-
+    				<div class="course-tables">
 					
 					<h3><?php the_sub_field('course_name'); ?></h3>
 					
-					<table class="menu-builder-calculator-<?php echo $c_count; ?>">
+					<table class="menu-builder calculator-<?php echo $c_count; ?>">
 
 					<thead>
 
@@ -190,10 +190,10 @@
 						//echo "text";
 						$sub_recipe = get_sub_field('recipe');
 						$sub_quantity = get_sub_field('quantity');
-						$suggested_cost = get_sub_field('suggested_cost');
+						//$suggested_cost = get_sub_field('suggested_cost');
 						//if ( $suggested_cost == " " ) : $suggested_cost = "0.00"; endif;
 						$gross_profit = get_sub_field('gross_profit');
-						if ( $gross_profit == "" ) : $gross_profit = "65"; endif;
+						if ( $gross_profit == "" ) : $gross_profit = "70"; endif;
 
 						
 
@@ -206,13 +206,17 @@
 
  									$base_quantity_unit = get_field('recipe_quantity_unit', $s->ID);
 									$sub_recipe_cost = get_sub_recipe_cost($s->ID, $sub_quantity);
+									$gross_profit = get_field('gross_profit', $s->ID);
+									if ( ! $gross_profit ) : $gross_profit = "70"; endif;
 
 								?>
 
 								<tr>
 													
-									<td data-cost="<?php echo $suggested_cost; ?>"><a href="<?php echo get_permalink($s->ID); ?>"><?php echo get_the_title($s->ID); ?></a></td>
-									<td><?php echo $gross_profit; ?>&#37;</td>
+									<td data-cost="<?php echo get_field('menu_price', $s->ID); ?>">
+										<a href="<?php echo get_permalink($s->ID); ?>"><?php echo get_the_title($s->ID); ?></a>
+									</td>
+									<td data-servings="<?php echo get_field('portion_quantity', $s->ID); ?>"><?php echo $gross_profit; ?>&#37;</td>
 									<td>&pound;<span class="price"></span></td>
 
 								</tr>
@@ -235,18 +239,18 @@
 
 						--><div class="grid__item palm-one-whole three-quarters">
 			
-							<table class="calculations-<?php echo $c_count; ?> course-totals">
+							<table class="calculations-<?php echo $c_count; ?> course-totals table-two">
 
 								<tr class="total">
 									<th width="66.5%;"><?php echo  $serving; ?> per Course</th>
 									
-									<td width="33.5%;" class="course_total">£<span class="js-total-portion-selling-price-<?php echo $c_count; ?>"></span></td>
+									<td width="33.5%;" class="course_total">£<span class="js-total-portion-selling-price <?php echo $c_count; ?>"></span></td>
 								</tr>
 
 								<tr class="average">
 									<th width="66.5%;">Average Price per Serving</th>
 									
-									<td width="33.5%;" data-count="<?php echo $r_count; ?>">£<span class="js-average-portion-selling-price-<?php echo $c_count; ?>"></span></td>
+									<td width="33.5%;" data-count="<?php echo $r_count; ?>">£<span class="js-average-portion-selling-price <?php echo $c_count; ?>"></span></td>
 								</tr>
 
 								 
@@ -257,7 +261,7 @@
 
 					</div><!-- closes grid -->
 
-
+					</div>
 
 					<?php 
 					// ends if row layout is add_course
