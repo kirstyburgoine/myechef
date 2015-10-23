@@ -167,7 +167,7 @@
 					
 					<h3><?php the_sub_field('course_name'); ?></h3>
 					
-					<table class="menu-builder calculator-<?php echo $c_count; ?>">
+					<table class="menu-builder calculator<?php echo $c_count; ?>">
 
 					<thead>
 
@@ -244,13 +244,13 @@
 								<tr class="total">
 									<th width="66.5%;"><?php echo  $serving; ?> per Course</th>
 									
-									<td width="33.5%;" class="course_total">£<span class="js-total-portion-selling-price <?php echo $c_count; ?>"></span></td>
+									<td width="33.5%;" class="course_total">£<span class="js-course-total-price <?php echo $c_count; ?>"></span></td>
 								</tr>
 
 								<tr class="average">
 									<th width="66.5%;">Average Price per Serving</th>
 									
-									<td width="33.5%;" data-count="<?php echo $r_count; ?>">£<span class="js-average-portion-selling-price <?php echo $c_count; ?>"></span></td>
+									<td width="33.5%;" data-count="<?php echo $r_count; ?>">£<span class="js-course-average-price <?php echo $c_count; ?>"></span></td>
 								</tr>
 
 								 

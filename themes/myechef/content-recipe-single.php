@@ -448,35 +448,37 @@ global $blog_id;
 								// If so, check if someone is logged in and they have permissions for this blog
 								if ( is_user_logged_in() && current_user_can_for_blog( $blog_id, "read" ) ) : ?>
 			
-								<table class="calculations">
+							<table class="calculations">
 
-									<tr>
-										<th>Total Cost for <span class="js-portion-quantity"><?php echo $portion_quantity; ?></span> <?php echo ucfirst($portion_quantity_text);?>(s)</th>
-										<td class="inputs"><span class="js-percent-per-serving">30</span>%</td>
-										<td class="calculations">&pound;<span class="js-cost-per-serving"></span></td>
-										<td class="checkbox-blank"></td>
+								<tr>
+									<th class="labels">Total Cost for <span class="js-portion-quantity"><?php echo $portion_quantity; ?></span> <?php echo ucfirst($portion_quantity_text);?>(s)</th>
+									<td class="inputs"></td>
+									<td class="calculations">&pound;<span class="js-cost-per-serving"></span></td>
+									<td class="checkbox-blank"></td>
 
-									</tr>
+								</tr>
 
-									<tr>
-										<th class="labels">Total Cost Per Single Portion</th>
-										<td></td>
-										<td class="calculations">&pound;<span class="js-cost-per-portion" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
-										<td></td>
+								<tr>
+									<th>Total Cost Per Single Portion</th>
+									<td></td>
+									<td class="calculations">&pound;<span class="js-cost-per-portion" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
+									<td></td>
 
-									</tr>
-	 
-									<tr>
+								</tr>
+
+							</table>
+
+							<table class="calculations table-two">
+ 
+								<tr>
 									<?php 
-									// -----------------------------------------------------
-									// Custom amount of profit required. If not set it defaults to 70
 										$profit_required = get_field('gross_profit'); 
 										if ( ! $profit_required ) : $profit_required = '70'; endif;
 									?>
-										<th>Gross Profit Required</th>
-										<td><input type="text" name="profit-amount" class="small-input" value="<?php echo $profit_required; ?>">%</td>
-										<td>&pound;<span class="js-gross-profit"></span></td>
-										<td></td>
+										<th class="labels">Gross Profit Required</th>
+										<td class="inputs"><input type="text" name="profit-amount" class="small-input" value="<?php echo $profit_required; ?>">%</td>
+										<td class="calculations">&pound;<span class="js-gross-profit"></span></td>
+										<td class="checkbox-blank"></td>
 
 									</tr>
 
@@ -511,12 +513,63 @@ global $blog_id;
 
 									</tr>
 
-								</table>
+							</table>
+
+							<?php
+							// New table working out sums for gross profit backwards. 
+							//------------------------------------------------------------------------------------------------
+							//------------------------------------------------------------------------------------------------ 
+
+							$menu_price = get_field('menu_price');
+							$menu_price = number_format((float)$menu_price, 2, '.', ''); ?>
+
+							<h5>Preferred Menu Selling Price</h5>
+
+							<table class="calculations table-three">
+
+								
+									<tr>
+										<th class="labels">Price for <?php echo $portion_quantity; ?></span> <?php echo ucfirst($portion_quantity_text);?>(s) including VAT at <?php echo $vat_amount;?>%</th>
+										<td class="inputs"></td>
+										<?php /* <td>&pound;<span class="js-total-portion-vat-price" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td> */ ?>
+										<td class="calculations">&pound;<input type="text" name="desired-portion-price" class="small-input" value="<?php echo $menu_price; ?>"></td>
+										<td class="checkbox-blank"></td>
+
+									</tr>
+
+									<tr>
+										<th>Price for <?php echo $portion_quantity; ?></span> <?php echo ucfirst($portion_quantity_text);?>(s) before VAT</th>
+										<td>100%</td>
+										<td>&pound;<span class="js-total-desired-price"></span></td>
+										<td></td>
+
+									</tr>
 
 
-								<table class="calculations">
 
-								<?php
+									<tr>
+									<?php 
+									// -----------------------------------------------------
+									// Custom amount of profit required. If not set it defaults to 70
+										$profit_required = get_field('gross_profit'); 
+										if ( ! $profit_required ) : $profit_required = '70'; endif;
+									?>
+										<th>Gross Profit</th>
+										<td><span class="js-profit-percentage"></span>%</td>
+										<td>&pound;<span class="js-gross-profit-amount"></span></td>
+										<td></td>
+
+									</tr>
+
+
+									<tr>
+										<th>Menu Price Per Single Portion</th>
+										<td></td>
+										<td>&pound;<span class="js-preferred-portion-selling-price" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
+										<td></td>
+
+									</tr>
+									<?php
 									//-----------------------------------------------------
 									// Added global VAT amount
 				                    $vat_amount = get_field('vat_amount', 'option');
@@ -525,66 +578,15 @@ global $blog_id;
 				                    $vat_amount = $vat_amount * 100;
 				                    ?>
 									<tr>
-										<th>Preferred Selling Price including VAT at <?php echo $vat_amount;?>%</th>
+										<th>Menu Price including VAT at <?php echo $vat_amount;?>%</th>
 										<td></td>
-										<td>&pound;<span class="js-total-portion-vat-price" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
-										<td></td>
-
-									</tr>
-
-									<tr>
-										<th>Total Preferred Selling Price before VAT</th>
-										<td>100%</td>
-										<td>&pound;<span class="js-total-selling-price"></span></td>
+										<td>&pound;<span class="js-preferred-portion-vat-price" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
 										<td></td>
 
 									</tr>
-
-
-									<tr>
-										<th>Preferrerd Price Per Single Portion</th>
-										<td></td>
-										<td>&pound;<span class="js-total-portion-selling-price" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
-										<td></td>
-
-									</tr>
-
-									<tr>
-										<th>Total Cost for <span class="js-portion-quantity"><?php echo $portion_quantity; ?></span> <?php echo ucfirst($portion_quantity_text);?>(s)</th>
-										<td class="inputs"><span class="js-percent-per-serving">30</span>%</td>
-										<td class="calculations">&pound;<span class="js-cost-per-serving"></span></td>
-										<td class="checkbox-blank"></td>
-
-									</tr>
-
-									<tr>
-										<th class="labels">Total Cost Per Single Portion</th>
-										<td></td>
-										<td class="calculations">&pound;<span class="js-cost-per-portion" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
-										<td></td>
-
-									</tr>
-	 
-									<tr>
-									<?php 
-									// -----------------------------------------------------
-									// Custom amount of profit required. If not set it defaults to 70
-										$profit_required = get_field('gross_profit'); 
-										if ( ! $profit_required ) : $profit_required = '70'; endif;
-									?>
-										<th>Gross Profit Required</th>
-										<td><input type="text" name="profit-amount" class="small-input" value="<?php echo $profit_required; ?>">%</td>
-										<td>&pound;<span class="js-gross-profit"></span></td>
-										<td></td>
-
-									</tr>
-
-
-
-									
+	
 
 								</table>
-
 
 						<?php 
 								endif; 
@@ -672,12 +674,13 @@ global $blog_id;
 							$menu_price = get_field('menu_price');
 							$menu_price = number_format((float)$menu_price, 2, '.', ''); ?>
 
+							<h5>Preferred Menu Selling Price</h5>
 
 							<table class="calculations table-three">
 
 								
 									<tr>
-										<th class="labels">Preferred Selling Price including VAT at <?php echo $vat_amount;?>%</th>
+										<th class="labels">Price for <?php echo $portion_quantity; ?></span> <?php echo ucfirst($portion_quantity_text);?>(s) including VAT at <?php echo $vat_amount;?>%</th>
 										<td class="inputs"></td>
 										<?php /* <td>&pound;<span class="js-total-portion-vat-price" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td> */ ?>
 										<td class="calculations">&pound;<input type="text" name="desired-portion-price" class="small-input" value="<?php echo $menu_price; ?>"></td>
@@ -686,7 +689,7 @@ global $blog_id;
 									</tr>
 
 									<tr>
-										<th>Total Preferred Selling Price before VAT</th>
+										<th>Price for <?php echo $portion_quantity; ?></span> <?php echo ucfirst($portion_quantity_text);?>(s) before VAT</th>
 										<td>100%</td>
 										<td>&pound;<span class="js-total-desired-price"></span></td>
 										<td></td>
@@ -702,7 +705,7 @@ global $blog_id;
 										$profit_required = get_field('gross_profit'); 
 										if ( ! $profit_required ) : $profit_required = '70'; endif;
 									?>
-										<th>Gross Profit for Preferred Selling Price</th>
+										<th>Gross Profit</th>
 										<td><span class="js-profit-percentage"></span>%</td>
 										<td>&pound;<span class="js-gross-profit-amount"></span></td>
 										<td></td>
@@ -711,7 +714,7 @@ global $blog_id;
 
 
 									<tr>
-										<th>Preferred Selling Price Per Single Portion</th>
+										<th>Menu Price Per Single Portion</th>
 										<td></td>
 										<td>&pound;<span class="js-preferred-portion-selling-price" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
 										<td></td>
@@ -726,7 +729,7 @@ global $blog_id;
 				                    $vat_amount = $vat_amount * 100;
 				                    ?>
 									<tr>
-										<th>Preferred Selling Price including VAT at <?php echo $vat_amount;?>%</th>
+										<th>Menu Price including VAT at <?php echo $vat_amount;?>%</th>
 										<td></td>
 										<td>&pound;<span class="js-preferred-portion-vat-price" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
 										<td></td>

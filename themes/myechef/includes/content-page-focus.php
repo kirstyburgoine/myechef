@@ -3,6 +3,7 @@ $bg_image = get_field('background_banner_image', 'option');
 
 $recipe_text = get_field('recipes_intro_text', 'option'); 
 $ingredient_text = get_field('ingredient_intro_text', 'option'); 
+$wastage_text = get_field('wastage_intro_text', 'option'); 
 $events_text = get_field('events_intro_text', 'option'); 
 $suppliers_text = get_field('suppliers_intro_text', 'option'); 
 $contacts_text = get_field('contacts_intro_text', 'option'); 
@@ -53,6 +54,15 @@ $feature_description = get_field('feature_area_description');
 
 						<h1>Ingredients Stock</h1>
 						<p><?php echo $ingredient_text;?></p>
+
+					<?php
+					// -------------------------------------------------------------------
+					// If a custom post type archive use the settings from options.
+					// -------------------------------------------------------------------
+					elseif ( is_post_type_archive( 'wastage' ) || 'wastage' == get_post_type() || is_page_template('search-wastage.php')  ) : ?>
+
+						<h1>Additional Food Costs</h1>
+						<p><?php echo $wastage_text;?></p>
 
 					<?php
 					// -------------------------------------------------------------------
@@ -284,6 +294,17 @@ $feature_description = get_field('feature_area_description');
 
 						<?php
 						get_template_part('includes/content', 'ingredient-searchform');
+
+					// -------------------------------------------------------------------
+					// Else If in Wastage section show custom search form with 3 
+					// taxomomies as drop downs.
+					// -------------------------------------------------------------------
+					elseif ( is_post_type_archive( 'wastage' ) || 'wastage' == get_post_type() || is_page_template('search-wastage.php') ) : ?>
+
+						<h3>Search for Additional Costs reports by</h3>
+
+						<?php
+						get_template_part('includes/content', 'wastage-searchform');
 
 					// -------------------------------------------------------------------
 					// Else show the recipes search as default.

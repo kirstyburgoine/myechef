@@ -50,6 +50,43 @@ function kb_register_wastage_post_type() {
 add_action( 'init', 'kb_register_wastage_post_type' );
 
 
+function kb_register_wastage_taxonomies() {
+
+	register_taxonomy(
+		'cost_type',
+		'wastage',
+		array(
+			'labels' => array(
+				'name' => 'Type of Cost',
+				'add_new_item' => 'Add Type of Cost',
+				'new_item_name' => "New Type of Cost"
+			),
+			'show_ui' => true,
+			'show_tagcloud' => false,
+			'hierarchical' => true,
+			'show_in_nav_menus'	=> false
+		)
+	);
+
+	register_taxonomy(
+		'reason',
+		'wastage',
+		array(
+			'labels' => array(
+				'name' => 'Reason for Additional Cost',
+				'add_new_item' => 'Add Reason',
+				'new_item_name' => "New Reason"
+			),
+			'show_ui' => true,
+			'show_tagcloud' => false,
+			'hierarchical' => true,
+			'show_in_nav_menus'	=> false
+		)
+	);
+
+}
+
+add_action( 'init', 'kb_register_wastage_taxonomies' );
 
 
 
@@ -83,22 +120,6 @@ if(function_exists("register_field_group"))
 				'first_day' => 1,
 			),
 
-			array (
-				'key' => 'field_530dbbaa607ae',
-				'label' => 'Reason for Wastage',
-				'name' => 'reason_for_wastage',
-				'type' => 'select',
-				'choices' => array (
-					'Option 1' => 'Option 1',
-					'Option 2' => 'Option 2',
-					'Option 3' => 'Option 3',
-					'Option 4' => 'Option 4',
-					'Option 5' => 'Option 5',
-				),
-				'default_value' => '',
-				'allow_null' => 0,
-				'multiple' => 0,
-			),
 			array (
 				'key' => 'field_5331f087928cf',
 				'label' => 'Portion Quantity',

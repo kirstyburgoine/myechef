@@ -174,7 +174,9 @@
                 $vat_amount = get_field('vat_amount', 'option');
                 if ( !$vat_amount ) : $vat_amount = '0.2'; endif;
 
+                if ( $vat_divider !== '1' ) :
                 $vat_divider = $vat_amount + 1;
+                endif;
                 ?>
 
                 var desired_portion_price = $('[name="desired-portion-price"]').val(),
@@ -274,78 +276,115 @@
 
             }
 
-            // moved outside calculate_menus() function so all totals can be added up
-            var total_value = 0,
-                total_average = 0;
+// moved outside calculate_menus() function so all totals can be added up
+var total_value = 0,
+    total_average = 0;
 
 
-            function calculate_dish_totals() {
-                
-                $('.menu-builder tbody tr').each(function() {
 
-                        var $cell = $(this).find('td:first-child'),
-                            $cell2 = $(this).find('td:nth-child(2)'),
-                            $row = $cell.closest('tr'),
-                            price = $cell.data('cost');
-                            servings = $cell2.data('servings');
 
-                        if (! price ) { price = 0 }
 
-                        if ( isNaN(servings) || servings < 1 ) {
-                            servings = 1
-                        }
 
-                        //console.log(servings);
+function calculate_dish_totals() {
 
-                        singleprice = price / servings;
+    var tablecount = $('.course-tables').length;
+    var calculator = "calculator";
+    //console.log(tablecount);
+ 
+    for ( var i = 0; i < tablecount; i++) {
 
-                        $row.find('.price').html(singleprice.toFixed(2));
+        
+        //var tableclass = calculator.concat(i);
+        //console.log(tableclass);
 
-                        total_value += singleprice;
 
-                });
+    //$('tableclass').each(function(){
+        
+        $('calculator' +i).find('tbody tr').each(function () {
 
+            var $cell = $(this).find('td:first-child'),
+                $cell2 = $(this).find('td:nth-child(2)'),
+                $row = $cell.closest('tr'),
+                price = $cell.data('cost'),
+                servings = $cell2.data('servings');
+
+            if (!price) {
+                price = 0
             }
 
-            function calculate_course_totals() {
-
-                calculate_dish_totals();
-
-                $('.course-totals').each(function() {
-
-                    
-                
-                    // divide by total row count to find the average cost
-                    var $av_cell = $(' tr.average td:nth-child(2)'),
-                    average_count = $av_cell.data('count');
-
-                   
-
-                    total_average = total_value / average_count;
-                    //console.log(total_value);
-                    //console.log(average_count);
-
-
-                // update course totals
-                $('.js-total-portion-selling-price').html(total_value.toFixed(2));
-                $('.js-average-portion-selling-price').html(total_average.toFixed(2));
-
-                });
-
-
-
-
+            if (isNaN(servings) || servings < 1) {
+                servings = 1
             }
+
+            //console.log(servings);
+            singleprice = price / servings;
+
+            // Display the price for the dish in the last column
+            $row.find('.price').html(singleprice.toFixed(2));
+
+            // Add up each price
+            total_value += singleprice;
+
+        });
+
+        
+
+        $(this).next().find('.course-totals tbody tr.average').each(function () {
+
+      
+            // divide by total row count to find the average cost
+            var $av_cell = $(this).find('td:nth-child(2)'),
+                average_count = $av_cell.data('count');
+
+            total_average = total_value / average_count;
+            console.log(total_value);
+            console.log(average_count);
+
+        });
+
+        $(this).next().find('.js-course-total-price').html(total_value.toFixed(2));
+        $(this).next().find('.js-course-average-price').html(total_average.toFixed(2));
+
+    
+    //});
+
+
+}
+}
+
+
 
             function calculate_menus_totals() {
 
-                //var menus_total = total_value+total_value2+total_value3+total_value4+total_value5+total_value6+total_value7+total_value8+total_value9+total_value10;
+                $(this).find('tbody tr').each(function () {
 
+                    var $cell = $(this).find('td:first-child'),
+                        $cell2 = $(this).find('td:nth-child(2)'),
+                        $row = $cell.closest('tr'),
+                        price = $cell.data('cost'),
+                        servings = $cell2.data('servings');
 
-                //console.log(menus_total);    
+                    if (!price) {
+                        price = 0
+                    }
+
+                    if (isNaN(servings) || servings < 1) {
+                        servings = 1
+                    }
+
+                    //console.log(servings);
+                    singleprice = price / servings;
+
+                    // Display the price for the dish in the last column
+                    $row.find('.price').html(singleprice.toFixed(2));
+
+                    // Add up each price
+                    total_value += singleprice;
+
+                });  
                 
                 // update menu totals
-               // $('.js-total-portion-selling-price-total').html(menus_total.toFixed(2));
+               $('.js-total-portion-selling-price-total').html(total_value.toFixed(2));
 
             }
 
@@ -517,13 +556,16 @@
                     calculate_profits_backwards();
                 });
 
+                $('.course-tables').each(function() {
+                    //calculate_dish_totals()
+                });
 
                 calculate_quantities();
         		calculate_costs();
                 //calculate_profits_backwards();
                 //calculate_vat();
-                //calculate_dish_totals();
-                calculate_course_totals();
+                calculate_dish_totals();
+                //calculate_course_totals();
                 calculate_menus_totals();
                 calculate_stock_volume()
                 calculate_stock_report_totals()

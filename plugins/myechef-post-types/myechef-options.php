@@ -305,6 +305,18 @@ if(function_exists("register_field_group"))
 				'formatting' => 'br',
 			),
 			array (
+				'key' => 'field_5329c5c7ab4e9',
+				'label' => 'Wastage Intro Text',
+				'name' => 'wastage_intro_text',
+				'type' => 'textarea',
+				'instructions' => 'This is the area at the top of the page that displays on archive pages for wastage and additional costs reports.',
+				'default_value' => '',
+				'placeholder' => '',
+				'maxlength' => '',
+				'rows' => '',
+				'formatting' => 'br',
+			),
+			array (
 				'key' => 'field_5370b16f3fddb',
 				'label' => 'Events Intro Text',
 				'name' => 'events_intro_text',
