@@ -277,30 +277,27 @@
             }
 
 // moved outside calculate_menus() function so all totals can be added up
-var total_value = 0,
-    total_average = 0;
+var total_value1 = 0,
+    total_value2 = 0,
+    total_value3 = 0,
+    total_value4 = 0,
+    total_value5 = 0,
+    total_average1 = 0;
+    total_average2 = 0;
+    total_average3 = 0;
+    total_average4 = 0;
+    total_average5 = 0;
 
 
 
 
 
 
-function calculate_dish_totals() {
+function calculate_course_totals() {
 
-    var tablecount = $('.course-tables').length;
-    var calculator = "calculator";
-    //console.log(tablecount);
- 
-    for ( var i = 0; i < tablecount; i++) {
-
+   // $(".menu-builder").each(function(){
         
-        //var tableclass = calculator.concat(i);
-        //console.log(tableclass);
-
-
-    //$('tableclass').each(function(){
-        
-        $('calculator' +i).find('tbody tr').each(function () {
+        $('.calculator-1 tbody tr').each(function () {
 
             var $cell = $(this).find('td:first-child'),
                 $cell2 = $(this).find('td:nth-child(2)'),
@@ -323,70 +320,199 @@ function calculate_dish_totals() {
             $row.find('.price').html(singleprice.toFixed(2));
 
             // Add up each price
-            total_value += singleprice;
+            total_value1 += singleprice;
 
         });
 
-        
-
-        $(this).next().find('.course-totals tbody tr.average').each(function () {
-
-      
+        $('.calculations-1 tbody tr.average').each(function () {
             // divide by total row count to find the average cost
             var $av_cell = $(this).find('td:nth-child(2)'),
-                average_count = $av_cell.data('count');
+                average_count1 = $av_cell.data('count');
 
-            total_average = total_value / average_count;
-            console.log(total_value);
-            console.log(average_count);
+            total_average1 = total_value1 / average_count1;
 
         });
 
-        $(this).next().find('.js-course-total-price').html(total_value.toFixed(2));
-        $(this).next().find('.js-course-average-price').html(total_average.toFixed(2));
+        //---------------------------------------------------------
 
-    
-    //});
+        $('.calculator-2 tbody tr').each(function () {
 
+            var $cell = $(this).find('td:first-child'),
+                $cell2 = $(this).find('td:nth-child(2)'),
+                $row = $cell.closest('tr'),
+                price = $cell.data('cost'),
+                servings = $cell2.data('servings');
 
-}
-}
-
-
-
-            function calculate_menus_totals() {
-
-                $(this).find('tbody tr').each(function () {
-
-                    var $cell = $(this).find('td:first-child'),
-                        $cell2 = $(this).find('td:nth-child(2)'),
-                        $row = $cell.closest('tr'),
-                        price = $cell.data('cost'),
-                        servings = $cell2.data('servings');
-
-                    if (!price) {
-                        price = 0
-                    }
-
-                    if (isNaN(servings) || servings < 1) {
-                        servings = 1
-                    }
-
-                    //console.log(servings);
-                    singleprice = price / servings;
-
-                    // Display the price for the dish in the last column
-                    $row.find('.price').html(singleprice.toFixed(2));
-
-                    // Add up each price
-                    total_value += singleprice;
-
-                });  
-                
-                // update menu totals
-               $('.js-total-portion-selling-price-total').html(total_value.toFixed(2));
-
+            if (!price) {
+                price = 0
             }
+
+            if (isNaN(servings) || servings < 1) {
+                servings = 1
+            }
+
+            //console.log(servings);
+            singleprice = price / servings;
+
+            // Display the price for the dish in the last column
+            $row.find('.price').html(singleprice.toFixed(2));
+
+            // Add up each price
+            total_value2 += singleprice;
+
+        });
+
+        $('.calculations-2 tbody tr.average').each(function () {
+            // divide by total row count to find the average cost
+            var $av_cell = $(this).find('td:nth-child(2)'),
+                average_count2 = $av_cell.data('count');
+
+            total_average2 = total_value2 / average_count2;
+
+        });
+
+        //---------------------------------------------------------
+
+        $('.calculator-3 tbody tr').each(function () {
+
+            var $cell = $(this).find('td:first-child'),
+                $cell2 = $(this).find('td:nth-child(2)'),
+                $row = $cell.closest('tr'),
+                price = $cell.data('cost'),
+                servings = $cell2.data('servings');
+
+            if (!price) {
+                price = 0
+            }
+
+            if (isNaN(servings) || servings < 1) {
+                servings = 1
+            }
+
+            //console.log(servings);
+            singleprice = price / servings;
+
+            // Display the price for the dish in the last column
+            $row.find('.price').html(singleprice.toFixed(2));
+
+            // Add up each price
+            total_value3 += singleprice;
+
+        });
+
+        $('.calculations-3 tbody tr.average').each(function () {
+            // divide by total row count to find the average cost
+            var $av_cell = $(this).find('td:nth-child(2)'),
+                average_count3 = $av_cell.data('count');
+
+            total_average3 = total_value3 / average_count3;
+
+        });
+
+        //---------------------------------------------------------
+
+        $('.calculator-4 tbody tr').each(function () {
+
+            var $cell = $(this).find('td:first-child'),
+                $cell2 = $(this).find('td:nth-child(2)'),
+                $row = $cell.closest('tr'),
+                price = $cell.data('cost'),
+                servings = $cell2.data('servings');
+
+            if (!price) {
+                price = 0
+            }
+
+            if (isNaN(servings) || servings < 1) {
+                servings = 1
+            }
+
+            //console.log(servings);
+            singleprice = price / servings;
+
+            // Display the price for the dish in the last column
+            $row.find('.price').html(singleprice.toFixed(2));
+
+            // Add up each price
+            total_value4 += singleprice;
+
+        });
+
+        $('.calculations-4 tbody tr.average').each(function () {
+            // divide by total row count to find the average cost
+            var $av_cell = $(this).find('td:nth-child(2)'),
+                average_count4 = $av_cell.data('count');
+
+            total_average4 = total_value4 / average_count4;
+
+        });
+
+        //---------------------------------------------------------
+
+        $('.calculator-5 tbody tr').each(function () {
+
+            var $cell = $(this).find('td:first-child'),
+                $cell2 = $(this).find('td:nth-child(2)'),
+                $row = $cell.closest('tr'),
+                price = $cell.data('cost'),
+                servings = $cell2.data('servings');
+
+            if (!price) {
+                price = 0
+            }
+
+            if (isNaN(servings) || servings < 1) {
+                servings = 1
+            }
+
+            //console.log(servings);
+            singleprice = price / servings;
+
+            // Display the price for the dish in the last column
+            $row.find('.price').html(singleprice.toFixed(2));
+
+            // Add up each price
+            total_value5 += singleprice;
+
+        });
+
+        $('.calculations-5 tbody tr.average').each(function () {
+            // divide by total row count to find the average cost
+            var $av_cell = $(this).find('td:nth-child(2)'),
+                average_count5 = $av_cell.data('count');
+
+            total_average5 = total_value5 / average_count5;
+
+        });
+
+    $('.calculations-1 .js-course-total-price').html(total_value1.toFixed(2));
+    $('.calculations-1 .js-course-average-price').html(total_average1.toFixed(2));
+
+    $('.calculations-2 .js-course-total-price').html(total_value2.toFixed(2));
+    $('.calculations-2 .js-course-average-price').html(total_average2.toFixed(2));
+
+    $('.calculations-3 .js-course-total-price').html(total_value3.toFixed(2));
+    $('.calculations-3 .js-course-average-price').html(total_average3.toFixed(2));
+
+    $('.calculations-4 .js-course-total-price').html(total_value4.toFixed(2));
+    $('.calculations-4 .js-course-average-price').html(total_average4.toFixed(2));
+
+    $('.calculations-5 .js-course-total-price').html(total_value5.toFixed(2));
+    $('.calculations-5 .js-course-average-price').html(total_average5.toFixed(2));
+    
+   // });
+
+
+}
+
+function calculate_menus_total() {
+
+    var menu_value = total_value1 + total_value2 + total_value3 + total_value4 + total_value5;
+    $('.calculations-total tbody tr.total td:nth-child(2)').html(menu_value.toFixed(2));
+    
+}
+
+
 
             function calculate_stock_volume() {
 
@@ -556,17 +682,14 @@ function calculate_dish_totals() {
                     calculate_profits_backwards();
                 });
 
-                $('.course-tables').each(function() {
-                    //calculate_dish_totals()
-                });
 
                 calculate_quantities();
         		calculate_costs();
                 //calculate_profits_backwards();
                 //calculate_vat();
-                calculate_dish_totals();
-                //calculate_course_totals();
-                calculate_menus_totals();
+                //calculate_dish_totals();
+                calculate_course_totals();
+                calculate_menus_total();
                 calculate_stock_volume()
                 calculate_stock_report_totals()
 

@@ -101,6 +101,7 @@ form.cost-calculator {
 		.quantity { width: 15%; }
 		.cost { width: 15%; }
 		.checkbox { width: 5%; }
+		
 
 		td { border-bottom: solid 1px $bg_color_alt; }
 		th { 
@@ -121,6 +122,14 @@ form.cost-calculator {
 		.inputs { width: 20%; }
 		.calculations { width: 20%; }
 		.checkbox-blank { width: 7%; }
+
+		&.wastage-sub {
+			.ingredients,
+			.ingredient { width: 40%; }
+			.reason { width: 30%; }
+			.quantity,
+			.price { width: 15%;}
+		}
 
 	}
 

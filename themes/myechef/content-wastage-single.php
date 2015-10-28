@@ -15,7 +15,7 @@ global $blog_id;
 					<div class="utility">
 						
 						<ul class="utility-icons">
-							<li class="pt	rbl"><a href="javascript:window.print()" class="ss-icon print" title="Print this page">Print</a></li>
+							<li class="ptrbl"><a href="javascript:window.print()" class="ss-icon print" title="Print this page">Print</a></li>
 							
 						</ul>
 
@@ -28,8 +28,13 @@ global $blog_id;
 					</header>			
 
 
-					<?php if ( $small_description = get_field('small_description') ) : ?>
-						<p><?php echo $small_description; ?></p>
+					<?php 
+					$report_start = DateTime::createFromFormat('Ymd', get_field('report_start'));
+					
+					$report_end = DateTime::createFromFormat('Ymd', get_field('report_end'));
+
+						if ( $report_start ) : ?>
+						<h5>Report Date: <?php echo $report_start->format('d-m-Y'); if ( $report_end ) :?> to <?php echo $report_end->format('d-m-Y'); endif; ?></h5>
 					<?php endif; ?>
 
 
@@ -44,10 +49,10 @@ global $blog_id;
 
 					<?php 
 					$portion_quantity = get_field('portion_quantity') ? get_field('portion_quantity') : 1; 
-					$portion_quantity_text = get_field('portion_quantity_text') ? get_field('portion_quantity_text') : "portion"; 
+					
 					?>
 				
-					<p>This recipe makes <input type="text" name="serving-quantity" value="<?php echo $portion_quantity; ?>" data-original-value="<?php echo $portion_quantity; ?>" class="portion-input" /> <?php echo $portion_quantity_text; ?>.</p>
+					<input type="hidden" name="serving-quantity" value="<?php echo $portion_quantity; ?>" data-original-value="<?php echo $portion_quantity; ?>" class="portion-input" />
 					
 
 					<!-- This is the main calculator bit -->
@@ -55,15 +60,16 @@ global $blog_id;
 				
 						<?php $serving_cost = 0.00; ?>
 
-						<table class="ingredient-calculator">
+						<table class="ingredient-calculator wastage-sub">
 
 							<thead>
 
 								<tr>
 									<th class="ingredient">Shopping List</th>
+									<th class="reason">Reason</th>
 									<th class="quantity">Quantity</th>
 									<th class="cost">Cost</th>
-									<th class="checkbox"></th>
+									
 								</tr>
 
 							</thead>
@@ -78,6 +84,7 @@ global $blog_id;
 
 											$ingredients_list = get_sub_field('ingredients');
 											$quantity = get_sub_field('quantity');
+											$reason = get_sub_field('reason_for_wastage'); 
 											
 										?>
 
@@ -87,7 +94,7 @@ global $blog_id;
 
 
 
-												<td data-quantity="<?php echo $quantity; ?>">
+												<td data-quantity="<?php echo $quantity; ?>" class="ingredient">
 
 													<select class="js-related-ingredients">
 
@@ -122,8 +129,10 @@ global $blog_id;
 											
 											<?php endif; ?>
 
+											<td class="reason"><?php echo $reason; ?></td>
+
 											<td class="quantity"></td>
-											<td>
+											<td class="price">
 												<?php  // Only show costs if logged in and level is above subscriber
 												// First check if the site should be protected
 												if ( $protected == 'Yes') :
@@ -141,7 +150,7 @@ global $blog_id;
 												endif; ?>
 											</td>
 
-											<td><input type="checkbox" name="done" value="Yes"></td>
+											
 										</tr>
 
 									<?php endwhile; ?>
@@ -152,17 +161,7 @@ global $blog_id;
 
 							<tfoot>
 
-								<?php if ( $seasoning = get_field('seasoning') ) : ?>
-
-									<tr>
-										<td><?php echo $seasoning; ?></td>
-										
-										<td></td>
-										<td></td>
-										<td></td>
-									</tr>
-
-								<?php endif; ?>
+								
 
 							</tfoot>
 
@@ -210,7 +209,7 @@ global $blog_id;
 									<th class="labels">Ingredients cost for <span class="js-portion-quantity"><?php echo $portion_quantity; ?></span> <?php echo ucfirst($portion_quantity_text);?>(s)</th>
 									<td class="inputs"></td>
 									<td class="calculations">&pound;<span class="js-ingredient-cost-per-serving"></span></td>
-									<td class="checkbox-blank"> </td>
+									
 								</tr>
 
 								<tr>
@@ -218,7 +217,7 @@ global $blog_id;
 									<td class="inputs"></td>
 									<td class="calculations">&pound;<span class="js-ingredient-cost-per-portion" data-portion-quantity="<?php echo $portion_quantity; ?>"></span>
 									</td>
-									<td class="checkbox-blank"></td>
+									
 								</tr>
 
 							</table>
@@ -240,7 +239,7 @@ global $blog_id;
 					<h2>Required Sub Recipes</h2>
 
 					
-					<table class="sub-recipe-calculator">
+					<table class="sub-recipe-calculator wastage-sub">
 							
 					<?php 
 					while ( has_sub_field ( 'sub_recipes' ) )  :
@@ -248,6 +247,7 @@ global $blog_id;
 						//echo "text";
 						$sub_recipe = get_sub_field('sub_recipe');
 						$sub_quantity = get_sub_field('quantity');
+						$sub_reason = get_sub_field('sub_reason_for_wastage');
 
 						//print_r($sub_recipe);
 
@@ -302,8 +302,10 @@ global $blog_id;
 						
 						<?php endif; ?>
 
+						<td class="reason"><?php echo $sub_reason; ?></td>
+
 						<td class="quantity"></td>
-						<td>
+						<td class="price">
 							<?php  
 							// Only show costs if logged in and level is above subscriber
 							// First check if the site should be protected
@@ -322,7 +324,7 @@ global $blog_id;
 							endif;?>
 						</td>
 
-						<td class="checkbox"><input type="checkbox" name="done" value="Yes"></td>
+						
 
 					</tr>
 						
@@ -379,17 +381,11 @@ global $blog_id;
 									<th class="labels">Total Cost of Waste / Staff meals</th>
 									<td class="inputs"></td>
 									<td class="calculations">&pound;<span class="js-cost-per-serving"></span></td>
-									<td class="checkbox-blank"></td>
+									
 
 								</tr>
 
-								<tr>
-									<th>Total Cost Per Single Portion</th>
-									<td></td>
-									<td class="calculations">&pound;<span class="js-cost-per-portion" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
-									<td></td>
 
-								</tr>
 
 							</table>
 
@@ -403,7 +399,7 @@ global $blog_id;
 										<th class="labels">Value of GP Lost</th>
 										<td class="inputs"><input type="text" name="profit-amount" class="small-input" value="<?php echo $profit_required; ?>">%</td>
 										<td class="calculations">&pound;<span class="js-gross-profit"></span></td>
-										<td class="checkbox-blank"></td>
+										
 
 									</tr>
 
@@ -411,32 +407,11 @@ global $blog_id;
 										<th>Total Estimated Selling Price</th>
 										<td>100%</td>
 										<td>&pound;<span class="js-total-selling-price"></span></td>
-										<td></td>
+										
 
 									</tr>
 
-									<tr>
-										<th>Estimated Selling Price Per Single Portion</th>
-										<td></td>
-										<td>&pound;<span class="js-total-portion-selling-price" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
-										<td></td>
-
-									</tr>
-									<?php
-									//-----------------------------------------------------
-									// Added global VAT amount
-				                    $vat_amount = get_field('vat_amount', 'option');
-				                    if ( !$vat_amount ) : $vat_amount = '0.2'; endif;
-
-				                    $vat_amount = $vat_amount * 100;
-				                    ?>
-									<tr>
-										<th>Estimated Selling Price including VAT at <?php echo $vat_amount;?>%</th>
-										<td></td>
-										<td>&pound;<span class="js-total-portion-vat-price" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
-										<td></td>
-
-									</tr>
+									
 
 							</table>
 								
@@ -459,17 +434,11 @@ global $blog_id;
 									<th class="labels">Total Cost of Waste / Staff meals</th>
 									<td class="inputs"></td>
 									<td class="calculations">&pound;<span class="js-cost-per-serving"></span></td>
-									<td class="checkbox-blank"></td>
+									
 
 								</tr>
 
-								<tr>
-									<th>Total Cost Per Single Portion</th>
-									<td></td>
-									<td class="calculations">&pound;<span class="js-cost-per-portion" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
-									<td></td>
-
-								</tr>
+	
 
 							</table>
 
@@ -483,7 +452,7 @@ global $blog_id;
 										<th class="labels">Value of GP Lost</th>
 										<td class="inputs"><input type="text" name="profit-amount" class="small-input" value="<?php echo $profit_required; ?>">%</td>
 										<td class="calculations">&pound;<span class="js-gross-profit"></span></td>
-										<td class="checkbox-blank"></td>
+										
 
 									</tr>
 
@@ -491,32 +460,10 @@ global $blog_id;
 										<th>Total Estimated Selling Price</th>
 										<td>100%</td>
 										<td>&pound;<span class="js-total-selling-price"></span></td>
-										<td></td>
+										
 
 									</tr>
 
-									<tr>
-										<th>Estimated Selling Price Per Single Portion</th>
-										<td></td>
-										<td>&pound;<span class="js-total-portion-selling-price" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
-										<td></td>
-
-									</tr>
-									<?php
-									//-----------------------------------------------------
-									// Added global VAT amount
-				                    $vat_amount = get_field('vat_amount', 'option');
-				                    if ( !$vat_amount ) : $vat_amount = '0.2'; endif;
-
-				                    $vat_amount = $vat_amount * 100;
-				                    ?>
-									<tr>
-										<th>Estimated Selling Price including VAT at <?php echo $vat_amount;?>%</th>
-										<td></td>
-										<td>&pound;<span class="js-total-portion-vat-price" data-portion-quantity="<?php echo $portion_quantity; ?>"></span></td>
-										<td></td>
-
-									</tr>
 
 							</table>
 

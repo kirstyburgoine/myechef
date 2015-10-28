@@ -68,22 +68,6 @@ function kb_register_wastage_taxonomies() {
 		)
 	);
 
-	register_taxonomy(
-		'reason',
-		'wastage',
-		array(
-			'labels' => array(
-				'name' => 'Reason for Additional Cost',
-				'add_new_item' => 'Add Reason',
-				'new_item_name' => "New Reason"
-			),
-			'show_ui' => true,
-			'show_tagcloud' => false,
-			'hierarchical' => true,
-			'show_in_nav_menus'	=> false
-		)
-	);
-
 }
 
 add_action( 'init', 'kb_register_wastage_taxonomies' );
@@ -98,6 +82,7 @@ if(function_exists("register_field_group"))
 		'id' => 'acf_wastage',
 		'title' => 'Wastage',
 		'fields' => array (
+			/*
 			array (
 				'key' => 'field_530dbb8b601ad',
 				'label' => 'Small Description',
@@ -109,17 +94,27 @@ if(function_exists("register_field_group"))
 				'rows' => 4,
 				'formatting' => 'br',
 			),
-
+			*/
 			array (
 				'key' => 'field_5627984bcc25f',
-				'label' => 'Date of Wastage',
-				'name' => 'date_of_wastage',
+				'label' => 'Report Start Date',
+				'name' => 'report_start',
 				'type' => 'date_picker',
 				'date_format' => 'yymmdd',
 				'display_format' => 'dd/mm/yy',
 				'first_day' => 1,
 			),
 
+			array (
+				'key' => 'field_5627984bcc27f',
+				'label' => 'Report End Date',
+				'name' => 'report_end',
+				'type' => 'date_picker',
+				'date_format' => 'yymmdd',
+				'display_format' => 'dd/mm/yy',
+				'first_day' => 1,
+			),
+/*
 			array (
 				'key' => 'field_5331f087928cf',
 				'label' => 'Portion Quantity',
@@ -159,7 +154,7 @@ if(function_exists("register_field_group"))
 				'append' => '',
 				'formatting' => 'html',
 				'maxlength' => '',
-			),
+			), 
 			array (
 				'key' => 'field_5360bbe357d3c',
 				'label' => 'Recipe Quantity Unit',
@@ -174,7 +169,7 @@ if(function_exists("register_field_group"))
 				'default_value' => '',
 				'allow_null' => 0,
 				'multiple' => 0,
-			),
+			), */
 
 			array (
 				'key' => 'field_530dbdb45a5b7',
@@ -219,12 +214,33 @@ if(function_exists("register_field_group"))
 						'max' => '',
 						'step' => '',
 					),
+					array (
+						'key' => 'field_530dbbaa691ae',
+						'label' => 'Reason for Wastage',
+						'name' => 'reason_for_wastage',
+						'type' => 'select',
+						'choices' => array (
+							'Out of date' => 'Out of date',
+							'Returned by customer' => 'Returned by customer',
+							'Leftover from service' => 'Leftover from service',
+							'Dropped on floor' => 'Dropped on floor',
+						),
+						'instructions' => '',
+						'column_width' => '',
+						'default_value' => '',
+						'placeholder' => '',
+						'prepend' => '',
+						'append' => '',
+						'min' => '',
+						'max' => '',
+						'step' => '',
+					),
 				),
 				'row_min' => '',
 				'row_limit' => '',
 				'layout' => 'table',
 				'button_label' => 'Add Ingredient',
-			),
+			), /*
 			array (
 				'key' => 'field_530dbc6e601b2',
 				'label' => 'Seasoning',
@@ -236,7 +252,7 @@ if(function_exists("register_field_group"))
 				'append' => '',
 				'formatting' => 'html',
 				'maxlength' => '',
-			),
+			), */
 			array (
 				'key' => 'field_535fc12fd5002',
 				'label' => 'Sub Recipes',
@@ -271,6 +287,27 @@ if(function_exists("register_field_group"))
 						'name' => 'quantity',
 						'type' => 'number',
 						'instructions' => 'In base units',
+						'column_width' => '',
+						'default_value' => '',
+						'placeholder' => '',
+						'prepend' => '',
+						'append' => '',
+						'min' => '',
+						'max' => '',
+						'step' => '',
+					),
+					array (
+						'key' => 'field_540dbbaa791ae',
+						'label' => 'Reason for Wastage',
+						'name' => 'sub_reason_for_wastage',
+						'type' => 'select',
+						'choices' => array (
+							'Out of date' => 'Out of date',
+							'Returned by customer' => 'Returned by customer',
+							'Leftover from service' => 'Leftover from service',
+							'Dropped on floor' => 'Dropped on floor',
+						),
+						'instructions' => '',
 						'column_width' => '',
 						'default_value' => '',
 						'placeholder' => '',

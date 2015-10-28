@@ -3766,6 +3766,14 @@ form.cost-calculator table {
     width: 20%; }
   form.cost-calculator table .checkbox-blank {
     width: 7%; }
+  form.cost-calculator table.wastage-sub .ingredients,
+  form.cost-calculator table.wastage-sub .ingredient {
+    width: 40%; }
+  form.cost-calculator table.wastage-sub .reason {
+    width: 30%; }
+  form.cost-calculator table.wastage-sub .quantity,
+  form.cost-calculator table.wastage-sub .price {
+    width: 15%; }
 form.cost-calculator input.small-input {
   width: 3em;
   display: inline-block; }

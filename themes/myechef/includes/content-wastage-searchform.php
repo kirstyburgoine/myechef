@@ -42,6 +42,7 @@ $n = $_GET['n'];
 
         	</div><!--
 			--><div class="grid__item one-half desk-one-fifth">
+			<?php /*
 
 				<label for="g">Reason:</label>
 
@@ -62,11 +63,14 @@ $n = $_GET['n'];
 					?>
 
 		        <select>
+		        */ ?>
+
+		         <input type="submit" class="searchme ss-icon" name="submit" id="searchsubmit" value="Search" />
 
 		    </div><!--
 			--><div class="grid__item one-half desk-one-fifth">
 
-				 <input type="submit" class="searchme ss-icon" name="submit" id="searchsubmit" value="Search" />
+				
 				
 		    </div><!--
 			--><div class="grid__item one-half desk-one-fifth">

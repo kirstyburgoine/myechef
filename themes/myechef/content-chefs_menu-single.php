@@ -167,7 +167,7 @@
 					
 					<h3><?php the_sub_field('course_name'); ?></h3>
 					
-					<table class="menu-builder calculator<?php echo $c_count; ?>">
+					<table class="menu-builder calculator-<?php echo $c_count; ?>">
 
 					<thead>
 
@@ -207,7 +207,7 @@
  									$base_quantity_unit = get_field('recipe_quantity_unit', $s->ID);
 									$sub_recipe_cost = get_sub_recipe_cost($s->ID, $sub_quantity);
 									$gross_profit = get_field('gross_profit', $s->ID);
-									if ( ! $gross_profit ) : $gross_profit = "70"; endif;
+									if ( $gross_profit == "" ) : $gross_profit = "70"; endif;
 
 								?>
 
