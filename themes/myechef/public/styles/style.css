@@ -3166,6 +3166,8 @@ h1.archive-title {
   @media screen and (min-width: 481px) {
     .type-recipe .recipe-title > h2 {
       clear: none; } }
+  .type-recipe .recipe-title.wastage-title {
+    border-bottom: 0; }
 .type-recipe.type-supplier .recipe-title, .type-recipe.type-chefepedia .recipe-title, .type-recipe.type-contact .recipe-title {
   border-bottom: 0; }
   @media screen and (min-width: 481px) {

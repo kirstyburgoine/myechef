@@ -873,7 +873,7 @@ global $blog_id;
 									<?php 
 									// find the last element
 									$lastElement = end($allergens_array);
-
+									sort($allergens_array);
 									// loop through the new array
 									foreach ( $allergens_array as $aa ) :
 										

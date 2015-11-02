@@ -217,6 +217,10 @@ h1.archive-title {
 		border-bottom: solid 1px #ececec;
 		margin-bottom: 0.5rem;
 
+		&.wastage-title {
+			border-bottom: 0;
+		}
+
 		/*
 		@media screen and (min-width: $lap-start) {
 			width: 50%;
