@@ -832,7 +832,7 @@ global $blog_id;
 						<div class="allergens">
 
 							<h4>Allergens</h4>
-							<p class="desc"><?php the_field('allergens_additional_info'); ?></p>
+							
 
 							<?php 
 							// Loop through the ingredients repeater field
@@ -888,12 +888,70 @@ global $blog_id;
 									endforeach; ?>
 								</p>
 							<?php	
-							//endif; ?>
+							endif; ?>
 
-							
+							<p class="desc"><?php the_field('allergens_additional_info'); ?></p>
 
+							<?php 
+							if ( get_field ( 'sub_recipes' ) ) : ?>
+
+								<h4>Sub Recipe Allergens</h4>
+
+								<ul>
+
+								<?php 
+								// create a new array for use later
+								$sub_allergens_array = array();
+
+								while ( has_sub_field ( 'sub_recipes' ) )  :
+
+									$sub_recipe = get_sub_field('sub_recipe');
+
+										foreach ( $sub_recipe as $recipe ) : 
+
+											//$sub_recipe = current($sub_recipe);
+
+											
+											//$sub_allergens = get_field('allergens', $recipe->ID);
+											//print_r($sub_allergens);
+
+											$sub_allergens = get_sub_field('sub_allergens');
+
+											echo "<li><strong>" . get_the_title($recipe->ID) .":</strong> " . $sub_allergens . "</li>";
+
+											
+
+										endforeach; 
+
+									wp_reset_postdata();
+
+								endwhile; ?>
+
+								</ul>
+								<?php 
+								/* This is the bit where we print the newly created array of sub allergens outside of the foreach loops ?>
+								<p>
+									<?php 
+									// find the last element
+									$lastSubElement = end($sub_allergens_array);
+									sort($sub_allergens_array);
+									// loop through the new array
+									foreach ( $sub_allergens_array as $saa ) :
+										
+										// if the last element don't add a comma and space
+										if ($saa == $lastSubElement ) :
+											echo $saa.'';
+										// else do add a comma and space
+										else :
+											echo $saa.', ';
+										endif; 
+
+									endforeach; ?>
+								</p>
+								<?php */ endif;  ?>
 						</div>
-					<?php  endif; ?>
+						<?php  
+							//endif; ?>
 					</div>
 
 				
