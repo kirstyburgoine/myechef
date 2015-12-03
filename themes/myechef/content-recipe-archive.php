@@ -35,7 +35,7 @@
 
 				<?php endif; */?>
 
-				<?php 
+				<?php /*
 							// Loop through the ingredients repeater field
 							if ( get_field('ingredients') ) : 
 
@@ -95,7 +95,7 @@
 							
 
 						
-					<?php  endif; ?>
+					<?php  endif; */ ?>
 
 			</header>
 
